@@ -4,7 +4,7 @@ export default [
   {
     path: '/kiseki',
     component: Layout,
-    redirect: '/kiseki/kai',
+    redirect: '/kiseki/kurotwo',
     name: 'kiseki',
     meta: {
       title: '轨迹'
@@ -13,9 +13,17 @@ export default [
       {
         path: 'kai',
         name: 'kainokiseki',
-        component: () => import('@/views/calvard/XiphaView3.vue'),
+        component: () => import('@/views/calvard/KaiView.vue'),
         meta: {
           title: '界之轨迹'
+        }
+      },
+      {
+        path: 'kurotwo',
+        name: 'kuronokisekitwo',
+        component: () => import('@/views/calvard/KurotwoView.vue'),
+        meta: {
+          title: '黎之轨迹2'
         }
       }
     ]

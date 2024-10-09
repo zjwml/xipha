@@ -1,0 +1,16 @@
+.circuit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.circuitIcon {
+  width: 20px; /* 设置宽度 */
+  height: 20px; /* 设置高度，与宽度相同以形成圆形 */
+  border-radius: 50%;
+}
+.circuitIcon-earth {
+  @extend .circuitIcon;
+  background-color: rgb(241, 173, 63);
+}

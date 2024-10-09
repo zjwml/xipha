@@ -21,7 +21,7 @@ const defaultRouterList = [
   // },
   {
     path: '/',
-    redirect: '/kiseki/kai'
+    redirect: '/kiseki/kurotwo'
   }
 ]
 // 存放固定路由
