@@ -1,0 +1,195 @@
+@import '../../assets/orbmentColor';
+
+:deep(.t-cascader__panel) {
+  height: 400px !important;
+}
+
+.bg-color {
+  border-radius: 10px;
+  background-color: #ffffff;
+  &failure {
+    background-color: #fff;
+  }
+  &success {
+    &-earth {
+      box-shadow: inset 0 0 2px $--circuit-color-earth;
+    }
+    &-water {
+      box-shadow: inset 0 0 2px $--circuit-color-water;
+    }
+    &-fire {
+      box-shadow: inset 0 0 2px $--circuit-color-fire;
+    }
+    &-wind {
+      box-shadow: inset 0 0 2px $--circuit-color-wind;
+    }
+    &-time {
+      box-shadow: inset 0 0 2px $--circuit-color-time;
+    }
+    &-gold {
+      box-shadow: inset 0 0 2px $--circuit-color-gold;
+    }
+    &-silver {
+      box-shadow: inset 0 0 2px $--circuit-color-silver;
+    }
+  }
+}
+
+.shadow-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .shadow-name {
+  }
+
+  .shadow-cost {
+    display: flex;
+    align-items: center;
+
+    .cost {
+      display: flex;
+      align-items: center;
+      .cost-use {
+        width: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: '楷体', 'KaiTi', 'KaiTi_GB2312', serif;
+        width: 24px;
+
+        &-success {
+          @extend .cost-use;
+          color: $--circuit-color-wind;
+        }
+        &-failure {
+          @extend .cost-use;
+          color: $--circuit-color-fire;
+        }
+      }
+      .cost-price {
+        font-size: 18px;
+        font-weight: bold;
+        // font-family: "SimSun", "宋体", sans-serif;
+        font-family: '楷体', 'KaiTi', 'KaiTi_GB2312', serif;
+        width: 24px;
+        text-align: right;
+      }
+
+      .cost-type-container {
+        margin-left: 10px;
+        margin-right: 10px;
+        display: inline-block;
+        padding-left: 3px;
+        padding-right: 3px;
+        background-color: #4e4e4e;
+        border: 2px solid white;
+        &-earth {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-earth,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-earth,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-earth,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-earth; /* 最远的外阴影，红色非常淡 */
+        }
+        &-water {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-water,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-water,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-water,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-water; /* 最远的外阴影，红色非常淡 */
+        }
+        &-fire {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-fire,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-fire,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-fire,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-fire; /* 最远的外阴影，红色非常淡 */
+        }
+
+        &-wind {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-wind,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-wind,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-wind,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-wind; /* 最远的外阴影，红色非常淡 */
+        }
+        &-time {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-time,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-time,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-time,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-time; /* 最远的外阴影，红色非常淡 */
+        }
+        &-gold {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-gold,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-gold,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-gold,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-gold; /* 最远的外阴影，红色非常淡 */
+        }
+        &-silver {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-silver,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-silver,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-silver,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-silver; /* 最远的外阴影，红色非常淡 */
+        }
+
+        .cost-type {
+          font-weight: bold;
+          font-family: '楷体', 'KaiTi', 'KaiTi_GB2312', serif;
+          color: white;
+          &-earth {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-earth,
+              0 0 2px $--circuit-color-earth;
+          }
+          &-water {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-water,
+              0 0 2px $--circuit-color-water;
+          }
+          &-fire {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-fire,
+              0 0 2px $--circuit-color-fire;
+          }
+          &-wind {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-wind,
+              0 0 2px $--circuit-color-wind;
+          }
+          &-time {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-time,
+              0 0 2px $--circuit-color-time;
+          }
+          &-gold {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-gold,
+              0 0 2px $--circuit-color-gold;
+          }
+          &-silver {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-silver,
+              0 0 2px $--circuit-color-silver;
+          }
+        }
+      }
+    }
+  }
+}

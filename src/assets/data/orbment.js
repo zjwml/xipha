@@ -1,3 +1,13 @@
+export const orbmentMap = {
+  earth: '地',
+  water: '水',
+  fire: '火',
+  wind: '风',
+  time: '时',
+  gold: '空',
+  silver: '幻'
+}
+
 export const orbmentColor = {
   none: 'var(--td-text-color-primary)',
   all: 'var(--td-text-color-primary)',
