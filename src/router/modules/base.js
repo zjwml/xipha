@@ -13,7 +13,7 @@ export default [
       {
         path: 'kai',
         name: 'kainokiseki',
-        component: () => import('@/views/calvard/KaiView.vue'),
+        component: () => import('@/views/calvard/Kai/KaiView.vue'),
         meta: {
           title: '界之轨迹'
         }
@@ -21,7 +21,7 @@ export default [
       {
         path: 'kurotwo',
         name: 'kuronokisekitwo',
-        component: () => import('@/views/calvard/KurotwoView.vue'),
+        component: () => import('@/views/calvard/Kurotwo/KurotwoView.vue'),
         meta: {
           title: '黎之轨迹2'
         }

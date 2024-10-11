@@ -1,3 +1,22 @@
+export const linkList = [
+  {
+    id: 0,
+    name: '武器'
+  },
+  {
+    id: 1,
+    name: '护盾'
+  },
+  {
+    id: 2,
+    name: '驱动'
+  },
+  {
+    id: 3,
+    name: 'EXTRA'
+  }
+]
+
 export const orbmentMap = {
   earth: '地',
   water: '水',
