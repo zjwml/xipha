@@ -29,7 +29,7 @@
             <template v-for="(shadow, shadowIndex) in shadowList" :key="shadow.id">
               <t-list-item :class="'bg-color' +
                 checkShadow(
-                  formData.useList[formData.shadowType],
+                  usedList[formData.shadowType],
                   shadow.cost
                 ) +
                 '-' +
@@ -47,11 +47,11 @@
                         </div>
                         <div :class="'cost-use-' +
                           checkOrbment(
-                            formData.useList[formData.shadowType][shadow.cost[0].type],
+                            usedList[formData.shadowType][shadow.cost[0].type],
                             shadow.cost[0].price
                           )
                           ">
-                          {{ formData.useList[formData.shadowType][shadow.cost[0].type] }}
+                          {{ usedList[formData.shadowType][shadow.cost[0].type] }}
                         </div>
                         <div>/</div>
                         <div class="cost-price">
@@ -66,11 +66,11 @@
                         </div>
                         <div :class="'cost-use-' +
                           checkOrbment(
-                            formData.useList[formData.shadowType][shadow.cost[1].type],
+                            usedList[formData.shadowType][shadow.cost[1].type],
                             shadow.cost[1].price
                           )
                           ">
-                          {{ formData.useList[formData.shadowType][shadow.cost[1].type] }}
+                          {{ usedList[formData.shadowType][shadow.cost[1].type] }}
                         </div>
                         <div>/</div>
                         <div class="cost-price">
@@ -142,8 +142,19 @@ const formData = reactive({
   },
   holeList: [],
   orbmentList: [],
-  useList: [],
 });
+
+const getNewLink = () => {
+  return {
+    earth: 0,
+    water: 0,
+    fire: 0,
+    wind: 0,
+    time: 0,
+    gold: 0,
+    silver: 0,
+  };
+}
 
 const checkOrbment = (a, b) => {
   if (a >= b) {
@@ -151,6 +162,8 @@ const checkOrbment = (a, b) => {
   } else {
     return "failure";
   }
+
+
 };
 
 const checkShadow = (a, b) => {
@@ -174,7 +187,30 @@ const shadowList = computed(() => {
   return result;
 });
 
-//可选择的回路
+const usedList = computed(() => {
+  let result = [];
+  for (let j = 0; j < 4; j++) {
+    let link = getNewLink();
+    for (let i = j * 3; i < j * 4 + 4; i++) {
+      const hole = formData.holeList[i];
+      const orbment = formData.orbmentList[i];
+      for (let k = 0; k < orbment.cost; k++) {
+        const cost = orbment.cost[k];
+        if ("all" != hole.type && "none" != hole.type) {
+          link[cost.type] += cost.price * 2;
+        } else {
+          link[cost.type] += cost.price;
+        }
+      }
+
+    }
+    result.push(link);
+  }
+
+  return result;
+})
+
+
 const orbmentOptions = computed(() => {
   let result = [];
   if ("all" === formData.holeSelect.type) {
@@ -215,6 +251,7 @@ const orbmentOptions = computed(() => {
       if (isUsed) {
         continue;
       }
+      //结束过滤
       if ("earth" === orbment.type) {
         result[0].children.push({
           label: orbment.name,
@@ -270,6 +307,32 @@ const orbmentOptions = computed(() => {
     for (let i = 0; i < orbmentList.length; i++) {
       const orbment = orbmentList[i];
       if (formData.holeSelect.type === orbment.type) {
+        //过滤刃、轮、诗
+        if (0 === formData.holeSelect.linkId) {
+          if (orbment.name.indexOf("轮") != -1 || orbment.name.indexOf("诗") != -1) {
+            continue;
+          }
+        } else if (1 === formData.holeSelect.linkId) {
+          if (orbment.name.indexOf("刃") != -1 || orbment.name.indexOf("诗") != -1) {
+            continue;
+          }
+        } else if (2 === formData.holeSelect.linkId) {
+          if (orbment.name.indexOf("轮") != -1 || orbment.name.indexOf("刃") != -1) {
+            continue;
+          }
+        }
+        //过滤已经用过的回路
+        let isUsed = false;
+        for (let j = 0; j < formData.orbmentList.length; j++) {
+          const hole = formData.orbmentList[j];
+          if (hole.id === orbment.id) {
+            isUsed = true;
+          }
+        }
+        if (isUsed) {
+          continue;
+        }
+        //结束过滤
         result[0].children.push({
           label: orbment.name,
           value: orbment.id,
@@ -298,25 +361,11 @@ const onClickCircuit = (circuitIndex, linkItem) => {
 const onConfirmOrbment = (ctx) => {
   //选择的结晶孔
   const hole = formData.holeSelect;
-  const linkId = hole.linkId;
-  //先记录之前的回路并回退链子
-  const preOrbment = formData.orbmentList[hole.index];
-  if ("none" != preOrbment.type) {
-    for (let i = 0; i < preOrbment.cost.length; i++) {
-      const item = preOrbment.cost[i];
-      formData.useList[linkId][item.type] -= item.price;
-    }
-  }
   //这个是新的回路
   const orbment = orbmentList[ctx - 1];
 
   formData.orbmentList[hole.index] = orbment;
   formData.orbmentSelectIndex = "";
-
-  for (let i = 0; i < orbment.cost.length; i++) {
-    const item = orbment.cost[i];
-    formData.useList[linkId][item.type] += item.price;
-  }
 
   formData.backpackVisible = false;
 };
@@ -337,16 +386,6 @@ const onClickClear = (linkItem) => {
     }
   }
 
-  formData.useList[position] = {
-    earth: 0,
-    water: 0,
-    fire: 0,
-    wind: 0,
-    time: 0,
-    gold: 0,
-    silver: 0,
-  }
-
 };
 
 onBeforeMount(() => {
@@ -361,18 +400,10 @@ onBeforeMount(() => {
     formData.orbmentList.push({
       type: "none",
       name: "请选择",
-    });
-  }
-
-  for (let i = 0; i < 4; i++) {
-    formData.useList.push({
-      earth: 0,
-      water: 0,
-      fire: 0,
-      wind: 0,
-      time: 0,
-      gold: 0,
-      silver: 0,
+      cost: [{
+        type: "none",
+        price: 0
+      }]
     });
   }
 });
