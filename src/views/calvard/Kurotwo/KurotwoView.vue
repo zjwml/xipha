@@ -29,7 +29,7 @@
             <template v-for="(shadow, shadowIndex) in shadowList" :key="shadow.id">
               <t-list-item :class="'bg-color' +
                 checkShadow(
-                  usedList[formData.shadowType],
+                  attributeSummary[formData.shadowType],
                   shadow.cost
                 ) +
                 '-' +
@@ -47,11 +47,11 @@
                         </div>
                         <div :class="'cost-use-' +
                           checkOrbment(
-                            usedList[formData.shadowType][shadow.cost[0].type],
+                            attributeSummary[formData.shadowType][shadow.cost[0].type],
                             shadow.cost[0].price
                           )
                           ">
-                          {{ usedList[formData.shadowType][shadow.cost[0].type] }}
+                          {{ attributeSummary[formData.shadowType][shadow.cost[0].type] }}
                         </div>
                         <div>/</div>
                         <div class="cost-price">
@@ -66,11 +66,11 @@
                         </div>
                         <div :class="'cost-use-' +
                           checkOrbment(
-                            usedList[formData.shadowType][shadow.cost[1].type],
+                            attributeSummary[formData.shadowType][shadow.cost[1].type],
                             shadow.cost[1].price
                           )
                           ">
-                          {{ usedList[formData.shadowType][shadow.cost[1].type] }}
+                          {{ attributeSummary[formData.shadowType][shadow.cost[1].type] }}
                         </div>
                         <div>/</div>
                         <div class="cost-price">
@@ -91,16 +91,15 @@
         <template #actions>
           <t-button theme="danger" variant="outline" @click="onClickClear(linkItem)"
             style="margin-right: 10px;">清空</t-button>
-          <t-button theme="primary" @click="onClickShadow(linkItem)">晶片技能</t-button>
+          <t-button theme="primary" @click="onClickShowShadow(linkItem)">晶片技能</t-button>
         </template>
         <t-form ref="form" :data="formData" label-width="120px" layout="inline" scroll-to-first-error="smooth">
           <template v-for="(pos, j) in [index * 4, index * 4 + 1, index * 4 + 2, index * 4 + 3]" :key="j">
             <t-form-item :name="linkItem.name + pos">
               <template #label>
-                <t-select v-model="formData.holeList[pos].type" :style="formData.holeList[pos].type
-                  ? 'color:' + orbmentColor[formData.holeList[pos].type]
-                  : ''
-                  ">
+                <t-select v-model="formData.holeList[pos].type"
+                  :style="formData.holeList[pos].type ? 'color:' + orbmentColor[formData.holeList[pos].type] : ''"
+                  @change="onChangeHoleType(pos)">
                   <t-option v-for="item in orbmentType" :key="item.key" :style="'color:' + item.color"
                     :label="item.name" :value="item.key">
                   </t-option>
@@ -144,15 +143,14 @@ const formData = reactive({
   orbmentList: [],
 });
 
-const getNewLink = () => {
+const getNewOrbment = () => {
   return {
-    earth: 0,
-    water: 0,
-    fire: 0,
-    wind: 0,
-    time: 0,
-    gold: 0,
-    silver: 0,
+    type: "none",
+    name: "请选择",
+    cost: [{
+      type: "none",
+      price: 0
+    }]
   };
 }
 
@@ -187,28 +185,69 @@ const shadowList = computed(() => {
   return result;
 });
 
-const usedList = computed(() => {
-  let result = [];
-  for (let j = 0; j < 4; j++) {
-    let link = getNewLink();
-    for (let i = j * 3; i < j * 4 + 4; i++) {
-      const hole = formData.holeList[i];
-      const orbment = formData.orbmentList[i];
-      for (let k = 0; k < orbment.cost; k++) {
-        const cost = orbment.cost[k];
-        if ("all" != hole.type && "none" != hole.type) {
-          link[cost.type] += cost.price * 2;
-        } else {
-          link[cost.type] += cost.price;
-        }
-      }
+const attributeSummary = computed(() => {
+  // 定义一个函数来计算单个回路的属性成本  
+  const calculateAttributeCost = (hole, orbment) => {
+    const cost = {
+      earth: 0,
+      water: 0,
+      fire: 0,
+      wind: 0,
+      time: 0,
+      gold: 0,
+      silver: 0,
+    };
 
+    let multiplier = 1; // 默认乘数为1  
+
+    // 如果结晶孔的类型是7种属性之一，则乘数设为2  
+    if (['earth', 'water', 'fire', 'wind', 'time', 'gold', 'silver'].includes(hole.type)) {
+      multiplier = 2;
     }
-    result.push(link);
+
+    // 遍历结晶回路的成本项，并应用乘数  
+    orbment.cost.forEach(costItem => {
+      cost[costItem.type] += costItem.price * multiplier;
+    });
+
+    return cost;
+  };
+
+  // 初始化一个空数组来存储每组属性的总和  
+  const summaries = [];
+
+  // 遍历每组的四个元素（hole和orbment是成对出现的）  
+  for (let group = 0; group < 4; group++) {
+    let groupSummary = {
+      earth: 0,
+      water: 0,
+      fire: 0,
+      wind: 0,
+      time: 0,
+      gold: 0,
+      silver: 0,
+    };
+
+    // 遍历组内的四个元素  
+    for (let index = 0; index < 4; index++) {
+      const holeIndex = group * 4 + index;
+      const orbmentIndex = holeIndex; // orbmentList与holeList的索引一一对应  
+      const hole = formData.holeList[holeIndex];
+      const orbment = formData.orbmentList[orbmentIndex];
+
+      // 计算当前回路对属性的贡献，并累加到组总和中  
+      const cost = calculateAttributeCost(hole, orbment);
+      for (const type in cost) {
+        groupSummary[type] += cost[type];
+      }
+    }
+
+    // 将组总和添加到结果数组中  
+    summaries.push(groupSummary);
   }
 
-  return result;
-})
+  return summaries;
+});
 
 
 const orbmentOptions = computed(() => {
@@ -345,6 +384,10 @@ const orbmentOptions = computed(() => {
   return result;
 });
 
+const onChangeHoleType = (pos) => {
+  formData.orbmentList[pos] = getNewOrbment();
+}
+
 const onClickCircuit = (circuitIndex, linkItem) => {
   formData.backpackVisible = true;
   formData.holeSelect = {
@@ -370,7 +413,7 @@ const onConfirmOrbment = (ctx) => {
   formData.backpackVisible = false;
 };
 
-const onClickShadow = (linkItem) => {
+const onClickShowShadow = (linkItem) => {
   formData.shadowSkillVisible = true;
   formData.shadowType = linkItem.id;
 };
@@ -397,14 +440,7 @@ onBeforeMount(() => {
   }
 
   for (let i = 0; i < 16; i++) {
-    formData.orbmentList.push({
-      type: "none",
-      name: "请选择",
-      cost: [{
-        type: "none",
-        price: 0
-      }]
-    });
+    formData.orbmentList.push(getNewOrbment());
   }
 });
 
