@@ -1,14 +1,14 @@
 <template>
   <div>
-    <t-dialog v-model:visible="formData.shadowSkillVisible" header="晶片技能" width="60%" :footer="false"
-      :show-all-levels="false">
+    <t-dialog :visible="shadowSkillVisible" header="晶片技能" width="60%" :footer="false" :show-all-levels="false"
+      @close="$emit('close-dialog')">
       <t-row>
         <t-col v-for="(ab, ind) in [0, 1]" :key="ind" :span="6">
           <t-list>
             <template v-for="(shadow, shadowIndex) in shadowList" :key="shadow.id">
               <t-list-item :class="'bg-color' +
                 checkShadow(
-                  attributeSummary[formData.shadowType],
+                  attributeSummary[props.shadowType],
                   shadow.cost
                 ) +
                 '-' +
@@ -26,11 +26,11 @@
                         </div>
                         <div :class="'cost-use-' +
                           checkOrbment(
-                            attributeSummary[formData.shadowType][shadow.cost[0].type],
+                            attributeSummary[props.shadowType][shadow.cost[0].type],
                             shadow.cost[0].price
                           )
                           ">
-                          {{ attributeSummary[formData.shadowType][shadow.cost[0].type] }}
+                          {{ attributeSummary[props.shadowType][shadow.cost[0].type] }}
                         </div>
                         <div>/</div>
                         <div class="cost-price">
@@ -45,11 +45,11 @@
                         </div>
                         <div :class="'cost-use-' +
                           checkOrbment(
-                            attributeSummary[formData.shadowType][shadow.cost[1].type],
+                            attributeSummary[props.shadowType][shadow.cost[1].type],
                             shadow.cost[1].price
                           )
                           ">
-                          {{ attributeSummary[formData.shadowType][shadow.cost[1].type] }}
+                          {{ attributeSummary[props.shadowType][shadow.cost[1].type] }}
                         </div>
                         <div>/</div>
                         <div class="cost-price">
@@ -68,20 +68,36 @@
   </div>
 </template>
 <script setup>
-import { reactive, computed } from 'vue';
+import { computed } from 'vue';
 import { linkList, orbmentMap } from "@/assets/data/orbment";
-import skillList from "@/assets/data/kuro2_skill.json";
 
-const formData = reactive({
-  shadowSkillVisible: false
+const props = defineProps({
+  //是否显示
+  shadowSkillVisible: {
+    type: Boolean,
+    default: false
+  },
+  shadowType: {
+    type: Number,
+    default: 0
+  },
+  skillList: {
+    type: Array,
+  },
+  holeList: {
+    type: Array,
+  },
+  orbmentList: {
+    type: Array,
+  },
 })
 
 const shadowList = computed(() => {
   let result = [];
-  let position = linkList[formData.shadowType].name;
-  for (let i = 0; i < skillList.length; i++) {
-    if (position === skillList[i].position) {
-      result.push(skillList[i]);
+  let position = linkList[props.shadowType].name;
+  for (let i = 0; i < props.skillList.length; i++) {
+    if (position === props.skillList[i].position) {
+      result.push(props.skillList[i]);
     }
   }
   return result;
@@ -134,8 +150,8 @@ const attributeSummary = computed(() => {
     for (let index = 0; index < 4; index++) {
       const holeIndex = group * 4 + index;
       const orbmentIndex = holeIndex; // orbmentList与holeList的索引一一对应  
-      const hole = formData.holeList[holeIndex];
-      const orbment = formData.orbmentList[orbmentIndex];
+      const hole = props.holeList[holeIndex];
+      const orbment = props.orbmentList[orbmentIndex];
 
       // 计算当前回路对属性的贡献，并累加到组总和中  
       const cost = calculateAttributeCost(hole, orbment);
@@ -171,5 +187,5 @@ const checkShadow = (a, b) => {
 
 </script>
 <style scoped lang='scss'>
-@import url("./style/shadowSkillDialog.scss");
+@import url("./style/ShadowSkillDialog.scss");
 </style>
