@@ -1,12 +1,40 @@
 @import '@/assets/orbmentColor';
+.bg-color {
+  border-radius: 10px;
+  background-color: #ffffff;
+  &failure {
+    background-color: #fff;
+  }
+  &success {
+    &-earth {
+      box-shadow: inset 0 0 2px $--circuit-color-earth;
+    }
+    &-water {
+      box-shadow: inset 0 0 2px $--circuit-color-water;
+    }
+    &-fire {
+      box-shadow: inset 0 0 2px $--circuit-color-fire;
+    }
+    &-wind {
+      box-shadow: inset 0 0 2px $--circuit-color-wind;
+    }
+    &-time {
+      box-shadow: inset 0 0 2px $--circuit-color-time;
+    }
+    &-gold {
+      box-shadow: inset 0 0 2px $--circuit-color-gold;
+    }
+    &-silver {
+      box-shadow: inset 0 0 2px $--circuit-color-silver;
+    }
+  }
+}
+
 .shadow-list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-
-  .shadow-name {
-  }
 
   .shadow-cost {
     display: flex;

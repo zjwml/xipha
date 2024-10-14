@@ -96,134 +96,67 @@ const getNewOrbment = () => {
 }
 
 const orbmentOptions = computed(() => {
-  let result = [];
-  if ("all" === formData.holeSelect.type) {
-    //先放7种的种类
-    for (let i = 2; i < orbmentType.length; i++) {
-      result.push({
-        label: orbmentType[i].name,
-        value: orbmentType[i].key,
-        type: orbmentType[i].key,
-        children: [],
-      });
-    }
+  // 初始化结果数组，包含7种类型的空对象（假设orbmentType数组长度固定为8，且第一个元素不使用）
+  const typeAvaliableList = orbmentType.slice(2);
+  let result = typeAvaliableList.map(type => ({
+    label: type.name,
+    value: type.key,
+    type: type.key,
+    children: []
+  }));
 
-    for (let i = 0; i < orbmentList.length; i++) {
-      const orbment = orbmentList[i];
-      //过滤刃、轮、诗
-      if (0 === formData.holeSelect.linkId) {
-        if (orbment.name.indexOf("轮") != -1 || orbment.name.indexOf("诗") != -1) {
-          continue;
-        }
-      } else if (1 === formData.holeSelect.linkId) {
-        if (orbment.name.indexOf("刃") != -1 || orbment.name.indexOf("诗") != -1) {
-          continue;
-        }
-      } else if (2 === formData.holeSelect.linkId) {
-        if (orbment.name.indexOf("轮") != -1 || orbment.name.indexOf("刃") != -1) {
-          continue;
-        }
-      }
-      //过滤已经用过的回路
-      let isUsed = false;
-      for (let j = 0; j < formData.orbmentList.length; j++) {
-        const hole = formData.orbmentList[j];
-        if (hole.id === orbment.id) {
-          isUsed = true;
-        }
-      }
-      if (isUsed) {
-        continue;
-      }
-      //结束过滤
-      if ("earth" === orbment.type) {
-        result[0].children.push({
+  const isTypeFiltered = (orbment) => {
+    const { name, type } = orbment;
+    const { linkId, holeSelect } = formData;
+
+    // 过滤条件：根据linkId和orbment的name/type  
+    if (linkId === 0 && (name.includes("轮") || name.includes("诗"))) return true;
+    if (linkId === 1 && (name.includes("刃") || name.includes("诗"))) return true;
+    if (linkId === 2 && (name.includes("轮") || name.includes("刃"))) return true;
+
+    // 如果选择了特定类型，则只考虑该类型的orbment  
+    if (holeSelect.type !== "all" && holeSelect.type !== type) return true;
+
+    // 过滤已经使用过的orbment  
+    return formData.orbmentList.some(used => used.id === orbment.id);
+  };
+
+  // 遍历orbmentList，根据条件填充result数组的子对象  
+  orbmentList.forEach(orbment => {
+    if (!isTypeFiltered(orbment)) {
+      // 根据orbment的type找到对应的result数组元素，并添加子对象  
+      const index = typeAvaliableList.findIndex(type => type.key === orbment.type);
+      if (index > -1 && index < result.length) {
+        result[index].children.push({
           label: orbment.name,
           value: orbment.id,
           type: orbment.type,
-        });
-      } else if ("water" === orbment.type) {
-        result[1].children.push({
-          label: orbment.name,
-          value: orbment.id,
-          type: orbment.type,
-        });
-      } else if ("fire" === orbment.type) {
-        result[2].children.push({
-          label: orbment.name,
-          value: orbment.id,
-          type: orbment.type,
-        });
-      } else if ("wind" === orbment.type) {
-        result[3].children.push({
-          label: orbment.name,
-          value: orbment.id,
-          type: orbment.type,
-        });
-      } else if ("time" === orbment.type) {
-        result[4].children.push({
-          label: orbment.name,
-          value: orbment.id,
-          type: orbment.type,
-        });
-      } else if ("gold" === orbment.type) {
-        result[5].children.push({
-          label: orbment.name,
-          value: orbment.id,
-          type: orbment.type,
-        });
-      } else if ("silver" === orbment.type) {
-        result[6].children.push({
-          label: orbment.name,
-          value: orbment.id,
-          type: orbment.type,
+          cost: orbment.cost
         });
       }
     }
-  } else {
-    result.push({
+  });
+
+  // 如果选择了特定类型，则只返回该类型的对象（可能需要额外逻辑处理，这里简单处理为返回第一个）  
+  if (formData.holeSelect.type !== "all") {
+    result = [{
       label: formData.holeSelect.name,
       value: formData.holeSelect.type,
       type: formData.holeSelect.type,
       children: [],
-    });
+    }];
 
-    for (let i = 0; i < orbmentList.length; i++) {
-      const orbment = orbmentList[i];
-      if (formData.holeSelect.type === orbment.type) {
-        //过滤刃、轮、诗
-        if (0 === formData.holeSelect.linkId) {
-          if (orbment.name.indexOf("轮") != -1 || orbment.name.indexOf("诗") != -1) {
-            continue;
-          }
-        } else if (1 === formData.holeSelect.linkId) {
-          if (orbment.name.indexOf("刃") != -1 || orbment.name.indexOf("诗") != -1) {
-            continue;
-          }
-        } else if (2 === formData.holeSelect.linkId) {
-          if (orbment.name.indexOf("轮") != -1 || orbment.name.indexOf("刃") != -1) {
-            continue;
-          }
-        }
-        //过滤已经用过的回路
-        let isUsed = false;
-        for (let j = 0; j < formData.orbmentList.length; j++) {
-          const hole = formData.orbmentList[j];
-          if (hole.id === orbment.id) {
-            isUsed = true;
-          }
-        }
-        if (isUsed) {
-          continue;
-        }
-        //结束过滤
+    // 重新填充子对象（仅针对所选类型）  
+    orbmentList.forEach(orbment => {
+      if (formData.holeSelect.type === orbment.type && !isTypeFiltered(orbment)) {
         result[0].children.push({
           label: orbment.name,
           value: orbment.id,
           type: orbment.type,
+          cost: orbment.cost
         });
       }
-    }
+    });
   }
 
   return result;
