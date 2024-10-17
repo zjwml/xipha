@@ -1,0 +1,1115 @@
+[
+  {
+    "id": "1",
+    "name": "防御1",
+    "price": "50",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 2 }],
+    "affect": "DEF+15"
+  },
+  {
+    "id": "2",
+    "name": "防御2",
+    "price": "150",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 4 }],
+    "affect": "DEF+30"
+  },
+  {
+    "id": "3",
+    "name": "防御3",
+    "price": "450",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 6 }],
+    "affect": "DEF+60"
+  },
+  {
+    "id": "4",
+    "name": "EP1",
+    "price": "50",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 2 }],
+    "affect": "最大EP+60"
+  },
+  {
+    "id": "5",
+    "name": "EP2",
+    "price": "150",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 4 }],
+    "affect": "最大EP+120"
+  },
+  {
+    "id": "6",
+    "name": "EP3",
+    "price": "450",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 6 }],
+    "affect": "最大EP+240"
+  },
+  {
+    "id": "7",
+    "name": "琥耀珠",
+    "price": "0",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 8 }],
+    "affect": "DEF+60，最大EP+240"
+  },
+  {
+    "id": "8",
+    "name": "腐蚀之刃",
+    "price": "100",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 3 }],
+    "affect": "STR+3，普通攻击·战技附加「腐蚀」10%。武器·EXTRA线专用"
+  },
+  {
+    "id": "9",
+    "name": "腐蚀之刃II",
+    "price": "300",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 5 }],
+    "affect": "STR+6，普通攻击·战技附加「腐蚀」20%。武器·EXTRA线专用"
+  },
+  {
+    "id": "10",
+    "name": "地灵之诗",
+    "price": "100",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 3 }],
+    "affect": "ATS+5，地属性魔法硬直时间2/3。驱动·EXTRA线专用"
+  },
+  {
+    "id": "11",
+    "name": "大地之诗",
+    "price": "300",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 5 }],
+    "affect": "ATS+10，地属性魔法硬直时间1/2。驱动·EXTRA线专用"
+  },
+  {
+    "id": "12",
+    "name": "黄晶之轮",
+    "price": "100",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 3 }],
+    "affect": "最大HP+150，危机时DEF·ADF上升小。护盾·EXTRA线专用"
+  },
+  {
+    "id": "13",
+    "name": "刚玉之轮",
+    "price": "300",
+    "type": "earth",
+    "cost": [{ "type": "earth", "price": 5 }],
+    "affect": "最大HP+600，危机时DEF·ADF上升中。护盾·EXTRA线专用"
+  },
+  {
+    "id": "14",
+    "name": "耀脉",
+    "price": "600",
+    "type": "earth",
+    "cost": [
+      { "type": "earth", "price": 4 },
+      { "type": "fire", "price": 2 }
+    ],
+    "affect": "装备者击败敌人时获得耀晶石数量+30%"
+  },
+  {
+    "id": "15",
+    "name": "秘脉",
+    "price": "600",
+    "type": "earth",
+    "cost": [
+      { "type": "earth", "price": 5 },
+      { "type": "fire", "price": 3 }
+    ],
+    "affect": "装备者击败敌人时获得耀晶石数量+50%"
+  },
+  {
+    "id": "16",
+    "name": "金牛",
+    "price": "0",
+    "type": "earth",
+    "cost": [
+      { "type": "earth", "price": 5 },
+      { "type": "wind", "price": 3 }
+    ],
+    "affect": "对STUN中敌人赋予伤害+50%"
+  },
+  {
+    "id": "17",
+    "name": "狂龙",
+    "price": "0",
+    "type": "earth",
+    "cost": [
+      { "type": "earth", "price": 6 },
+      { "type": "silver", "price": 4 }
+    ],
+    "affect": "魔法伤害+50%，硬直时间1.5倍"
+  },
+  {
+    "id": "18",
+    "name": "百臂",
+    "price": "0",
+    "type": "earth",
+    "cost": [
+      { "type": "earth", "price": 7 },
+      { "type": "gold", "price": 5 }
+    ],
+    "affect": "HP护盾的效果变为1.2倍"
+  },
+  {
+    "id": "19",
+    "name": "HP1",
+    "price": "50",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 2 }],
+    "affect": "最大HP+400"
+  },
+  {
+    "id": "20",
+    "name": "HP2",
+    "price": "150",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 4 }],
+    "affect": "最大HP+800"
+  },
+  {
+    "id": "21",
+    "name": "HP3",
+    "price": "450",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 6 }],
+    "affect": "最大HP+1600"
+  },
+  {
+    "id": "22",
+    "name": "魔防1",
+    "price": "50",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 2 }],
+    "affect": "ADF+10，魔法回避率+2"
+  },
+  {
+    "id": "23",
+    "name": "魔防2",
+    "price": "150",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 4 }],
+    "affect": "ADF+20，魔法回避率+4"
+  },
+  {
+    "id": "24",
+    "name": "魔防3",
+    "price": "450",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 6 }],
+    "affect": "ADF+40，魔法回避率+8"
+  },
+  {
+    "id": "25",
+    "name": "苍耀珠",
+    "price": "0",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 8 }],
+    "affect": "最大HP+1600，ADF+40，魔法回避率+8"
+  },
+  {
+    "id": "26",
+    "name": "冻结之刃",
+    "price": "100",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 3 }],
+    "affect": "STR+3，普通攻击·战技附加「冻结」10%。武器·EXTRA线专用"
+  },
+  {
+    "id": "27",
+    "name": "冻结之刃II",
+    "price": "300",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 5 }],
+    "affect": "STR+6，普通攻击·战技附加「冻结」20%。武器·EXTRA线专用"
+  },
+  {
+    "id": "28",
+    "name": "水灵之诗",
+    "price": "100",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 3 }],
+    "affect": "ATS+5，水属性魔法硬直时间2/3。驱动·EXTRA线专用"
+  },
+  {
+    "id": "29",
+    "name": "苍冰之诗",
+    "price": "300",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 5 }],
+    "affect": "ATS+10，水属性魔法硬直时间1/2。驱动·EXTRA线专用"
+  },
+  {
+    "id": "30",
+    "name": "青晶之轮",
+    "price": "100",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 3 }],
+    "affect": "最大HP+150，危机时HP缓慢恢复小。护盾·EXTRA线专用"
+  },
+  {
+    "id": "31",
+    "name": "蓝玉之轮",
+    "price": "300",
+    "type": "water",
+    "cost": [{ "type": "water", "price": 5 }],
+    "affect": "最大HP+600，危机时HP缓慢恢复中。护盾·EXTRA线专用"
+  },
+  {
+    "id": "32",
+    "name": "气息",
+    "price": "600",
+    "type": "water",
+    "cost": [
+      { "type": "water", "price": 4 },
+      { "type": "earth", "price": 2 }
+    ],
+    "affect": "回复魔法效果+50%"
+  },
+  {
+    "id": "33",
+    "name": "慈爱",
+    "price": "600",
+    "type": "water",
+    "cost": [
+      { "type": "water", "price": 5 },
+      { "type": "earth", "price": 3 }
+    ],
+    "affect": "回复魔法效果+70%"
+  },
+  {
+    "id": "34",
+    "name": "海妖",
+    "price": "0",
+    "type": "water",
+    "cost": [
+      { "type": "water", "price": 5 },
+      { "type": "gold", "price": 3 }
+    ],
+    "affect": "50%概率魔法攻击造成暴击"
+  },
+  {
+    "id": "35",
+    "name": "巨兽",
+    "price": "0",
+    "type": "water",
+    "cost": [
+      { "type": "water", "price": 6 },
+      { "type": "time", "price": 4 }
+    ],
+    "affect": "剩余HP越多魔法伤害越高（最高+50%）"
+  },
+  {
+    "id": "36",
+    "name": "汪洋",
+    "price": "0",
+    "type": "water",
+    "cost": [
+      { "type": "water", "price": 7 },
+      { "type": "wind", "price": 5 }
+    ],
+    "affect": "晶片技能的发动率+20%"
+  },
+  {
+    "id": "37",
+    "name": "攻击1",
+    "price": "50",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 2 }],
+    "affect": "STR+6"
+  },
+  {
+    "id": "38",
+    "name": "攻击2",
+    "price": "150",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 4 }],
+    "affect": "STR+12"
+  },
+  {
+    "id": "39",
+    "name": "攻击3",
+    "price": "450",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 6 }],
+    "affect": "STR+24"
+  },
+  {
+    "id": "40",
+    "name": "破坏1",
+    "price": "50",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 2 }],
+    "affect": "造成眩晕累计值+20%"
+  },
+  {
+    "id": "41",
+    "name": "破坏2",
+    "price": "150",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 4 }],
+    "affect": "造成眩晕累计值+40%"
+  },
+  {
+    "id": "42",
+    "name": "破坏3",
+    "price": "450",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 6 }],
+    "affect": "造成眩晕累计值+60%"
+  },
+  {
+    "id": "43",
+    "name": "红耀珠",
+    "price": "0",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 8 }],
+    "affect": "STR+24，造成眩晕累计值+60%"
+  },
+  {
+    "id": "44",
+    "name": "炎伤之刃",
+    "price": "100",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 3 }],
+    "affect": "STR+3，普通攻击·战技附加「炎伤」10%。武器·EXTRA线专用"
+  },
+  {
+    "id": "45",
+    "name": "炎伤之刃II",
+    "price": "300",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 5 }],
+    "affect": "STR+6，普通攻击·战技附加「炎伤」20%。武器·EXTRA线专用"
+  },
+  {
+    "id": "46",
+    "name": "火灵之诗",
+    "price": "100",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 3 }],
+    "affect": "ATS+5，火属性魔法硬直时间2/3。驱动·EXTRA线专用"
+  },
+  {
+    "id": "47",
+    "name": "业火之诗",
+    "price": "300",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 5 }],
+    "affect": "ATS+10，火属性魔法硬直时间1/2。驱动·EXTRA线专用"
+  },
+  {
+    "id": "48",
+    "name": "赤晶之轮",
+    "price": "100",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 3 }],
+    "affect": "最大HP+150，危机时STR上升小。护盾·EXTRA线专用"
+  },
+  {
+    "id": "49",
+    "name": "红玉之轮",
+    "price": "300",
+    "type": "fire",
+    "cost": [{ "type": "fire", "price": 5 }],
+    "affect": "最大HP+600，危机时STR上升中。护盾·EXTRA线专用"
+  },
+  {
+    "id": "50",
+    "name": "烈火",
+    "price": "600",
+    "type": "fire",
+    "cost": [
+      { "type": "fire", "price": 4 },
+      { "type": "wind", "price": 2 }
+    ],
+    "affect": "先制攻击伤害1.2倍"
+  },
+  {
+    "id": "51",
+    "name": "猛炎",
+    "price": "600",
+    "type": "fire",
+    "cost": [
+      { "type": "fire", "price": 5 },
+      { "type": "wind", "price": 3 }
+    ],
+    "affect": "先制攻击伤害1.5倍"
+  },
+  {
+    "id": "52",
+    "name": "赤兔马",
+    "price": "0",
+    "type": "fire",
+    "cost": [
+      { "type": "fire", "price": 5 },
+      { "type": "water", "price": 3 }
+    ],
+    "affect": "被伤害时CP上升率5倍"
+  },
+  {
+    "id": "53",
+    "name": "黑狼",
+    "price": "0",
+    "type": "fire",
+    "cost": [
+      { "type": "fire", "price": 6 },
+      { "type": "time", "price": 4 }
+    ],
+    "affect": "剩余HP越多物理伤害越高（最高+50%）"
+  },
+  {
+    "id": "54",
+    "name": "毒龙",
+    "price": "0",
+    "type": "fire",
+    "cost": [
+      { "type": "fire", "price": 7 },
+      { "type": "earth", "price": 5 }
+    ],
+    "affect": "装备者攻击敌人时增幅量表累积量变为1.5倍"
+  },
+  {
+    "id": "55",
+    "name": "回避1",
+    "price": "50",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 2 }],
+    "affect": "回避率+4"
+  },
+  {
+    "id": "56",
+    "name": "回避2",
+    "price": "150",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 4 }],
+    "affect": "回避率+8"
+  },
+  {
+    "id": "57",
+    "name": "回避3",
+    "price": "450",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 6 }],
+    "affect": "回避率+16"
+  },
+  {
+    "id": "58",
+    "name": "必杀1",
+    "price": "50",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 2 }],
+    "affect": "必杀率+6"
+  },
+  {
+    "id": "59",
+    "name": "必杀2",
+    "price": "150",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 4 }],
+    "affect": "必杀率+12"
+  },
+  {
+    "id": "60",
+    "name": "必杀3",
+    "price": "450",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 6 }],
+    "affect": "必杀率+24"
+  },
+  {
+    "id": "61",
+    "name": "翠耀珠",
+    "price": "0",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 8 }],
+    "affect": "回避率+16，必杀率+24"
+  },
+  {
+    "id": "62",
+    "name": "封技之刃",
+    "price": "100",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 3 }],
+    "affect": "STR+3，普通攻击·战技附加「封技」10%。武器·EXTRA线专用"
+  },
+  {
+    "id": "63",
+    "name": "封技之刃II",
+    "price": "300",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 5 }],
+    "affect": "STR+6，普通攻击·战技附加「封技」20%。武器·EXTRA线专用"
+  },
+  {
+    "id": "64",
+    "name": "风灵之诗",
+    "price": "100",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 3 }],
+    "affect": "ATS+5，风属性魔法硬直时间2/3。驱动·EXTRA线专用"
+  },
+  {
+    "id": "65",
+    "name": "威风之诗",
+    "price": "300",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 5 }],
+    "affect": "ATS+10，风属性魔法硬直时间1/2。驱动·EXTRA线专用"
+  },
+  {
+    "id": "66",
+    "name": "绿晶之轮",
+    "price": "100",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 3 }],
+    "affect": "最大HP+150，危机时获得「心眼」一回合。护盾·EXTRA线专用"
+  },
+  {
+    "id": "67",
+    "name": "翠玉之轮",
+    "price": "300",
+    "type": "wind",
+    "cost": [{ "type": "wind", "price": 5 }],
+    "affect": "最大HP+600，危机时获得「心眼」二回合。护盾·EXTRA线专用"
+  },
+  {
+    "id": "68",
+    "name": "异香",
+    "price": "600",
+    "type": "wind",
+    "cost": [
+      { "type": "wind", "price": 4 },
+      { "type": "water", "price": 2 }
+    ],
+    "affect": "指令战斗中，90%概率吸引敌人攻击"
+  },
+  {
+    "id": "69",
+    "name": "不屈",
+    "price": "600",
+    "type": "wind",
+    "cost": [
+      { "type": "wind", "price": 5 },
+      { "type": "water", "price": 3 }
+    ],
+    "affect": "指令战斗中当HP低于50%时，回避率+10%"
+  },
+  {
+    "id": "70",
+    "name": "风灵",
+    "price": "0",
+    "type": "wind",
+    "cost": [
+      { "type": "wind", "price": 5 },
+      { "type": "gold", "price": 3 }
+    ],
+    "affect": "回复道具范围+10m"
+  },
+  {
+    "id": "71",
+    "name": "圣兽",
+    "price": "0",
+    "type": "wind",
+    "cost": [
+      { "type": "wind", "price": 6 },
+      { "type": "silver", "price": 4 }
+    ],
+    "affect": "普通攻击·战技暴击伤害+100%"
+  },
+  {
+    "id": "72",
+    "name": "羽蛇",
+    "price": "0",
+    "type": "wind",
+    "cost": [
+      { "type": "wind", "price": 7 },
+      { "type": "fire", "price": 5 }
+    ],
+    "affect": "驱动魔法期间回避率+100%"
+  },
+  {
+    "id": "73",
+    "name": "行动力1",
+    "price": "50",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 2 }],
+    "affect": "SPD+4"
+  },
+  {
+    "id": "74",
+    "name": "行动力2",
+    "price": "150",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 4 }],
+    "affect": "SPD+8"
+  },
+  {
+    "id": "75",
+    "name": "行动力3",
+    "price": "450",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 6 }],
+    "affect": "SPD+16"
+  },
+  {
+    "id": "76",
+    "name": "驱动1",
+    "price": "50",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 2 }],
+    "affect": "魔法驱动时间-10%"
+  },
+  {
+    "id": "77",
+    "name": "驱动2",
+    "price": "150",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 4 }],
+    "affect": "魔法驱动时间-20%"
+  },
+  {
+    "id": "78",
+    "name": "驱动3",
+    "price": "450",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 6 }],
+    "affect": "魔法驱动时间-40%"
+  },
+  {
+    "id": "79",
+    "name": "黑耀珠",
+    "price": "0",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 8 }],
+    "affect": "SPD+16，魔法驱动时间-40%"
+  },
+  {
+    "id": "80",
+    "name": "黑暗之刃",
+    "price": "100",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 3 }],
+    "affect": "STR+3，普通攻击·战技附加「黑暗」10%。武器·EXTRA线专用"
+  },
+  {
+    "id": "81",
+    "name": "黑暗之刃II",
+    "price": "300",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 5 }],
+    "affect": "STR+6，普通攻击·战技附加「黑暗」20%。武器·EXTRA线专用"
+  },
+  {
+    "id": "82",
+    "name": "星灵之诗",
+    "price": "100",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 3 }],
+    "affect": "ATS+5，时属性魔法硬直时间2/3。驱动·EXTRA线专用"
+  },
+  {
+    "id": "83",
+    "name": "晓星之诗",
+    "price": "300",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 5 }],
+    "affect": "ATS+10，时属性魔法硬直时间1/2。驱动·EXTRA线专用"
+  },
+  {
+    "id": "84",
+    "name": "紫晶之轮",
+    "price": "100",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 3 }],
+    "affect": "最大HP+150，危机时SPD上升小。护盾·EXTRA线专用"
+  },
+  {
+    "id": "85",
+    "name": "黑银之轮",
+    "price": "300",
+    "type": "time",
+    "cost": [{ "type": "time", "price": 5 }],
+    "affect": "最大HP+600，危机时SPD上升中。护盾·EXTRA线专用"
+  },
+  {
+    "id": "86",
+    "name": "幸运",
+    "price": "600",
+    "type": "time",
+    "cost": [
+      { "type": "time", "price": 4 },
+      { "type": "wind", "price": 2 }
+    ],
+    "affect": "装备者击败敌人时物品掉落概率+30%"
+  },
+  {
+    "id": "87",
+    "name": "豪运",
+    "price": "600",
+    "type": "time",
+    "cost": [
+      { "type": "time", "price": 5 },
+      { "type": "wind", "price": 3 }
+    ],
+    "affect": "装备者击败敌人时物品掉落概率+50%"
+  },
+  {
+    "id": "88",
+    "name": "水妖",
+    "price": "0",
+    "type": "time",
+    "cost": [
+      { "type": "time", "price": 5 },
+      { "type": "earth", "price": 3 }
+    ],
+    "affect": "S战技硬直时间1/2"
+  },
+  {
+    "id": "89",
+    "name": "八咫鸟",
+    "price": "0",
+    "type": "time",
+    "cost": [
+      { "type": "time", "price": 6 },
+      { "type": "silver", "price": 4 }
+    ],
+    "affect": "剩余HP越少物理伤害越高（最高+100%）"
+  },
+  {
+    "id": "90",
+    "name": "堕天使",
+    "price": "0",
+    "type": "time",
+    "cost": [
+      { "type": "time", "price": 7 },
+      { "type": "water", "price": 5 }
+    ],
+    "affect": "普通战技硬直时间4/5"
+  },
+  {
+    "id": "91",
+    "name": "省EP1",
+    "price": "50",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 2 }],
+    "affect": "消费EP-10%"
+  },
+  {
+    "id": "92",
+    "name": "省EP2",
+    "price": "150",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 4 }],
+    "affect": "消费EP-20%"
+  },
+  {
+    "id": "93",
+    "name": "省EP3",
+    "price": "450",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 6 }],
+    "affect": "消费EP-40%"
+  },
+  {
+    "id": "94",
+    "name": "命中1",
+    "price": "50",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 2 }],
+    "affect": "命中率+25%，必杀率+2%"
+  },
+  {
+    "id": "95",
+    "name": "命中2",
+    "price": "150",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 4 }],
+    "affect": "命中率+50%，必杀率+4%"
+  },
+  {
+    "id": "96",
+    "name": "命中3",
+    "price": "450",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 6 }],
+    "affect": "命中率+100%，必杀率+8%"
+  },
+  {
+    "id": "97",
+    "name": "金耀珠",
+    "price": "0",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 8 }],
+    "affect": "消费EP-40%，命中率+100%，必杀率+8%"
+  },
+  {
+    "id": "98",
+    "name": "封魔之刃",
+    "price": "100",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 3 }],
+    "affect": "STR+3，普通攻击·战技附加「封魔」10%。武器·EXTRA线专用"
+  },
+  {
+    "id": "99",
+    "name": "封魔之刃II",
+    "price": "300",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 5 }],
+    "affect": "STR+6，普通攻击·战技附加「封魔」20%。武器·EXTRA线专用"
+  },
+  {
+    "id": "100",
+    "name": "阳灵之诗",
+    "price": "100",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 3 }],
+    "affect": "ATS+5，空属性魔法硬直时间2/3。驱动·EXTRA线专用"
+  },
+  {
+    "id": "101",
+    "name": "极光之诗",
+    "price": "300",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 5 }],
+    "affect": "ATS+10，空属性魔法硬直时间1/2。驱动·EXTRA线专用"
+  },
+  {
+    "id": "102",
+    "name": "金晶之轮",
+    "price": "100",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 3 }],
+    "affect": "最大HP+150，危机时ATS上升小。护盾·EXTRA线专用"
+  },
+  {
+    "id": "103",
+    "name": "黄金之轮",
+    "price": "300",
+    "type": "gold",
+    "cost": [{ "type": "gold", "price": 5 }],
+    "affect": "最大HP+600，危机时ATS上升中。护盾·EXTRA线专用"
+  },
+  {
+    "id": "104",
+    "name": "天启",
+    "price": "600",
+    "type": "gold",
+    "cost": [
+      { "type": "gold", "price": 4 },
+      { "type": "fire", "price": 2 }
+    ],
+    "affect": "范围魔法的效果范围+1m"
+  },
+  {
+    "id": "105",
+    "name": "神谕",
+    "price": "600",
+    "type": "gold",
+    "cost": [
+      { "type": "gold", "price": 5 },
+      { "type": "fire", "price": 3 }
+    ],
+    "affect": "范围魔法的效果范围+2m"
+  },
+  {
+    "id": "106",
+    "name": "尖牙",
+    "price": "0",
+    "type": "gold",
+    "cost": [
+      { "type": "gold", "price": 5 },
+      { "type": "earth", "price": 3 }
+    ],
+    "affect": "20%概率吸收物理攻击"
+  },
+  {
+    "id": "107",
+    "name": "阿玛蒂亚",
+    "price": "0",
+    "type": "gold",
+    "cost": [
+      { "type": "gold", "price": 6 },
+      { "type": "time", "price": 4 }
+    ],
+    "affect": "剩余HP越少魔法伤害越高（最高+100%）"
+  },
+  {
+    "id": "108",
+    "name": "亥伯龙",
+    "price": "0",
+    "type": "gold",
+    "cost": [
+      { "type": "gold", "price": 7 },
+      { "type": "silver", "price": 5 }
+    ],
+    "affect": "使同伴回复时，CP+10"
+  },
+  {
+    "id": "109",
+    "name": "精神1",
+    "price": "50",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 2 }],
+    "affect": "ATS+6"
+  },
+  {
+    "id": "110",
+    "name": "精神2",
+    "price": "150",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 4 }],
+    "affect": "ATS+12"
+  },
+  {
+    "id": "111",
+    "name": "精神3",
+    "price": "450",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 6 }],
+    "affect": "ATS+24"
+  },
+  {
+    "id": "112",
+    "name": "妨碍1",
+    "price": "50",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 2 }],
+    "affect": "普通攻击·战技，15%概率解除驱动&延迟10"
+  },
+  {
+    "id": "113",
+    "name": "妨碍2",
+    "price": "150",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 4 }],
+    "affect": "普通攻击·战技，30%概率解除驱动&延迟10"
+  },
+  {
+    "id": "114",
+    "name": "妨碍3",
+    "price": "450",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 6 }],
+    "affect": "普通攻击·战技，45%概率解除驱动&延迟10"
+  },
+  {
+    "id": "115",
+    "name": "银耀珠",
+    "price": "0",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 8 }],
+    "affect": "ATS+24，普通攻击·战技，45%概率解除驱动&延迟10"
+  },
+  {
+    "id": "116",
+    "name": "恐惧之刃",
+    "price": "100",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 3 }],
+    "affect": "STR+3，普通攻击·战技附加「恐怖」10%。武器·EXTRA线专用"
+  },
+  {
+    "id": "117",
+    "name": "恐惧之刃II",
+    "price": "300",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 5 }],
+    "affect": "STR+6，普通攻击·战技附加「恐怖」20%。武器·EXTRA线专用"
+  },
+  {
+    "id": "118",
+    "name": "月灵之诗",
+    "price": "100",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 3 }],
+    "affect": "ATS+5，幻属性魔法硬直时间2/3。驱动·EXTRA线专用"
+  },
+  {
+    "id": "119",
+    "name": "胧月之诗",
+    "price": "300",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 5 }],
+    "affect": "ATS+10，幻属性魔法硬直时间1/2。驱动·EXTRA线专用"
+  },
+  {
+    "id": "120",
+    "name": "银晶之轮",
+    "price": "100",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 3 }],
+    "affect": "最大HP+150，危机时获得「匿踪」一回合。护盾·EXTRA线专用"
+  },
+  {
+    "id": "121",
+    "name": "白银之轮",
+    "price": "300",
+    "type": "silver",
+    "cost": [{ "type": "silver", "price": 5 }],
+    "affect": "最大HP+600，危机时获得「匿踪」二回合。护盾·EXTRA线专用"
+  },
+  {
+    "id": "122",
+    "name": "空蝉",
+    "price": "600",
+    "type": "silver",
+    "cost": [
+      { "type": "silver", "price": 4 },
+      { "type": "water", "price": 2 }
+    ],
+    "affect": "指令战斗中，90%概率不会被敌人攻击"
+  },
+  {
+    "id": "123",
+    "name": "隐士",
+    "price": "600",
+    "type": "silver",
+    "cost": [
+      { "type": "silver", "price": 5 },
+      { "type": "water", "price": 3 }
+    ],
+    "affect": "指令战斗中，HP全满时暴击率+10%"
+  },
+  {
+    "id": "124",
+    "name": "红玉",
+    "price": "0",
+    "type": "silver",
+    "cost": [
+      { "type": "silver", "price": 5 },
+      { "type": "fire", "price": 3 }
+    ],
+    "affect": "20%概率吸收魔法攻击"
+  },
+  {
+    "id": "125",
+    "name": "白泽",
+    "price": "0",
+    "type": "silver",
+    "cost": [
+      { "type": "silver", "price": 6 },
+      { "type": "gold", "price": 4 }
+    ],
+    "affect": "AT奖励发生率提高90%"
+  },
+  {
+    "id": "126",
+    "name": "妖狐",
+    "price": "0",
+    "type": "silver",
+    "cost": [
+      { "type": "silver", "price": 7 },
+      { "type": "time", "price": 5 }
+    ],
+    "affect": "遭到攻击时低概率进入「匿踪」状态"
+  }
+]

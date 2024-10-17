@@ -9,21 +9,21 @@
   <div>
     <t-dialog v-model:visible="formData.backpackVisible" header="请选择结晶回路" :footer="false" width="60%"
       :show-all-levels="false">
-      <t-cascader v-model="formData.orbmentSelectIndex" :options="orbmentOptions" @change="onConfirmOrbment">
+      <t-cascader v-model="formData.circuitSelectIndex" :options="circuitOptions" @change="onConfirmCircuit">
         <template #option="{ item }">
-          <div class="orbment-option">
+          <div class="circuit-option">
             <div class="diamond-container">
               <div :class="'diamond-' + item.type"></div>
               <div :class="'inner-diamond-' + item.type"></div>
             </div>
-            <div class="orbment-option-text">{{ item.label }}</div>
+            <div class="circuit-option-text">{{ item.label }}</div>
           </div>
         </template>
       </t-cascader>
     </t-dialog>
 
-    <shadowSkillDialog :shadowSkillVisible="formData.shadowSkillVisible" :shadowType="formData.shadowType"
-      :skillList="skillList" :holeList="formData.holeList" :orbmentList="formData.orbmentList"
+    <ShadowSkillDialog :shadowSkillVisible="formData.shadowSkillVisible" :shadowType="formData.shadowType"
+      :skillList="skillList" :holeList="formData.holeList" :circuitList="formData.circuitList"
       @close-dialog="formData.shadowSkillVisible = false" />
 
     <t-space direction="vertical" size="large">
@@ -38,19 +38,19 @@
             <t-form-item :name="linkItem.name + pos">
               <template #label>
                 <t-select v-model="formData.holeList[pos].type"
-                  :style="formData.holeList[pos].type ? 'color:' + orbmentColor[formData.holeList[pos].type] : ''"
+                  :style="formData.holeList[pos].type ? 'color:' + circuitColor[formData.holeList[pos].type] : ''"
                   @change="onChangeHoleType(pos)">
-                  <t-option v-for="item in orbmentType" :key="item.key" :style="'color:' + item.color"
+                  <t-option v-for="item in circuitType" :key="item.key" :style="'color:' + item.color"
                     :label="item.name" :value="item.key">
                   </t-option>
                 </t-select>
               </template>
               <div class="circuit" @click="onClickCircuit(pos, linkItem)">
                 <div class="diamond-container">
-                  <div :class="'diamond-' + formData.orbmentList[pos].type"></div>
-                  <div :class="'inner-diamond-' + formData.orbmentList[pos].type"></div>
+                  <div :class="'diamond-' + formData.circuitList[pos].type"></div>
+                  <div :class="'inner-diamond-' + formData.circuitList[pos].type"></div>
                 </div>
-                <div class="circuit-icon-text">{{ formData.orbmentList[pos].name }}</div>
+                <div class="circuit-icon-text">{{ formData.circuitList[pos].name }}</div>
               </div>
             </t-form-item>
           </template>
@@ -60,17 +60,17 @@
   </div>
 </template>
 <script setup>
-import shadowSkillDialog from "../components/ShadowSkillDialog.vue";
+import ShadowSkillDialog from "../components/ShadowSkillDialog.vue";
 import { reactive, onBeforeMount, onMounted, computed } from "vue";
-import { linkList, orbmentMap, orbmentColor, orbmentType } from "@/assets/data/orbment";
-import orbmentList from "@/assets/data/kuro2_orbment.json";
+import { linkList, circuitMap, circuitColor, circuitType } from "@/assets/data/circuit";
+import circuitList from "@/assets/data/kuro2_circuit.json";
 import skillList from "@/assets/data/kuro2_skill.json";
 
 const formData = reactive({
   backpackVisible: false,
   shadowSkillVisible: false,
   shadowType: 0,
-  orbmentSelectIndex: "",
+  circuitSelectIndex: "",
   /**
    * 选择的结晶孔
    */
@@ -81,10 +81,10 @@ const formData = reactive({
     linkId: ""
   },
   holeList: [],
-  orbmentList: [],
+  circuitList: [],
 });
 
-const getNewOrbment = () => {
+const getNewCircuit = () => {
   return {
     type: "none",
     name: "请选择",
@@ -95,9 +95,9 @@ const getNewOrbment = () => {
   };
 }
 
-const orbmentOptions = computed(() => {
-  // 初始化结果数组，包含7种类型的空对象（假设orbmentType数组长度固定为8，且第一个元素不使用）
-  const typeAvaliableList = orbmentType.slice(2);
+const circuitOptions = computed(() => {
+  // 初始化结果数组，包含7种类型的空对象（假设circuitType数组长度固定为8，且第一个元素不使用）
+  const typeAvaliableList = circuitType.slice(2);
   let result = typeAvaliableList.map(type => ({
     label: type.name,
     value: type.key,
@@ -105,33 +105,33 @@ const orbmentOptions = computed(() => {
     children: []
   }));
 
-  const isTypeFiltered = (orbment) => {
-    const { name, type } = orbment;
+  const isTypeFiltered = (circuit) => {
+    const { name, type } = circuit;
     const { linkId, holeSelect } = formData;
 
-    // 过滤条件：根据linkId和orbment的name/type  
+    // 过滤条件：根据linkId和circuit的name/type  
     if (linkId === 0 && (name.includes("轮") || name.includes("诗"))) return true;
     if (linkId === 1 && (name.includes("刃") || name.includes("诗"))) return true;
     if (linkId === 2 && (name.includes("轮") || name.includes("刃"))) return true;
 
-    // 如果选择了特定类型，则只考虑该类型的orbment  
+    // 如果选择了特定类型，则只考虑该类型的circuit  
     if (holeSelect.type !== "all" && holeSelect.type !== type) return true;
 
-    // 过滤已经使用过的orbment  
-    return formData.orbmentList.some(used => used.id === orbment.id);
+    // 过滤已经使用过的circuit  
+    return formData.circuitList.some(used => used.id === circuit.id);
   };
 
-  // 遍历orbmentList，根据条件填充result数组的子对象  
-  orbmentList.forEach(orbment => {
-    if (!isTypeFiltered(orbment)) {
-      // 根据orbment的type找到对应的result数组元素，并添加子对象  
-      const index = typeAvaliableList.findIndex(type => type.key === orbment.type);
+  // 遍历circuitList，根据条件填充result数组的子对象  
+  circuitList.forEach(circuit => {
+    if (!isTypeFiltered(circuit)) {
+      // 根据circuit的type找到对应的result数组元素，并添加子对象  
+      const index = typeAvaliableList.findIndex(type => type.key === circuit.type);
       if (index > -1 && index < result.length) {
         result[index].children.push({
-          label: orbment.name,
-          value: orbment.id,
-          type: orbment.type,
-          cost: orbment.cost
+          label: circuit.name,
+          value: circuit.id,
+          type: circuit.type,
+          cost: circuit.cost
         });
       }
     }
@@ -147,13 +147,13 @@ const orbmentOptions = computed(() => {
     }];
 
     // 重新填充子对象（仅针对所选类型）  
-    orbmentList.forEach(orbment => {
-      if (formData.holeSelect.type === orbment.type && !isTypeFiltered(orbment)) {
+    circuitList.forEach(circuit => {
+      if (formData.holeSelect.type === circuit.type && !isTypeFiltered(circuit)) {
         result[0].children.push({
-          label: orbment.name,
-          value: orbment.id,
-          type: orbment.type,
-          cost: orbment.cost
+          label: circuit.name,
+          value: circuit.id,
+          type: circuit.type,
+          cost: circuit.cost
         });
       }
     });
@@ -163,13 +163,13 @@ const orbmentOptions = computed(() => {
 });
 
 const onChangeHoleType = (pos) => {
-  formData.orbmentList[pos] = getNewOrbment();
+  formData.circuitList[pos] = getNewCircuit();
 }
 
 const onClickCircuit = (circuitIndex, linkItem) => {
   formData.backpackVisible = true;
   formData.holeSelect = {
-    name: orbmentMap[formData.holeList[circuitIndex].type],
+    name: circuitMap[formData.holeList[circuitIndex].type],
     type: formData.holeList[circuitIndex].type,
     index: circuitIndex,
     linkId: linkItem.id
@@ -179,14 +179,14 @@ const onClickCircuit = (circuitIndex, linkItem) => {
  * 选择完回路的回调函数
  * @param ctx 选择的回路的 id
  */
-const onConfirmOrbment = (ctx) => {
+const onConfirmCircuit = (ctx) => {
   //选择的结晶孔
   const hole = formData.holeSelect;
   //这个是新的回路
-  const orbment = orbmentList[ctx - 1];
+  const circuit = circuitList[ctx - 1];
 
-  formData.orbmentList[hole.index] = orbment;
-  formData.orbmentSelectIndex = "";
+  formData.circuitList[hole.index] = circuit;
+  formData.circuitSelectIndex = "";
 
   formData.backpackVisible = false;
 };
@@ -200,7 +200,7 @@ const onClickClear = (linkItem) => {
   let position = linkItem.id;
 
   for (let i = position * 4; i < position * 4 + 4; i++) {
-    formData.orbmentList[i] = {
+    formData.circuitList[i] = {
       type: "none",
       name: "请选择",
       index: -1,
@@ -218,7 +218,7 @@ onBeforeMount(() => {
   }
 
   for (let i = 0; i < 16; i++) {
-    formData.orbmentList.push(getNewOrbment());
+    formData.circuitList.push(getNewCircuit());
   }
 });
 
@@ -227,6 +227,6 @@ onMounted(() => {
 });
 </script>
 <style scoped lang="scss">
-@import url("@/assets/orbment.scss");
+@import url("@/assets/circuit.scss");
 @import url("./KurotwoView.scss");
 </style>

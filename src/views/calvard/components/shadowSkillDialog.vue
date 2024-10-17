@@ -21,11 +21,11 @@
                       <div class="cost">
                         <div :class="'cost-type-container-' + shadow.cost[0].type">
                           <div :class="'cost-type-' + shadow.cost[0].type">
-                            {{ orbmentMap[shadow.cost[0].type] }}
+                            {{ circuitMap[shadow.cost[0].type] }}
                           </div>
                         </div>
                         <div :class="'cost-use-' +
-                          checkOrbment(
+                          checkCircuit(
                             attributeSummary[props.shadowType][shadow.cost[0].type],
                             shadow.cost[0].price
                           )
@@ -40,11 +40,11 @@
                       <div class="cost" v-if="shadow.cost.length > 1">
                         <div :class="'cost-type-container-' + shadow.cost[1].type">
                           <div :class="'cost-type-' + shadow.cost[1].type">
-                            {{ orbmentMap[shadow.cost[1].type] }}
+                            {{ circuitMap[shadow.cost[1].type] }}
                           </div>
                         </div>
                         <div :class="'cost-use-' +
-                          checkOrbment(
+                          checkCircuit(
                             attributeSummary[props.shadowType][shadow.cost[1].type],
                             shadow.cost[1].price
                           )
@@ -69,7 +69,7 @@
 </template>
 <script setup>
 import { computed } from 'vue';
-import { linkList, orbmentMap } from "@/assets/data/orbment";
+import { linkList, circuitMap } from "@/assets/data/circuit";
 
 const props = defineProps({
   //是否显示
@@ -87,7 +87,7 @@ const props = defineProps({
   holeList: {
     type: Array,
   },
-  orbmentList: {
+  circuitList: {
     type: Array,
   },
 })
@@ -105,7 +105,7 @@ const shadowList = computed(() => {
 
 const attributeSummary = computed(() => {
   // 定义一个函数来计算单个回路的属性成本  
-  const calculateAttributeCost = (hole, orbment) => {
+  const calculateAttributeCost = (hole, circuit) => {
     const cost = {
       earth: 0,
       water: 0,
@@ -124,7 +124,7 @@ const attributeSummary = computed(() => {
     }
 
     // 遍历结晶回路的成本项，并应用乘数  
-    orbment.cost.forEach(costItem => {
+    circuit.cost.forEach(costItem => {
       cost[costItem.type] += costItem.price * multiplier;
     });
 
@@ -134,7 +134,7 @@ const attributeSummary = computed(() => {
   // 初始化一个空数组来存储每组属性的总和  
   const summaries = [];
 
-  // 遍历每组的四个元素（hole和orbment是成对出现的）  
+  // 遍历每组的四个元素（hole和circuit是成对出现的）  
   for (let group = 0; group < 4; group++) {
     let groupSummary = {
       earth: 0,
@@ -149,12 +149,12 @@ const attributeSummary = computed(() => {
     // 遍历组内的四个元素  
     for (let index = 0; index < 4; index++) {
       const holeIndex = group * 4 + index;
-      const orbmentIndex = holeIndex; // orbmentList与holeList的索引一一对应  
+      const circuitIndex = holeIndex; // circuitList与holeList的索引一一对应  
       const hole = props.holeList[holeIndex];
-      const orbment = props.orbmentList[orbmentIndex];
+      const circuit = props.circuitList[circuitIndex];
 
       // 计算当前回路对属性的贡献，并累加到组总和中  
-      const cost = calculateAttributeCost(hole, orbment);
+      const cost = calculateAttributeCost(hole, circuit);
       for (const type in cost) {
         groupSummary[type] += cost[type];
       }
@@ -167,7 +167,7 @@ const attributeSummary = computed(() => {
   return summaries;
 });
 
-const checkOrbment = (a, b) => {
+const checkCircuit = (a, b) => {
   if (a >= b) {
     return "success";
   } else {

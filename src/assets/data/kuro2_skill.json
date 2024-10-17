@@ -196,8 +196,8 @@
     "position": "武器",
     "name": "致命追击",
     "cost": [
-      { "type": "earth", "price": 4 },
-      { "type": "time", "price": 8 }
+      { "type": "time", "price": 8 },
+      { "type": "earth", "price": 4 }
     ],
     "description": "若攻击后敌人所剩HP小于攻击值，则必定会进行终结追击",
     "lv0": "100%",
@@ -209,8 +209,8 @@
     "position": "武器",
     "name": "致命追击·改",
     "cost": [
-      { "type": "earth", "price": 6 },
-      { "type": "time", "price": 12 }
+      { "type": "time", "price": 12 },
+      { "type": "earth", "price": 6 }
     ],
     "description": "若攻击后敌人所剩HP小于攻击值的1.5倍，则必定会进行终结追击",
     "lv0": "100%",
@@ -222,8 +222,8 @@
     "position": "武器",
     "name": "爆裂吸收",
     "cost": [
-      { "type": "water", "price": 3 },
-      { "type": "fire", "price": 12 }
+      { "type": "fire", "price": 12 },
+      { "type": "water", "price": 3 }
     ],
     "description": "施展普通攻击·战技时，回复造成伤害10%的HP，CP+10",
     "lv0": "25%",
@@ -235,8 +235,8 @@
     "position": "武器",
     "name": "处刑者",
     "cost": [
-      { "type": "fire", "price": 6 },
-      { "type": "wind", "price": 12 }
+      { "type": "wind", "price": 12 },
+      { "type": "fire", "price": 6 }
     ],
     "description": "触发晕眩或攻击晕眩中敌人时，有几率进行追击",
     "lv0": "25%",
@@ -401,8 +401,8 @@
     "position": "护盾",
     "name": "充能防御",
     "cost": [
-      { "type": "fire", "price": 2 },
-      { "type": "wind", "price": 4 }
+      { "type": "wind", "price": 4 },
+      { "type": "fire", "price": 2 }
     ],
     "description": "使用防御时，有概率获得三回合CP上升的效果，且受到伤害为原来的1/3",
     "lv0": "50%",
@@ -414,8 +414,8 @@
     "position": "护盾",
     "name": "强攻防御",
     "cost": [
-      { "type": "earth", "price": 2 },
-      { "type": "fire", "price": 4 }
+      { "type": "fire", "price": 4 },
+      { "type": "earth", "price": 2 }
     ],
     "description": "使用防御时，有概率使自身攻击力上升，且受到伤害为原来的1/3",
     "lv0": "50%",
@@ -466,8 +466,8 @@
     "position": "护盾",
     "name": "复仇之箭",
     "cost": [
-      { "type": "wind", "price": 4 },
-      { "type": "time", "price": 12 }
+      { "type": "time", "price": 12 },
+      { "type": "wind", "price": 4 }
     ],
     "description": "伙伴遭到攻击时，有概率发动反击",
     "lv0": "20%(通常)/40%(濒死S.C.L.M)",
@@ -479,8 +479,8 @@
     "position": "护盾",
     "name": "炽天使之力",
     "cost": [
-      { "type": "water", "price": 8 },
-      { "type": "gold", "price": 12 }
+      { "type": "gold", "price": 12 },
+      { "type": "water", "price": 8 }
     ],
     "description": "以HP1抵挡战斗不能伤害，并中幅回复HP·EP·CP（每战限一次）",
     "lv0": "100%",
@@ -684,8 +684,8 @@
     "position": "驱动",
     "name": "神圣之羽",
     "cost": [
-      { "type": "wind", "price": 4 },
-      { "type": "silver", "price": 8 }
+      { "type": "silver", "price": 8 },
+      { "type": "wind", "price": 4 }
     ],
     "description": "施展攻击魔法时，有概率追加附带延迟效果的25%额外伤害",
     "lv0": "40%",
@@ -697,8 +697,8 @@
     "position": "驱动",
     "name": "神圣之羽·改",
     "cost": [
-      { "type": "wind", "price": 6 },
-      { "type": "silver", "price": 12 }
+      { "type": "silver", "price": 12 },
+      { "type": "wind", "price": 6 }
     ],
     "description": "施展攻击魔法时，有概率追加附带延迟效果的50%额外伤害",
     "lv0": "50%",
@@ -723,8 +723,8 @@
     "position": "驱动",
     "name": "复仇咏唱",
     "cost": [
-      { "type": "fire", "price": 6 },
-      { "type": "gold", "price": 12 }
+      { "type": "gold", "price": 12 },
+      { "type": "fire", "price": 6 }
     ],
     "description": "回避魔法攻击时，有概率用持有的魔法反击（不消耗EP）",
     "lv0": "50%",
@@ -1045,8 +1045,8 @@
     "position": "EXTRA",
     "name": "S.C.L.M.扩增",
     "cost": [
-      { "type": "water", "price": 4 },
-      { "type": "time", "price": 8 }
+      { "type": "time", "price": 8 },
+      { "type": "water", "price": 4 }
     ],
     "description": "指令战斗时，S.C.L.M.半径+1",
     "lv0": "100%",
@@ -1058,8 +1058,8 @@
     "position": "EXTRA",
     "name": "危机之力",
     "cost": [
-      { "type": "fire", "price": 6 },
-      { "type": "gold", "price": 12 }
+      { "type": "gold", "price": 12 },
+      { "type": "fire", "price": 6 }
     ],
     "description": "指令战斗中，濒死状态下行动时有概率全能力上升·小（每战限1次）",
     "lv0": "50%",
@@ -1071,8 +1071,8 @@
     "position": "EXTRA",
     "name": "夺取奖励",
     "cost": [
-      { "type": "wind", "price": 6 },
-      { "type": "silver", "price": 12 }
+      { "type": "silver", "price": 12 },
+      { "type": "wind", "price": 6 }
     ],
     "description": "施展普通攻击·战技时，有概率获取目标的AT奖励",
     "lv0": "25%",

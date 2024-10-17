@@ -13,16 +13,18 @@ export default [
       {
         path: 'kai',
         name: 'kainokiseki',
-        component: () => import('@/views/calvard/Kai/KaiView.vue'),
+        component: () => import('@/views/Calvard/Kai/KaiView.vue'),
         meta: {
+          orbment: 'Xipha',
           title: '界之轨迹'
         }
       },
       {
         path: 'kurotwo',
         name: 'kuronokisekitwo',
-        component: () => import('@/views/calvard/Kurotwo/KurotwoView.vue'),
+        component: () => import('@/views/Calvard/Kurotwo/KurotwoView.vue'),
         meta: {
+          orbment: 'Xipha',
           title: '黎之轨迹2'
         }
       }

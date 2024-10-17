@@ -3,7 +3,7 @@
     <div class="header-title">导力器回路搭配模拟器</div>
     <div class="header-version">
       <t-select label="选择版本" v-model="data.version" @blur="onChangeVersion">
-        <t-option key="kai" label="界之轨迹" value="kai" disabled />
+        <t-option key="kai" label="界之轨迹" value="kai" />
         <t-option key="kurotwo" label="黎之轨迹2" value="kurotwo" />
         <t-option key="kuro" label="黎之轨迹" value="kuro" disabled />
       </t-select>
@@ -19,21 +19,27 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { useRouter } from "vue-router";
+import { useVersionStore } from '@/store';
+
 import { MessagePlugin } from 'tdesign-vue-next';
 
 const router = useRouter();
 
+const store = useVersionStore();
+
 const slotChecked = ref(true);
 
 const data = reactive({
-  version: "kurotwo"
+  version: "kai"
 })
 
-const onChangeVersion = (ctx) => {
+const onChangeVersion = () => {
   router.push("/kiseki/" + data.version);
+  store.setVersion(data.version);
 };
 
 const onChangeAuto = () => {
+  store.setAutoEquip(slotChecked.value)
   MessagePlugin.info('施工中，尽请期待');
 }
 

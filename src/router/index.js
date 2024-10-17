@@ -21,7 +21,7 @@ const defaultRouterList = [
   // },
   {
     path: '/',
-    redirect: '/kiseki/kurotwo'
+    redirect: '/kiseki/kai'
   }
 ]
 // 存放固定路由
@@ -68,6 +68,15 @@ const router = createRouter({
       behavior: 'smooth'
     }
   }
+})
+
+router.beforeEach((to, from, next) => {
+  //beforeEach是router的钩子函数，在进入路由前执行
+  if (to.meta.title && to.meta.orbment) {
+    //判断是否有标题
+    document.title = `${to.meta.title} - ${to.meta.orbment} 模拟器`
+  }
+  next() //执行进入路由，如果不写就不会进入目标页
 })
 
 export default router

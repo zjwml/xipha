@@ -17,7 +17,7 @@ export const linkList = [
   }
 ]
 
-export const orbmentMap = {
+export const circuitMap = {
   earth: '地',
   water: '水',
   fire: '火',
@@ -27,7 +27,7 @@ export const orbmentMap = {
   silver: '幻'
 }
 
-export const orbmentColor = {
+export const circuitColor = {
   none: 'var(--td-text-color-primary)',
   all: 'var(--td-text-color-primary)',
   earth: 'rgb(241,173,63)',
@@ -39,7 +39,7 @@ export const orbmentColor = {
   silver: 'rgb(137,131,169)'
 }
 
-export const orbmentType = [
+export const circuitType = [
   {
     key: 'none',
     name: '禁用孔',
