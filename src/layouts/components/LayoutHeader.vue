@@ -21,13 +21,13 @@ import { ref, reactive } from 'vue';
 import { useRouter } from "vue-router";
 import { useVersionStore } from '@/store';
 
-import { MessagePlugin } from 'tdesign-vue-next';
+// import { MessagePlugin } from 'tdesign-vue-next';
 
 const router = useRouter();
 
 const store = useVersionStore();
 
-const slotChecked = ref(true);
+const slotChecked = ref(false);
 
 const data = reactive({
   version: "kai"
@@ -40,7 +40,6 @@ const onChangeVersion = () => {
 
 const onChangeAuto = () => {
   store.setAutoEquip(slotChecked.value)
-  MessagePlugin.info('施工中，尽请期待');
 }
 
 </script>

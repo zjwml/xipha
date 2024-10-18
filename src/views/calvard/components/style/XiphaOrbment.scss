@@ -237,6 +237,54 @@
   }
 
   &-icon-text {
+    padding: 5px 10px 5px 10px;
     margin-top: 10px;
+    border-radius: 5px 0 5px 0;
+    letter-spacing: 1px;
+    // font-size: 16px;
+    // font-weight: bold;
+    &-none {
+      @extend .circuit-icon-text;
+      color: black;
+    }
+    &-all {
+      @extend .circuit-icon-text;
+      color: black;
+    }
+    &-earth {
+      @extend .circuit-icon-text;
+      background: $--circuit-color-earth;
+      color: white;
+    }
+    &-water {
+      @extend .circuit-icon-text;
+      background: $--circuit-color-water;
+      color: white;
+    }
+    &-fire {
+      @extend .circuit-icon-text;
+      background: $--circuit-color-fire;
+      color: white;
+    }
+    &-wind {
+      @extend .circuit-icon-text;
+      background: $--circuit-color-wind;
+      color: white;
+    }
+    &-time {
+      @extend .circuit-icon-text;
+      background: $--circuit-color-time;
+      color: white;
+    }
+    &-gold {
+      @extend .circuit-icon-text;
+      background: $--circuit-color-gold;
+      color: white;
+    }
+    &-silver {
+      @extend .circuit-icon-text;
+      background: $--circuit-color-silver;
+      color: white;
+    }
   }
 }

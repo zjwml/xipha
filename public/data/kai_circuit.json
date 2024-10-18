@@ -127,29 +127,29 @@
   },
   {
     "id": "16",
-    "name": "金牛",
+    "name": "巨人",
     "price": "0",
     "type": "earth",
     "cost": [
       { "type": "earth", "price": 5 },
-      { "type": "wind", "price": 3 }
+      { "type": "time", "price": 3 }
     ],
     "affect": "对STUN中敌人赋予伤害+50%"
   },
   {
     "id": "17",
-    "name": "狂龙",
+    "name": "安克夏",
     "price": "0",
     "type": "earth",
     "cost": [
       { "type": "earth", "price": 6 },
-      { "type": "silver", "price": 4 }
+      { "type": "water", "price": 4 }
     ],
     "affect": "魔法伤害+50%，硬直时间1.5倍"
   },
   {
     "id": "18",
-    "name": "百臂",
+    "name": "锻神",
     "price": "0",
     "type": "earth",
     "cost": [
@@ -286,7 +286,7 @@
   },
   {
     "id": "34",
-    "name": "海妖",
+    "name": "卡利俄佩",
     "price": "0",
     "type": "water",
     "cost": [
@@ -297,23 +297,23 @@
   },
   {
     "id": "35",
-    "name": "巨兽",
+    "name": "佛罗伦特",
     "price": "0",
     "type": "water",
     "cost": [
       { "type": "water", "price": 6 },
-      { "type": "time", "price": 4 }
+      { "type": "fire", "price": 4 }
     ],
     "affect": "剩余HP越多魔法伤害越高（最高+50%）"
   },
   {
     "id": "36",
-    "name": "汪洋",
+    "name": "木花朔耶",
     "price": "0",
     "type": "water",
     "cost": [
       { "type": "water", "price": 7 },
-      { "type": "wind", "price": 5 }
+      { "type": "silver", "price": 5 }
     ],
     "affect": "晶片技能的发动率+20%"
   },
@@ -445,7 +445,7 @@
   },
   {
     "id": "52",
-    "name": "赤兔马",
+    "name": "史矛格",
     "price": "0",
     "type": "fire",
     "cost": [
@@ -456,7 +456,7 @@
   },
   {
     "id": "53",
-    "name": "黑狼",
+    "name": "英杰",
     "price": "0",
     "type": "fire",
     "cost": [
@@ -467,12 +467,12 @@
   },
   {
     "id": "54",
-    "name": "毒龙",
+    "name": "普罗米修斯",
     "price": "0",
     "type": "fire",
     "cost": [
       { "type": "fire", "price": 7 },
-      { "type": "earth", "price": 5 }
+      { "type": "silver", "price": 5 }
     ],
     "affect": "装备者攻击敌人时增幅量表累积量变为1.5倍"
   },
@@ -604,34 +604,34 @@
   },
   {
     "id": "70",
-    "name": "风灵",
+    "name": "凯兰崔尔",
     "price": "0",
     "type": "wind",
     "cost": [
       { "type": "wind", "price": 5 },
-      { "type": "gold", "price": 3 }
+      { "type": "silver", "price": 3 }
     ],
     "affect": "回复道具范围+10m"
   },
   {
     "id": "71",
-    "name": "圣兽",
+    "name": "草薙",
     "price": "0",
     "type": "wind",
     "cost": [
       { "type": "wind", "price": 6 },
-      { "type": "silver", "price": 4 }
+      { "type": "gold", "price": 4 }
     ],
     "affect": "普通攻击·战技暴击伤害+100%"
   },
   {
     "id": "72",
-    "name": "羽蛇",
+    "name": "猿神",
     "price": "0",
     "type": "wind",
     "cost": [
       { "type": "wind", "price": 7 },
-      { "type": "fire", "price": 5 }
+      { "type": "time", "price": 5 }
     ],
     "affect": "驱动魔法期间回避率+100%"
   },
@@ -763,34 +763,34 @@
   },
   {
     "id": "88",
-    "name": "水妖",
+    "name": "影豹",
     "price": "0",
     "type": "time",
     "cost": [
       { "type": "time", "price": 5 },
-      { "type": "earth", "price": 3 }
+      { "type": "fire", "price": 3 }
     ],
     "affect": "S战技硬直时间1/2"
   },
   {
     "id": "89",
-    "name": "八咫鸟",
+    "name": "神矛",
     "price": "0",
     "type": "time",
     "cost": [
       { "type": "time", "price": 6 },
-      { "type": "silver", "price": 4 }
+      { "type": "earth", "price": 4 }
     ],
     "affect": "剩余HP越少物理伤害越高（最高+100%）"
   },
   {
     "id": "90",
-    "name": "堕天使",
+    "name": "赫卡忒",
     "price": "0",
     "type": "time",
     "cost": [
       { "type": "time", "price": 7 },
-      { "type": "water", "price": 5 }
+      { "type": "gold", "price": 5 }
     ],
     "affect": "普通战技硬直时间4/5"
   },
@@ -922,34 +922,34 @@
   },
   {
     "id": "106",
-    "name": "尖牙",
+    "name": "三月兔",
     "price": "0",
     "type": "gold",
     "cost": [
       { "type": "gold", "price": 5 },
-      { "type": "earth", "price": 3 }
+      { "type": "wind", "price": 3 }
     ],
     "affect": "20%概率吸收物理攻击"
   },
   {
     "id": "107",
-    "name": "阿玛蒂亚",
+    "name": "蛇杖",
     "price": "0",
     "type": "gold",
     "cost": [
       { "type": "gold", "price": 6 },
-      { "type": "time", "price": 4 }
+      { "type": "silver", "price": 4 }
     ],
     "affect": "剩余HP越少魔法伤害越高（最高+100%）"
   },
   {
     "id": "108",
-    "name": "亥伯龙",
+    "name": "库罗索",
     "price": "0",
     "type": "gold",
     "cost": [
       { "type": "gold", "price": 7 },
-      { "type": "silver", "price": 5 }
+      { "type": "earth", "price": 5 }
     ],
     "affect": "使同伴回复时，CP+10"
   },
@@ -1081,29 +1081,29 @@
   },
   {
     "id": "124",
-    "name": "红玉",
+    "name": "幻兽",
     "price": "0",
     "type": "silver",
     "cost": [
       { "type": "silver", "price": 5 },
-      { "type": "fire", "price": 3 }
+      { "type": "earth", "price": 3 }
     ],
     "affect": "20%概率吸收魔法攻击"
   },
   {
     "id": "125",
-    "name": "白泽",
+    "name": "杜兰达尔",
     "price": "0",
     "type": "silver",
     "cost": [
       { "type": "silver", "price": 6 },
-      { "type": "gold", "price": 4 }
+      { "type": "wind", "price": 4 }
     ],
     "affect": "AT奖励发生率提高90%"
   },
   {
     "id": "126",
-    "name": "妖狐",
+    "name": "亚斯特莱亚",
     "price": "0",
     "type": "silver",
     "cost": [

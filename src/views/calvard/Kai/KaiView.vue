@@ -7,18 +7,80 @@
 -->
 <template>
   <div>
-    <XiphaOrbment></XiphaOrbment>
+    <ShadowSkillDialog :shadowSkillVisible="formData.shadowSkillVisible" :shadowType="formData.shadowType"
+      :holeList="formData.holeList" :circuitList="formData.circuitList"
+      @close-dialog="formData.shadowSkillVisible = false" />
+    <XiphaOrbment v-show="!isAutoEquip" :circuitList="formData.circuitList" :holeList="formData.holeList"
+      @change-hole="onChangeHole" @change-circuit="onChangeCircuit" @show-shadow="showShadowSkill"
+      @clear-link="onClearLink"></XiphaOrbment>
+    <ShadowSkillSelect v-show="isAutoEquip" />
   </div>
 </template>
 <script setup>
-import { reactive } from "vue";
+import { reactive, computed, onBeforeMount } from "vue";
+import { useVersionStore } from "@/store";
+
+import ShadowSkillDialog from "../components/ShadowSkillDialog.vue";
 import XiphaOrbment from "../components/XiphaOrbment.vue";
+import ShadowSkillSelect from "../components/ShadowSkillSelect.vue";
+
+const store = useVersionStore();
+
+/**
+ * 获得一个行的结晶孔/回路
+ */
+const getNewCircuit = () => {
+  return {
+    type: "none",
+    name: "请选择",
+    cost: [{
+      type: "none",
+      price: 0
+    }]
+  };
+}
 
 const formData = reactive({
-  layout: "inline",
-  name: "",
-  password: "",
+  shadowSkillVisible: false,
+  shadowType: 0,
+  holeList: [],
+  circuitList: [],
 });
 
+const isAutoEquip = computed(() => {
+  return store.getAutoEquip;
+})
+
+const onChangeHole = (pos) => {
+  formData.circuitList[pos] = getNewCircuit();
+}
+
+const onChangeCircuit = (circuit, index) => {
+  formData.circuitList[index] = circuit;
+}
+
+const onClearLink = (position) => {
+  for (let i = position * 4; i < position * 4 + 4; i++) {
+    formData.circuitList[i] = getNewCircuit();
+  }
+};
+
+const showShadowSkill = (linkItem) => {
+  formData.shadowType = linkItem.id;
+  formData.shadowSkillVisible = true;
+}
+
+onBeforeMount(() => {
+  for (let i = 0; i < 16; i++) {
+    formData.holeList.push({
+      type: "all",
+      name: "通用孔",
+    });
+  }
+
+  for (let i = 0; i < 16; i++) {
+    formData.circuitList.push(getNewCircuit());
+  }
+});
 </script>
 <style scoped lang="scss"></style>

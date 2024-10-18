@@ -144,8 +144,8 @@
     "position": "武器",
     "name": "破剑者",
     "cost": [
-      { "type": "silver", "price": 4 },
-      { "type": "fire", "price": 4 }
+      { "type": "fire", "price": 3 },
+      { "type": "gold", "price": 5 }
     ],
     "description": "施展普通攻击·战技时有概率追加STR下降·小",
     "lv0": "20%",
@@ -155,12 +155,12 @@
   {
     "id": "16",
     "position": "武器",
-    "name": "破盾者",
+    "name": "破剑者改",
     "cost": [
-      { "type": "silver", "price": 4 },
-      { "type": "earth", "price": 4 }
+      { "type": "fire", "price": 5 },
+      { "type": "gold", "price": 10 }
     ],
-    "description": "施展普通攻击·战技时有概率追加DEF下降·小",
+    "description": "施展普通攻击·战技时有概率追加STR下降·小",
     "lv0": "20%",
     "lv1": "40%",
     "lv2": "100%"
@@ -168,10 +168,36 @@
   {
     "id": "17",
     "position": "武器",
+    "name": "破盾者",
+    "cost": [
+      { "type": "time", "price": 3 },
+      { "type": "earth", "price": 5 }
+    ],
+    "description": "施展普通攻击·战技时有概率追加DEF下降·小",
+    "lv0": "20%",
+    "lv1": "40%",
+    "lv2": "100%"
+  },
+  {
+    "id": "18",
+    "position": "武器",
+    "name": "破盾者改",
+    "cost": [
+      { "type": "time", "price": 5 },
+      { "type": "earth", "price": 10 }
+    ],
+    "description": "施展普通攻击·战技时有概率追加DEF下降·小",
+    "lv0": "20%",
+    "lv1": "40%",
+    "lv2": "100%"
+  },
+  {
+    "id": "19",
+    "position": "武器",
     "name": "破剑突袭",
     "cost": [
-      { "type": "gold", "price": 6 },
-      { "type": "fire", "price": 6 }
+      { "type": "gold", "price": 3 },
+      { "type": "silver", "price": 5 }
     ],
     "description": "先制晶片攻击时有概率追加STR下降·中",
     "lv0": "50%",
@@ -179,12 +205,25 @@
     "lv2": "-"
   },
   {
-    "id": "18",
+    "id": "20",
+    "position": "武器",
+    "name": "超破剑突袭",
+    "cost": [
+      { "type": "gold", "price": 5 },
+      { "type": "silver", "price": 10 }
+    ],
+    "description": "先制晶片攻击时有概率追加STR下降·中",
+    "lv0": "50%",
+    "lv1": "-",
+    "lv2": "-"
+  },
+  {
+    "id": "21",
     "position": "武器",
     "name": "破盾突袭",
     "cost": [
-      { "type": "gold", "price": 6 },
-      { "type": "earth", "price": 6 }
+      { "type": "wind", "price": 3 },
+      { "type": "water", "price": 5 }
     ],
     "description": "先制晶片攻击时有概率追加DEF下降·中",
     "lv0": "50%",
@@ -192,12 +231,25 @@
     "lv2": "-"
   },
   {
-    "id": "19",
+    "id": "22",
+    "position": "武器",
+    "name": "超破盾突袭",
+    "cost": [
+      { "type": "wind", "price": 5 },
+      { "type": "water", "price": 10 }
+    ],
+    "description": "先制晶片攻击时有概率追加DEF下降·中",
+    "lv0": "50%",
+    "lv1": "-",
+    "lv2": "-"
+  },
+  {
+    "id": "23",
     "position": "武器",
     "name": "致命追击",
     "cost": [
-      { "type": "earth", "price": 4 },
-      { "type": "time", "price": 8 }
+      { "type": "earth", "price": 3 },
+      { "type": "time", "price": 6 }
     ],
     "description": "若攻击后敌人所剩HP小于攻击值，则必定会进行终结追击",
     "lv0": "100%",
@@ -205,7 +257,7 @@
     "lv2": "100%"
   },
   {
-    "id": "20",
+    "id": "24",
     "position": "武器",
     "name": "致命追击·改",
     "cost": [
@@ -218,11 +270,24 @@
     "lv2": "100%"
   },
   {
-    "id": "21",
+    "id": "25",
     "position": "武器",
     "name": "爆裂吸收",
     "cost": [
       { "type": "water", "price": 3 },
+      { "type": "fire", "price": 6 }
+    ],
+    "description": "施展普通攻击·战技时，回复造成伤害10%的HP，CP+10",
+    "lv0": "25%",
+    "lv1": "50%",
+    "lv2": "100%"
+  },
+  {
+    "id": "26",
+    "position": "武器",
+    "name": "爆裂吸收Ⅱ",
+    "cost": [
+      { "type": "water", "price": 6 },
       { "type": "fire", "price": 12 }
     ],
     "description": "施展普通攻击·战技时，回复造成伤害10%的HP，CP+10",
@@ -231,11 +296,24 @@
     "lv2": "100%"
   },
   {
-    "id": "22",
+    "id": "27",
     "position": "武器",
     "name": "处刑者",
     "cost": [
-      { "type": "fire", "price": 6 },
+      { "type": "silver", "price": 3 },
+      { "type": "wind", "price": 6 }
+    ],
+    "description": "触发晕眩或攻击晕眩中敌人时，有几率进行追击",
+    "lv0": "25%",
+    "lv1": "50%",
+    "lv2": "100%"
+  },
+  {
+    "id": "28",
+    "position": "武器",
+    "name": "处刑者改",
+    "cost": [
+      { "type": "silver", "price": 6 },
       { "type": "wind", "price": 12 }
     ],
     "description": "触发晕眩或攻击晕眩中敌人时，有几率进行追击",
@@ -244,7 +322,7 @@
     "lv2": "100%"
   },
   {
-    "id": "23",
+    "id": "29",
     "position": "护盾",
     "name": "大地抗性",
     "cost": [{ "type": "earth", "price": 2 }],
@@ -254,7 +332,7 @@
     "lv2": "100%"
   },
   {
-    "id": "24",
+    "id": "30",
     "position": "护盾",
     "name": "水花抗性",
     "cost": [{ "type": "water", "price": 2 }],
@@ -264,7 +342,7 @@
     "lv2": "100%"
   },
   {
-    "id": "25",
+    "id": "31",
     "position": "护盾",
     "name": "火光抗性",
     "cost": [{ "type": "fire", "price": 2 }],
@@ -274,7 +352,7 @@
     "lv2": "100%"
   },
   {
-    "id": "26",
+    "id": "32",
     "position": "护盾",
     "name": "疾风抗性",
     "cost": [{ "type": "wind", "price": 2 }],
@@ -284,7 +362,7 @@
     "lv2": "100%"
   },
   {
-    "id": "27",
+    "id": "33",
     "position": "护盾",
     "name": "黑暗抗性",
     "cost": [{ "type": "time", "price": 2 }],
@@ -294,7 +372,7 @@
     "lv2": "100%"
   },
   {
-    "id": "28",
+    "id": "34",
     "position": "护盾",
     "name": "碧空抗性",
     "cost": [{ "type": "gold", "price": 2 }],
@@ -304,7 +382,7 @@
     "lv2": "100%"
   },
   {
-    "id": "29",
+    "id": "35",
     "position": "护盾",
     "name": "幻影抗性",
     "cost": [{ "type": "silver", "price": 2 }],
@@ -314,7 +392,7 @@
     "lv2": "100%"
   },
   {
-    "id": "30",
+    "id": "36",
     "position": "护盾",
     "name": "大地抗性Ⅱ",
     "cost": [{ "type": "earth", "price": 8 }],
@@ -324,7 +402,7 @@
     "lv2": "100%"
   },
   {
-    "id": "31",
+    "id": "37",
     "position": "护盾",
     "name": "水花抗性Ⅱ",
     "cost": [{ "type": "water", "price": 8 }],
@@ -334,7 +412,7 @@
     "lv2": "100%"
   },
   {
-    "id": "32",
+    "id": "38",
     "position": "护盾",
     "name": "火光抗性Ⅱ",
     "cost": [{ "type": "fire", "price": 8 }],
@@ -344,7 +422,7 @@
     "lv2": "100%"
   },
   {
-    "id": "33",
+    "id": "39",
     "position": "护盾",
     "name": "疾风抗性Ⅱ",
     "cost": [{ "type": "wind", "price": 8 }],
@@ -354,7 +432,7 @@
     "lv2": "100%"
   },
   {
-    "id": "34",
+    "id": "40",
     "position": "护盾",
     "name": "黑暗抗性Ⅱ",
     "cost": [{ "type": "time", "price": 8 }],
@@ -364,7 +442,7 @@
     "lv2": "100%"
   },
   {
-    "id": "35",
+    "id": "41",
     "position": "护盾",
     "name": "碧空抗性Ⅱ",
     "cost": [{ "type": "gold", "price": 8 }],
@@ -374,7 +452,7 @@
     "lv2": "100%"
   },
   {
-    "id": "36",
+    "id": "42",
     "position": "护盾",
     "name": "幻影抗性Ⅱ",
     "cost": [{ "type": "silver", "price": 8 }],
@@ -384,7 +462,7 @@
     "lv2": "100%"
   },
   {
-    "id": "37",
+    "id": "43",
     "position": "护盾",
     "name": "治疗防御",
     "cost": [
@@ -397,7 +475,20 @@
     "lv2": "100%"
   },
   {
-    "id": "38",
+    "id": "44",
+    "position": "护盾",
+    "name": "自动治疗防御",
+    "cost": [
+      { "type": "gold", "price": 5 },
+      { "type": "water", "price": 10 }
+    ],
+    "description": "使用防御时，有概率回复HP，且受到伤害为原来的1/3",
+    "lv0": "50%",
+    "lv1": "75%",
+    "lv2": "100%"
+  },
+  {
+    "id": "45",
     "position": "护盾",
     "name": "充能防御",
     "cost": [
@@ -410,11 +501,24 @@
     "lv2": "100%"
   },
   {
-    "id": "39",
+    "id": "46",
+    "position": "护盾",
+    "name": "自动充能防御",
+    "cost": [
+      { "type": "fire", "price": 5 },
+      { "type": "wind", "price": 10 }
+    ],
+    "description": "使用防御时，有概率获得三回合CP上升的效果，且受到伤害为原来的1/3",
+    "lv0": "50%",
+    "lv1": "75%",
+    "lv2": "100%"
+  },
+  {
+    "id": "47",
     "position": "护盾",
     "name": "强攻防御",
     "cost": [
-      { "type": "earth", "price": 2 },
+      { "type": "silver", "price": 2 },
       { "type": "fire", "price": 4 }
     ],
     "description": "使用防御时，有概率使自身攻击力上升，且受到伤害为原来的1/3",
@@ -423,11 +527,24 @@
     "lv2": "100%"
   },
   {
-    "id": "40",
+    "id": "48",
+    "position": "护盾",
+    "name": "自动强攻防御",
+    "cost": [
+      { "type": "silver", "price": 5 },
+      { "type": "fire", "price": 10 }
+    ],
+    "description": "使用防御时，有概率使自身攻击力上升，且受到伤害为原来的1/3",
+    "lv0": "50%",
+    "lv1": "75%",
+    "lv2": "100%"
+  },
+  {
+    "id": "49",
     "position": "护盾",
     "name": "结晶防御",
     "cost": [
-      { "type": "time", "price": 2 },
+      { "type": "time", "price": 1 },
       { "type": "earth", "price": 2 }
     ],
     "description": "使用防御时，有概率使自身防御力上升，且受到伤害为原来的1/3",
@@ -436,12 +553,25 @@
     "lv2": "100%"
   },
   {
-    "id": "41",
+    "id": "50",
+    "position": "护盾",
+    "name": "自动结晶防御",
+    "cost": [
+      { "type": "time", "price": 5 },
+      { "type": "earth", "price": 10 }
+    ],
+    "description": "使用防御时，有概率使自身防御力上升，且受到伤害为原来的1/3",
+    "lv0": "50%",
+    "lv1": "75%",
+    "lv2": "100%"
+  },
+  {
+    "id": "51",
     "position": "护盾",
     "name": "掩护之盾",
     "cost": [
-      { "type": "earth", "price": 2 },
-      { "type": "silver", "price": 2 }
+      { "type": "earth", "price": 3 },
+      { "type": "silver", "price": 6 }
     ],
     "description": "伙伴遭到攻击时，有概率使伤害变为1/2，以HP1抵挡战斗不能伤害。伙伴濒死时S.C.L.M.发动率上升。",
     "lv0": "10%(通常)/20%(濒死S.C.L.M)",
@@ -449,12 +579,12 @@
     "lv2": "100%"
   },
   {
-    "id": "42",
+    "id": "52",
     "position": "护盾",
     "name": "掩护之盾Ⅱ",
     "cost": [
-      { "type": "earth", "price": 8 },
-      { "type": "silver", "price": 8 }
+      { "type": "earth", "price": 6 },
+      { "type": "silver", "price": 12 }
     ],
     "description": "伙伴遭到攻击时，有概率使伤害变为1/4，以HP1抵挡战斗不能伤害。伙伴濒死时S.C.L.M.发动率上升。",
     "lv0": "20%(通常)/40%(濒死S.C.L.M)",
@@ -462,11 +592,24 @@
     "lv2": "100%"
   },
   {
-    "id": "43",
+    "id": "53",
     "position": "护盾",
     "name": "复仇之箭",
     "cost": [
-      { "type": "wind", "price": 4 },
+      { "type": "wind", "price": 3 },
+      { "type": "time", "price": 6 }
+    ],
+    "description": "伙伴遭到攻击时，有概率发动反击",
+    "lv0": "20%(通常)/40%(濒死S.C.L.M)",
+    "lv1": "40%(通常)/80%(濒死S.C.L.M)",
+    "lv2": "100%"
+  },
+  {
+    "id": "54",
+    "position": "护盾",
+    "name": "复仇之箭改",
+    "cost": [
+      { "type": "wind", "price": 6 },
       { "type": "time", "price": 12 }
     ],
     "description": "伙伴遭到攻击时，有概率发动反击",
@@ -475,11 +618,24 @@
     "lv2": "100%"
   },
   {
-    "id": "44",
+    "id": "55",
     "position": "护盾",
     "name": "炽天使之力",
     "cost": [
-      { "type": "water", "price": 8 },
+      { "type": "water", "price": 3 },
+      { "type": "gold", "price": 6 }
+    ],
+    "description": "以HP1抵挡战斗不能伤害，并中幅回复HP·EP·CP（每战限一次）",
+    "lv0": "100%",
+    "lv1": "100%",
+    "lv2": "100%"
+  },
+  {
+    "id": "56",
+    "position": "护盾",
+    "name": "炽天使之力改",
+    "cost": [
+      { "type": "water", "price": 6 },
       { "type": "gold", "price": 12 }
     ],
     "description": "以HP1抵挡战斗不能伤害，并中幅回复HP·EP·CP（每战限一次）",
@@ -488,7 +644,7 @@
     "lv2": "100%"
   },
   {
-    "id": "45",
+    "id": "57",
     "position": "驱动",
     "name": "大地增幅",
     "cost": [{ "type": "earth", "price": 2 }],
@@ -498,7 +654,7 @@
     "lv2": "100%"
   },
   {
-    "id": "46",
+    "id": "58",
     "position": "驱动",
     "name": "水花增幅",
     "cost": [{ "type": "water", "price": 2 }],
@@ -508,7 +664,7 @@
     "lv2": "100%"
   },
   {
-    "id": "47",
+    "id": "59",
     "position": "驱动",
     "name": "火光增幅",
     "cost": [{ "type": "fire", "price": 2 }],
@@ -518,7 +674,7 @@
     "lv2": "100%"
   },
   {
-    "id": "48",
+    "id": "60",
     "position": "驱动",
     "name": "疾风增幅",
     "cost": [{ "type": "wind", "price": 2 }],
@@ -528,7 +684,7 @@
     "lv2": "100%"
   },
   {
-    "id": "49",
+    "id": "61",
     "position": "驱动",
     "name": "时光增幅",
     "cost": [{ "type": "time", "price": 2 }],
@@ -538,7 +694,7 @@
     "lv2": "100%"
   },
   {
-    "id": "50",
+    "id": "62",
     "position": "驱动",
     "name": "碧空增幅",
     "cost": [{ "type": "gold", "price": 2 }],
@@ -548,7 +704,7 @@
     "lv2": "100%"
   },
   {
-    "id": "51",
+    "id": "63",
     "position": "驱动",
     "name": "幻影增幅",
     "cost": [{ "type": "silver", "price": 2 }],
@@ -558,7 +714,7 @@
     "lv2": "100%"
   },
   {
-    "id": "52",
+    "id": "64",
     "position": "驱动",
     "name": "大地增幅Ⅱ",
     "cost": [{ "type": "earth", "price": 8 }],
@@ -568,7 +724,7 @@
     "lv2": "100%"
   },
   {
-    "id": "53",
+    "id": "65",
     "position": "驱动",
     "name": "水花增幅Ⅱ",
     "cost": [{ "type": "water", "price": 8 }],
@@ -578,7 +734,7 @@
     "lv2": "100%"
   },
   {
-    "id": "54",
+    "id": "66",
     "position": "驱动",
     "name": "火光增幅Ⅱ",
     "cost": [{ "type": "fire", "price": 8 }],
@@ -588,7 +744,7 @@
     "lv2": "100%"
   },
   {
-    "id": "55",
+    "id": "67",
     "position": "驱动",
     "name": "疾风增幅Ⅱ",
     "cost": [{ "type": "wind", "price": 8 }],
@@ -598,7 +754,7 @@
     "lv2": "100%"
   },
   {
-    "id": "56",
+    "id": "68",
     "position": "驱动",
     "name": "时光增幅Ⅱ",
     "cost": [{ "type": "time", "price": 8 }],
@@ -608,7 +764,7 @@
     "lv2": "100%"
   },
   {
-    "id": "57",
+    "id": "69",
     "position": "驱动",
     "name": "碧空增幅Ⅱ",
     "cost": [{ "type": "gold", "price": 8 }],
@@ -618,7 +774,7 @@
     "lv2": "100%"
   },
   {
-    "id": "58",
+    "id": "70",
     "position": "驱动",
     "name": "幻影增幅Ⅱ",
     "cost": [{ "type": "silver", "price": 8 }],
@@ -628,12 +784,12 @@
     "lv2": "100%"
   },
   {
-    "id": "59",
+    "id": "71",
     "position": "驱动",
     "name": "碎心者",
     "cost": [
-      { "type": "silver", "price": 4 },
-      { "type": "wind", "price": 4 }
+      { "type": "silver", "price": 3 },
+      { "type": "wind", "price": 5 }
     ],
     "description": "施展攻击魔法时，有概率赋予ATS下降·小",
     "lv0": "20%",
@@ -641,12 +797,25 @@
     "lv2": "100%"
   },
   {
-    "id": "60",
+    "id": "72",
+    "position": "驱动",
+    "name": "碎心者改",
+    "cost": [
+      { "type": "silver", "price": 5 },
+      { "type": "wind", "price": 10 }
+    ],
+    "description": "施展攻击魔法时，有概率赋予ATS下降·小",
+    "lv0": "20%",
+    "lv1": "40%",
+    "lv2": "100%"
+  },
+  {
+    "id": "73",
     "position": "驱动",
     "name": "碎魂者",
     "cost": [
-      { "type": "silver", "price": 4 },
-      { "type": "water", "price": 4 }
+      { "type": "gold", "price": 3 },
+      { "type": "earth", "price": 5 }
     ],
     "description": "施展攻击魔法时，有概率赋予ADF下降·小",
     "lv0": "20%",
@@ -654,12 +823,25 @@
     "lv2": "100%"
   },
   {
-    "id": "61",
+    "id": "74",
+    "position": "驱动",
+    "name": "碎魂者改",
+    "cost": [
+      { "type": "gold", "price": 5 },
+      { "type": "earth", "price": 10 }
+    ],
+    "description": "施展攻击魔法时，有概率赋予ADF下降·小",
+    "lv0": "20%",
+    "lv1": "40%",
+    "lv2": "100%"
+  },
+  {
+    "id": "75",
     "position": "驱动",
     "name": "破言突袭",
     "cost": [
-      { "type": "wind", "price": 6 },
-      { "type": "time", "price": 6 }
+      { "type": "time", "price": 3 },
+      { "type": "fire", "price": 5 }
     ],
     "description": "先制晶片攻击时，有概率赋予ATS下降·小",
     "lv0": "50%",
@@ -667,12 +849,25 @@
     "lv2": "-"
   },
   {
-    "id": "62",
+    "id": "76",
+    "position": "驱动",
+    "name": "超破言突袭",
+    "cost": [
+      { "type": "time", "price": 5 },
+      { "type": "fire", "price": 10 }
+    ],
+    "description": "先制晶片攻击时，有概率赋予ATS下降·小",
+    "lv0": "50%",
+    "lv1": "-",
+    "lv2": "-"
+  },
+  {
+    "id": "77",
     "position": "驱动",
     "name": "破灵突袭",
     "cost": [
-      { "type": "water", "price": 6 },
-      { "type": "time", "price": 6 }
+      { "type": "water", "price": 3 },
+      { "type": "time", "price": 5 }
     ],
     "description": "先制晶片攻击时，有概率赋予ADF下降·小",
     "lv0": "50%",
@@ -680,12 +875,25 @@
     "lv2": "-"
   },
   {
-    "id": "63",
+    "id": "78",
+    "position": "驱动",
+    "name": "超破灵突袭",
+    "cost": [
+      { "type": "water", "price": 5 },
+      { "type": "time", "price": 10 }
+    ],
+    "description": "先制晶片攻击时，有概率赋予ADF下降·小",
+    "lv0": "50%",
+    "lv1": "-",
+    "lv2": "-"
+  },
+  {
+    "id": "79",
     "position": "驱动",
     "name": "神圣之羽",
     "cost": [
-      { "type": "silver", "price": 8 },
-      { "type": "wind", "price": 4 }
+      { "type": "wind", "price": 3 },
+      { "type": "silver", "price": 6 }
     ],
     "description": "施展攻击魔法时，有概率追加附带延迟效果的25%额外伤害",
     "lv0": "40%",
@@ -693,12 +901,12 @@
     "lv2": "100%"
   },
   {
-    "id": "64",
+    "id": "80",
     "position": "驱动",
     "name": "神圣之羽·改",
     "cost": [
-      { "type": "silver", "price": 12 },
-      { "type": "wind", "price": 6 }
+      { "type": "wind", "price": 6 },
+      { "type": "silver", "price": 12 }
     ],
     "description": "施展攻击魔法时，有概率追加附带延迟效果的50%额外伤害",
     "lv0": "50%",
@@ -706,12 +914,12 @@
     "lv2": "100%"
   },
   {
-    "id": "65",
+    "id": "81",
     "position": "驱动",
     "name": "奔流吸收",
     "cost": [
-      { "type": "earth", "price": 6 },
-      { "type": "water", "price": 3 }
+      { "type": "earth", "price": 3 },
+      { "type": "water", "price": 6 }
     ],
     "description": "施展攻击魔法时，有概率依伤害值2%回复EP",
     "lv0": "50%",
@@ -719,12 +927,25 @@
     "lv2": "100%"
   },
   {
-    "id": "66",
+    "id": "82",
+    "position": "驱动",
+    "name": "奔流吸收",
+    "cost": [
+      { "type": "earth", "price": 6 },
+      { "type": "water", "price": 12 }
+    ],
+    "description": "施展攻击魔法时，有概率依伤害值2%回复EP",
+    "lv0": "50%",
+    "lv1": "75%",
+    "lv2": "100%"
+  },
+  {
+    "id": "83",
     "position": "驱动",
     "name": "复仇咏唱",
     "cost": [
-      { "type": "gold", "price": 12 },
-      { "type": "fire", "price": 6 }
+      { "type": "fire", "price": 3 },
+      { "type": "gold", "price": 6 }
     ],
     "description": "回避魔法攻击时，有概率用持有的魔法反击（不消耗EP）",
     "lv0": "50%",
@@ -732,178 +953,175 @@
     "lv2": "100%"
   },
   {
-    "id": "67",
+    "id": "84",
+    "position": "驱动",
+    "name": "复仇咏唱改",
+    "cost": [
+      { "type": "fire", "price": 6 },
+      { "type": "gold", "price": 12 }
+    ],
+    "description": "回避魔法攻击时，有概率用持有的魔法反击（不消耗EP）",
+    "lv0": "50%",
+    "lv1": "75%",
+    "lv2": "100%"
+  },
+  {
+    "id": "85",
     "position": "EXTRA",
     "name": "防御起手式",
-    "cost": [{ "type": "earth", "price": 3 }],
+    "cost": [{ "type": "earth", "price": 4 }],
     "description": "指令晶片开始时，有概率获得DEF上升·小，ADF上升·小2回合",
     "lv0": "25%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "68",
+    "id": "86",
     "position": "EXTRA",
     "name": "能量起手式",
-    "cost": [{ "type": "water", "price": 3 }],
+    "cost": [{ "type": "water", "price": 4 }],
     "description": "指令晶片开始时，有概率获得HP回复·小2回合",
     "lv0": "25%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "69",
+    "id": "87",
     "position": "EXTRA",
     "name": "威力起手式",
-    "cost": [{ "type": "fire", "price": 3 }],
+    "cost": [{ "type": "fire", "price": 4 }],
     "description": "指令晶片开始时，有概率获得STR上升·小2回合",
     "lv0": "25%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "70",
+    "id": "88",
     "position": "EXTRA",
     "name": "心眼起手式",
-    "cost": [{ "type": "wind", "price": 3 }],
+    "cost": [{ "type": "wind", "price": 4 }],
     "description": "指令晶片开始时，有概率获得心眼1回合",
     "lv0": "25%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "71",
+    "id": "89",
     "position": "EXTRA",
     "name": "快捷起手式",
-    "cost": [{ "type": "time", "price": 3 }],
+    "cost": [{ "type": "time", "price": 4 }],
     "description": "指令晶片开始时，有概率获得快速·小2回合",
     "lv0": "25%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "72",
+    "id": "90",
     "position": "EXTRA",
     "name": "魔力起手式",
-    "cost": [{ "type": "gold", "price": 3 }],
+    "cost": [{ "type": "gold", "price": 4 }],
     "description": "指令晶片开始时，有概率获得ATS上升·小2回合",
     "lv0": "25%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "73",
+    "id": "91",
     "position": "EXTRA",
     "name": "幻像起手式",
-    "cost": [{ "type": "silver", "price": 3 }],
+    "cost": [{ "type": "silver", "price": 4 }],
     "description": "指令晶片开始时，有概率获得匿踪1回合",
     "lv0": "25%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "74",
+    "id": "92",
     "position": "EXTRA",
     "name": "防御起手式Ⅱ",
-    "cost": [{ "type": "earth", "price": 12 }],
+    "cost": [{ "type": "earth", "price": 10 }],
     "description": "指令晶片开始时，有概率获得DEF上升·中，ADF上升·中2回合",
     "lv0": "50%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "75",
+    "id": "93",
     "position": "EXTRA",
     "name": "能量起手式Ⅱ",
-    "cost": [{ "type": "water", "price": 12 }],
+    "cost": [{ "type": "water", "price": 10 }],
     "description": "指令晶片开始时，有概率获得HP回复·中2回合",
     "lv0": "50%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "76",
+    "id": "94",
     "position": "EXTRA",
     "name": "威力起手式Ⅱ",
-    "cost": [{ "type": "fire", "price": 12 }],
+    "cost": [{ "type": "fire", "price": 10 }],
     "description": "指令晶片开始时，有概率获得STR上升·中2回合",
     "lv0": "50%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "77",
+    "id": "95",
     "position": "EXTRA",
     "name": "心眼起手式Ⅱ",
-    "cost": [{ "type": "wind", "price": 12 }],
+    "cost": [{ "type": "wind", "price": 10 }],
     "description": "指令晶片开始时，有概率获得心眼2回合",
     "lv0": "50%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "78",
+    "id": "96",
     "position": "EXTRA",
     "name": "快捷起手式Ⅱ",
-    "cost": [{ "type": "time", "price": 12 }],
+    "cost": [{ "type": "time", "price": 10 }],
     "description": "指令晶片开始时，有概率获得快速·中2回合",
     "lv0": "50%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "79",
+    "id": "97",
     "position": "EXTRA",
     "name": "魔力起手式Ⅱ",
-    "cost": [{ "type": "gold", "price": 12 }],
+    "cost": [{ "type": "gold", "price": 10 }],
     "description": "指令晶片开始时，有概率获得ATS上升·中2回合",
     "lv0": "50%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "80",
+    "id": "98",
     "position": "EXTRA",
     "name": "幻像起手式Ⅱ",
-    "cost": [{ "type": "silver", "price": 12 }],
+    "cost": [{ "type": "silver", "price": 10 }],
     "description": "指令晶片开始时，有概率获得匿踪2回合",
     "lv0": "50%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "81",
+    "id": "99",
     "position": "EXTRA",
-    "name": "宝藏猎人",
-    "cost": [
-      { "type": "silver", "price": 3 },
-      { "type": "wind", "price": 3 }
-    ],
+    "name": "黄金眼",
+    "cost": [{ "type": "silver", "price": 2 }],
     "description": "将原野上所有宝箱显示在迷你地图上",
     "lv0": "-",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "82",
-    "position": "EXTRA",
-    "name": "鹰眼",
-    "cost": [
-      { "type": "gold", "price": 3 },
-      { "type": "time", "price": 3 }
-    ],
-    "description": "将原野上所有敌人显示在迷你地图上",
-    "lv0": "-",
-    "lv1": "-",
-    "lv2": "-"
-  },
-  {
-    "id": "83",
+    "id": "100",
     "position": "EXTRA",
     "name": "破迅者",
     "cost": [
-      { "type": "wind", "price": 3 },
-      { "type": "time", "price": 3 }
+      { "type": "silver", "price": 3 },
+      { "type": "time", "price": 5 }
     ],
     "description": "施展普通攻击·战技时有概率使目标陷入缓慢·小状态",
     "lv0": "25%",
@@ -911,12 +1129,25 @@
     "lv2": "100%"
   },
   {
-    "id": "84",
+    "id": "101",
+    "position": "EXTRA",
+    "name": "破迅者改",
+    "cost": [
+      { "type": "silver", "price": 6 },
+      { "type": "time", "price": 10 }
+    ],
+    "description": "施展普通攻击·战技时有概率使目标陷入缓慢·小状态",
+    "lv0": "25%",
+    "lv1": "50%",
+    "lv2": "100%"
+  },
+  {
+    "id": "102",
     "position": "EXTRA",
     "name": "破迅强袭",
     "cost": [
-      { "type": "water", "price": 8 },
-      { "type": "wind", "price": 8 }
+      { "type": "time", "price": 3 },
+      { "type": "gold", "price": 5 }
     ],
     "description": "先制晶片攻击时有概率对所有敌人追加缓慢·小",
     "lv0": "50%",
@@ -924,12 +1155,25 @@
     "lv2": "-"
   },
   {
-    "id": "85",
+    "id": "103",
+    "position": "EXTRA",
+    "name": "超破迅强袭",
+    "cost": [
+      { "type": "time", "price": 5 },
+      { "type": "gold", "price": 10 }
+    ],
+    "description": "先制晶片攻击时有概率对所有敌人追加缓慢·小",
+    "lv0": "50%",
+    "lv1": "-",
+    "lv2": "-"
+  },
+  {
+    "id": "104",
     "position": "EXTRA",
     "name": "自动强音之力",
     "cost": [
-      { "type": "fire", "price": 8 },
-      { "type": "silver", "price": 8 }
+      { "type": "gold", "price": 4 },
+      { "type": "fire", "price": 4 }
     ],
     "description": "指令战斗中行动时，有概率获得STR+10% 1回合",
     "lv0": "10%",
@@ -937,12 +1181,12 @@
     "lv2": "100%"
   },
   {
-    "id": "86",
+    "id": "105",
     "position": "EXTRA",
     "name": "自动结晶防护",
     "cost": [
-      { "type": "earth", "price": 8 },
-      { "type": "gold", "price": 8 }
+      { "type": "gold", "price": 4 },
+      { "type": "earth", "price": 4 }
     ],
     "description": "指令战斗中行动时，有概率获得DEF+10% 1回合",
     "lv0": "10%",
@@ -950,12 +1194,12 @@
     "lv2": "100%"
   },
   {
-    "id": "87",
+    "id": "106",
     "position": "EXTRA",
     "name": "自动快速",
     "cost": [
-      { "type": "wind", "price": 8 },
-      { "type": "time", "price": 8 }
+      { "type": "gold", "price": 4 },
+      { "type": "time", "price": 4 }
     ],
     "description": "指令战斗中行动时，有概率获得行动后硬直-10%，MOV+2 1回合",
     "lv0": "10%",
@@ -963,25 +1207,32 @@
     "lv2": "100%"
   },
   {
-    "id": "88",
+    "id": "107",
     "position": "EXTRA",
-    "name": "HP补给",
-    "cost": [
-      { "type": "water", "price": 6 },
-      { "type": "gold", "price": 6 }
-    ],
+    "name": "能量补给",
+    "cost": [{ "type": "water", "price": 6 }],
     "description": "指令战斗结束后，HP回复5%",
     "lv0": "100%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "89",
+    "id": "108",
     "position": "EXTRA",
-    "name": "EP补给",
+    "name": "能量补给Ⅱ",
+    "cost": [{ "type": "water", "price": 12 }],
+    "description": "指令战斗结束后，HP回复5%",
+    "lv0": "100%",
+    "lv1": "-",
+    "lv2": "-"
+  },
+  {
+    "id": "109",
+    "position": "EXTRA",
+    "name": "威力补给",
     "cost": [
-      { "type": "earth", "price": 6 },
-      { "type": "water", "price": 6 }
+      { "type": "wind", "price": 3 },
+      { "type": "fire", "price": 6 }
     ],
     "description": "指令战斗结束后，EP回复5%",
     "lv0": "100%",
@@ -989,64 +1240,25 @@
     "lv2": "-"
   },
   {
-    "id": "90",
+    "id": "110",
     "position": "EXTRA",
-    "name": "CP补给",
+    "name": "威力补给Ⅱ",
     "cost": [
-      { "type": "fire", "price": 8 },
-      { "type": "wind", "price": 8 }
+      { "type": "wind", "price": 6 },
+      { "type": "fire", "price": 12 }
     ],
-    "description": "指令战斗结束后，CP+25",
+    "description": "指令战斗结束后，EP回复5%",
     "lv0": "100%",
     "lv1": "-",
     "lv2": "-"
   },
   {
-    "id": "91",
-    "position": "EXTRA",
-    "name": "HP补给Ⅱ",
-    "cost": [
-      { "type": "water", "price": 14 },
-      { "type": "gold", "price": 14 }
-    ],
-    "description": "指令战斗结束后，HP回复10%",
-    "lv0": "100%",
-    "lv1": "-",
-    "lv2": "-"
-  },
-  {
-    "id": "92",
-    "position": "EXTRA",
-    "name": "EP补给Ⅱ",
-    "cost": [
-      { "type": "earth", "price": 14 },
-      { "type": "water", "price": 14 }
-    ],
-    "description": "指令战斗结束后，EP回复10%",
-    "lv0": "100%",
-    "lv1": "-",
-    "lv2": "-"
-  },
-  {
-    "id": "93",
-    "position": "EXTRA",
-    "name": "CP补给Ⅱ",
-    "cost": [
-      { "type": "fire", "price": 14 },
-      { "type": "wind", "price": 14 }
-    ],
-    "description": "指令战斗结束后，CP+50",
-    "lv0": "100%",
-    "lv1": "-",
-    "lv2": "-"
-  },
-  {
-    "id": "94",
+    "id": "111",
     "position": "EXTRA",
     "name": "S.C.L.M.扩增",
     "cost": [
-      { "type": "time", "price": 8 },
-      { "type": "water", "price": 4 }
+      { "type": "earth", "price": 3 },
+      { "type": "wind", "price": 6 }
     ],
     "description": "指令战斗时，S.C.L.M.半径+1",
     "lv0": "100%",
@@ -1054,12 +1266,25 @@
     "lv2": "100%"
   },
   {
-    "id": "95",
+    "id": "112",
+    "position": "EXTRA",
+    "name": "S.C.L.M.扩增Ⅱ",
+    "cost": [
+      { "type": "earth", "price": 6 },
+      { "type": "wind", "price": 12 }
+    ],
+    "description": "指令战斗时，S.C.L.M.半径+1",
+    "lv0": "100%",
+    "lv1": "100%",
+    "lv2": "100%"
+  },
+  {
+    "id": "113",
     "position": "EXTRA",
     "name": "危机之力",
     "cost": [
-      { "type": "gold", "price": 12 },
-      { "type": "fire", "price": 6 }
+      { "type": "fire", "price": 3 },
+      { "type": "earth", "price": 6 }
     ],
     "description": "指令战斗中，濒死状态下行动时有概率全能力上升·小（每战限1次）",
     "lv0": "50%",
@@ -1067,12 +1292,38 @@
     "lv2": "100%"
   },
   {
-    "id": "96",
+    "id": "114",
     "position": "EXTRA",
-    "name": "夺取奖励",
+    "name": "危机之力Ⅱ",
     "cost": [
-      { "type": "silver", "price": 12 },
-      { "type": "wind", "price": 6 }
+      { "type": "fire", "price": 6 },
+      { "type": "earth", "price": 12 }
+    ],
+    "description": "指令战斗中，濒死状态下行动时有概率全能力上升·小（每战限1次）",
+    "lv0": "50%",
+    "lv1": "90%",
+    "lv2": "100%"
+  },
+  {
+    "id": "115",
+    "position": "EXTRA",
+    "name": "天界幸运",
+    "cost": [
+      { "type": "water", "price": 3 },
+      { "type": "silver", "price": 6 }
+    ],
+    "description": "施展普通攻击·战技时，有概率获取目标的AT奖励",
+    "lv0": "25%",
+    "lv1": "50%",
+    "lv2": "100%"
+  },
+  {
+    "id": "116",
+    "position": "EXTRA",
+    "name": "天界幸运Ⅱ",
+    "cost": [
+      { "type": "water", "price": 6 },
+      { "type": "silver", "price": 12 }
     ],
     "description": "施展普通攻击·战技时，有概率获取目标的AT奖励",
     "lv0": "25%",

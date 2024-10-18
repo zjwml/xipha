@@ -68,8 +68,15 @@
   </div>
 </template>
 <script setup>
-import { computed } from 'vue';
+import { computed, reactive, onMounted } from 'vue';
+import axios from 'axios';
+
+import { useVersionStore } from '@/store';
 import { linkList, circuitMap } from "@/assets/data/circuit";
+
+const store = useVersionStore();
+
+const skillList = reactive([]);
 
 const props = defineProps({
   //是否显示
@@ -80,9 +87,6 @@ const props = defineProps({
   shadowType: {
     type: Number,
     default: 0
-  },
-  skillList: {
-    type: Array,
   },
   holeList: {
     type: Array,
@@ -95,9 +99,9 @@ const props = defineProps({
 const shadowList = computed(() => {
   let result = [];
   let position = linkList[props.shadowType].name;
-  for (let i = 0; i < props.skillList.length; i++) {
-    if (position === props.skillList[i].position) {
-      result.push(props.skillList[i]);
+  for (let i = 0; i < skillList.length; i++) {
+    if (position === skillList[i].position) {
+      result.push(skillList[i]);
     }
   }
   return result;
@@ -184,6 +188,16 @@ const checkShadow = (a, b) => {
   }
   return result;
 }
+
+onMounted(() => {
+  const version = store.version;
+  axios.get(`data/${version}_skill.json`).then(res => {
+    const data = res.data;
+    for (let i = 0; i < data.length; i++) {
+      skillList.push(data[i]);
+    }
+  })
+})
 
 </script>
 <style scoped lang='scss'>

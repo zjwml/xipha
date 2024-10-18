@@ -1,237 +1,385 @@
+@import '@/assets/circuitColor';
+
 .circuit-option {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-
-  .diamond-container {
-    position: relative;
-    display: inline-block;
-    justify-content: center;
+  width: 100%;
+  .circuit-option-text-container {
+    display: flex;
     align-items: center;
-    margin-right: 10px;
 
-    .diamond {
-      width: 16px;
-      height: 16px;
-
-      background-blend-mode: overlay, normal;
-      transform: rotate(45deg);
+    .diamond-container {
       position: relative;
+      display: inline-block;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
 
-      &::before {
-        content: '';
-        position: absolute;
-        top: 20%;
+      .diamond {
+        width: 16px;
+        height: 16px;
+
+        background-blend-mode: overlay, normal;
+        transform: rotate(45deg);
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 20%;
+          left: 50%;
+          width: 60%;
+          height: 60%;
+          background: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0) 70%
+          );
+          transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+          border-radius: 50%;
+          opacity: 0.7;
+          filter: blur(5px); /* Slight blur for a softer highlight */
+        }
+
+        &-none {
+          @extend .diamond;
+
+          display: block;
+          border: 1px solid black;
+          background: linear-gradient(
+              135deg,
+              rgba(255, 255, 255, 0.3) 0%,
+              rgba(255, 255, 255, 0) 50%,
+              rgba(0, 0, 0, 0.1) 50%,
+              rgba(0, 0, 0, 0.1) 100%
+            ),
+            linear-gradient($--circuit-color-none, $--circuit-color-none);
+        }
+
+        &-earth {
+          @extend .diamond;
+          background: linear-gradient(
+              135deg,
+              rgba(255, 255, 255, 0.3) 0%,
+              rgba(255, 255, 255, 0) 50%,
+              rgba(0, 0, 0, 0.1) 50%,
+              rgba(0, 0, 0, 0.1) 100%
+            ),
+            linear-gradient($--circuit-color-earth, $--circuit-color-earth);
+        }
+        &-water {
+          @extend .diamond;
+          background: linear-gradient(
+              135deg,
+              rgba(255, 255, 255, 0.3) 0%,
+              rgba(255, 255, 255, 0) 50%,
+              rgba(0, 0, 0, 0.1) 50%,
+              rgba(0, 0, 0, 0.1) 100%
+            ),
+            linear-gradient($--circuit-color-water, $--circuit-color-water);
+        }
+        &-fire {
+          @extend .diamond;
+          background: linear-gradient(
+              135deg,
+              rgba(255, 255, 255, 0.3) 0%,
+              rgba(255, 255, 255, 0) 50%,
+              rgba(0, 0, 0, 0.1) 50%,
+              rgba(0, 0, 0, 0.1) 100%
+            ),
+            linear-gradient($--circuit-color-fire, $--circuit-color-fire);
+        }
+        &-wind {
+          @extend .diamond;
+          background: linear-gradient(
+              135deg,
+              rgba(255, 255, 255, 0.3) 0%,
+              rgba(255, 255, 255, 0) 50%,
+              rgba(0, 0, 0, 0.1) 50%,
+              rgba(0, 0, 0, 0.1) 100%
+            ),
+            linear-gradient($--circuit-color-wind, $--circuit-color-wind);
+        }
+        &-time {
+          @extend .diamond;
+          background: linear-gradient(
+              135deg,
+              rgba(255, 255, 255, 0.3) 0%,
+              rgba(255, 255, 255, 0) 50%,
+              rgba(0, 0, 0, 0.1) 50%,
+              rgba(0, 0, 0, 0.1) 100%
+            ),
+            linear-gradient($--circuit-color-time, $--circuit-color-time);
+        }
+        &-gold {
+          @extend .diamond;
+          background: linear-gradient(
+              135deg,
+              rgba(255, 255, 255, 0.3) 0%,
+              rgba(255, 255, 255, 0) 50%,
+              rgba(0, 0, 0, 0.1) 50%,
+              rgba(0, 0, 0, 0.1) 100%
+            ),
+            linear-gradient($--circuit-color-gold, $--circuit-color-gold);
+        }
+        &-silver {
+          @extend .diamond;
+          background: linear-gradient(
+              135deg,
+              rgba(255, 255, 255, 0.3) 0%,
+              rgba(255, 255, 255, 0) 50%,
+              rgba(0, 0, 0, 0.1) 50%,
+              rgba(0, 0, 0, 0.1) 100%
+            ),
+            linear-gradient($--circuit-color-silver, $--circuit-color-silver);
+        }
+      }
+
+      .inner-diamond {
+        width: 8px;
+        height: 8px;
+
         left: 50%;
-        width: 60%;
-        height: 60%;
-        background: radial-gradient(
-          circle,
-          rgba(255, 255, 255, 0.8) 0%,
-          rgba(255, 255, 255, 0) 70%
-        );
-        transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-        border-radius: 50%;
-        opacity: 0.7;
-        filter: blur(5px); /* Slight blur for a softer highlight */
-      }
+        top: 5%;
 
-      &-none {
-        @extend .diamond;
-
-        display: block;
-        border: 1px solid black;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.3) 0%,
-            rgba(255, 255, 255, 0) 50%,
-            rgba(0, 0, 0, 0.1) 50%,
-            rgba(0, 0, 0, 0.1) 100%
-          ),
-          linear-gradient($--circuit-color-none, $--circuit-color-none);
-      }
-
-      &-earth {
-        @extend .diamond;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.3) 0%,
-            rgba(255, 255, 255, 0) 50%,
-            rgba(0, 0, 0, 0.1) 50%,
-            rgba(0, 0, 0, 0.1) 100%
-          ),
-          linear-gradient($--circuit-color-earth, $--circuit-color-earth);
-      }
-      &-water {
-        @extend .diamond;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.3) 0%,
-            rgba(255, 255, 255, 0) 50%,
-            rgba(0, 0, 0, 0.1) 50%,
-            rgba(0, 0, 0, 0.1) 100%
-          ),
-          linear-gradient($--circuit-color-water, $--circuit-color-water);
-      }
-      &-fire {
-        @extend .diamond;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.3) 0%,
-            rgba(255, 255, 255, 0) 50%,
-            rgba(0, 0, 0, 0.1) 50%,
-            rgba(0, 0, 0, 0.1) 100%
-          ),
-          linear-gradient($--circuit-color-fire, $--circuit-color-fire);
-      }
-      &-wind {
-        @extend .diamond;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.3) 0%,
-            rgba(255, 255, 255, 0) 50%,
-            rgba(0, 0, 0, 0.1) 50%,
-            rgba(0, 0, 0, 0.1) 100%
-          ),
-          linear-gradient($--circuit-color-wind, $--circuit-color-wind);
-      }
-      &-time {
-        @extend .diamond;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.3) 0%,
-            rgba(255, 255, 255, 0) 50%,
-            rgba(0, 0, 0, 0.1) 50%,
-            rgba(0, 0, 0, 0.1) 100%
-          ),
-          linear-gradient($--circuit-color-time, $--circuit-color-time);
-      }
-      &-gold {
-        @extend .diamond;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.3) 0%,
-            rgba(255, 255, 255, 0) 50%,
-            rgba(0, 0, 0, 0.1) 50%,
-            rgba(0, 0, 0, 0.1) 100%
-          ),
-          linear-gradient($--circuit-color-gold, $--circuit-color-gold);
-      }
-      &-silver {
-        @extend .diamond;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.3) 0%,
-            rgba(255, 255, 255, 0) 50%,
-            rgba(0, 0, 0, 0.1) 50%,
-            rgba(0, 0, 0, 0.1) 100%
-          ),
-          linear-gradient($--circuit-color-silver, $--circuit-color-silver);
-      }
-    }
-
-    .inner-diamond {
-      width: 8px;
-      height: 8px;
-
-      left: 50%;
-      top: 5%;
-
-      background-blend-mode: overlay, normal;
-      transform: rotate(45deg);
-      position: absolute;
-      transform-origin: top left;
-
-      /* Adjust positioning of inner diamond for 3D effect */
-      &::before {
-        content: '';
+        background-blend-mode: overlay, normal;
+        transform: rotate(45deg);
         position: absolute;
-        top: -50%;
-        left: -50%;
-        background: inherit;
-        transform: rotate(-45deg);
         transform-origin: top left;
-        opacity: 0.3;
-        pointer-events: none; /* Make sure it doesn't interfere with interactivity */
-      }
 
-      &-none {
-        @extend .inner-diamond;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(0, 0, 0, 0) 10%
-          ),
-          linear-gradient($--circuit-color-none, $--circuit-color-none);
-      }
+        /* Adjust positioning of inner diamond for 3D effect */
+        &::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          background: inherit;
+          transform: rotate(-45deg);
+          transform-origin: top left;
+          opacity: 0.3;
+          pointer-events: none; /* Make sure it doesn't interfere with interactivity */
+        }
 
-      &-earth {
-        @extend .inner-diamond;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(0, 0, 0, 0) 70%
-          ),
-          linear-gradient($--circuit-color-earth, $--circuit-color-earth);
-      }
+        &-none {
+          @extend .inner-diamond;
+          background: radial-gradient(
+              circle at center,
+              rgba(255, 255, 255, 0.2) 0%,
+              rgba(0, 0, 0, 0) 10%
+            ),
+            linear-gradient($--circuit-color-none, $--circuit-color-none);
+        }
 
-      &-water {
-        @extend .inner-diamond;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(0, 0, 0, 0) 70%
-          ),
-          linear-gradient($--circuit-color-water, $--circuit-color-water);
-      }
-      &-fire {
-        @extend .inner-diamond;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(0, 0, 0, 0) 70%
-          ),
-          linear-gradient($--circuit-color-fire, $--circuit-color-fire);
-      }
-      &-wind {
-        @extend .inner-diamond;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(0, 0, 0, 0) 70%
-          ),
-          linear-gradient($--circuit-color-wind, $--circuit-color-wind);
-      }
-      &-time {
-        @extend .inner-diamond;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(0, 0, 0, 0) 70%
-          ),
-          linear-gradient($--circuit-color-time, $--circuit-color-time);
-      }
-      &-gold {
-        @extend .inner-diamond;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(0, 0, 0, 0) 70%
-          ),
-          linear-gradient($--circuit-color-gold, $--circuit-color-gold);
-      }
-      &-silver {
-        @extend .inner-diamond;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(0, 0, 0, 0) 70%
-          ),
-          linear-gradient($--circuit-color-silver, $--circuit-color-silver);
+        &-earth {
+          @extend .inner-diamond;
+          background: radial-gradient(
+              circle at center,
+              rgba(255, 255, 255, 0.2) 0%,
+              rgba(0, 0, 0, 0) 70%
+            ),
+            linear-gradient($--circuit-color-earth, $--circuit-color-earth);
+        }
+
+        &-water {
+          @extend .inner-diamond;
+          background: radial-gradient(
+              circle at center,
+              rgba(255, 255, 255, 0.2) 0%,
+              rgba(0, 0, 0, 0) 70%
+            ),
+            linear-gradient($--circuit-color-water, $--circuit-color-water);
+        }
+        &-fire {
+          @extend .inner-diamond;
+          background: radial-gradient(
+              circle at center,
+              rgba(255, 255, 255, 0.2) 0%,
+              rgba(0, 0, 0, 0) 70%
+            ),
+            linear-gradient($--circuit-color-fire, $--circuit-color-fire);
+        }
+        &-wind {
+          @extend .inner-diamond;
+          background: radial-gradient(
+              circle at center,
+              rgba(255, 255, 255, 0.2) 0%,
+              rgba(0, 0, 0, 0) 70%
+            ),
+            linear-gradient($--circuit-color-wind, $--circuit-color-wind);
+        }
+        &-time {
+          @extend .inner-diamond;
+          background: radial-gradient(
+              circle at center,
+              rgba(255, 255, 255, 0.2) 0%,
+              rgba(0, 0, 0, 0) 70%
+            ),
+            linear-gradient($--circuit-color-time, $--circuit-color-time);
+        }
+        &-gold {
+          @extend .inner-diamond;
+          background: radial-gradient(
+              circle at center,
+              rgba(255, 255, 255, 0.2) 0%,
+              rgba(0, 0, 0, 0) 70%
+            ),
+            linear-gradient($--circuit-color-gold, $--circuit-color-gold);
+        }
+        &-silver {
+          @extend .inner-diamond;
+          background: radial-gradient(
+              circle at center,
+              rgba(255, 255, 255, 0.2) 0%,
+              rgba(0, 0, 0, 0) 70%
+            ),
+            linear-gradient($--circuit-color-silver, $--circuit-color-silver);
+        }
       }
     }
   }
 
-  &-text {
+  .shadow-cost {
+    display: flex;
+    align-items: center;
+
+    .cost {
+      display: flex;
+      align-items: center;
+      .cost-use {
+        width: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: '楷体', 'KaiTi', 'KaiTi_GB2312', serif;
+        width: 24px;
+
+        &-success {
+          @extend .cost-use;
+          color: $--circuit-color-wind;
+        }
+        &-failure {
+          @extend .cost-use;
+          color: $--circuit-color-fire;
+        }
+      }
+      .cost-price {
+        font-size: 12px;
+      }
+
+      .cost-type-container {
+        margin-left: 10px;
+        margin-right: 10px;
+        display: inline-block;
+        padding-left: 3px;
+        padding-right: 3px;
+        background-color: #4e4e4e;
+        border: 2px solid white;
+        &-earth {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-earth,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-earth,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-earth,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-earth; /* 最远的外阴影，红色非常淡 */
+        }
+        &-water {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-water,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-water,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-water,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-water; /* 最远的外阴影，红色非常淡 */
+        }
+        &-fire {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-fire,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-fire,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-fire,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-fire; /* 最远的外阴影，红色非常淡 */
+        }
+
+        &-wind {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-wind,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-wind,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-wind,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-wind; /* 最远的外阴影，红色非常淡 */
+        }
+        &-time {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-time,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-time,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-time,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-time; /* 最远的外阴影，红色非常淡 */
+        }
+        &-gold {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-gold,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-gold,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-gold,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-gold; /* 最远的外阴影，红色非常淡 */
+        }
+        &-silver {
+          @extend .cost-type-container;
+          box-shadow:
+            inset 0 0 1px $--circuit-color-silver,
+            /* 内阴影，红色半透明 */ 0 0 2px $--circuit-color-silver,
+            /* 外阴影，红色半透明 */ 0 0 3px $--circuit-color-silver,
+            /* 更远的外阴影，红色更淡 */ 0 0 4px $--circuit-color-silver; /* 最远的外阴影，红色非常淡 */
+        }
+
+        .cost-type {
+          font-weight: bold;
+          font-family: '楷体', 'KaiTi', 'KaiTi_GB2312', serif;
+          color: white;
+          &-earth {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-earth,
+              0 0 2px $--circuit-color-earth;
+          }
+          &-water {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-water,
+              0 0 2px $--circuit-color-water;
+          }
+          &-fire {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-fire,
+              0 0 2px $--circuit-color-fire;
+          }
+          &-wind {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-wind,
+              0 0 2px $--circuit-color-wind;
+          }
+          &-time {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-time,
+              0 0 2px $--circuit-color-time;
+          }
+          &-gold {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-gold,
+              0 0 2px $--circuit-color-gold;
+          }
+          &-silver {
+            @extend .cost-type;
+            text-shadow:
+              0 0 1px $--circuit-color-silver,
+              0 0 2px $--circuit-color-silver;
+          }
+        }
+      }
+    }
   }
 }
