@@ -8,10 +8,10 @@
 <template>
   <div>
     <ShadowSkillDialog :shadowSkillVisible="formData.shadowSkillVisible" :shadowType="formData.shadowType"
-      :holeList="formData.holeList" :circuitList="formData.circuitList"
+      :slotList="formData.slotList" :circuitList="formData.circuitList"
       @close-dialog="formData.shadowSkillVisible = false" />
-    <XiphaOrbment v-show="!isAutoEquip" :circuitList="formData.circuitList" :holeList="formData.holeList"
-      @change-hole="onChangeHole" @change-circuit="onChangeCircuit" @show-shadow="showShadowSkill"
+    <XiphaOrbment v-show="!isAutoEquip" :circuitList="formData.circuitList" :slotList="formData.slotList"
+      @change-slot="onChangeSlot" @change-circuit="onChangeCircuit" @show-shadow="showShadowSkill"
       @clear-link="onClearLink"></XiphaOrbment>
     <ShadowSkillSelect v-show="isAutoEquip" />
   </div>
@@ -43,7 +43,7 @@ const getNewCircuit = () => {
 const formData = reactive({
   shadowSkillVisible: false,
   shadowType: 0,
-  holeList: [],
+  slotList: [],
   circuitList: [],
 });
 
@@ -51,7 +51,7 @@ const isAutoEquip = computed(() => {
   return store.getAutoEquip;
 })
 
-const onChangeHole = (pos) => {
+const onChangeSlot = (pos) => {
   formData.circuitList[pos] = getNewCircuit();
 }
 
@@ -72,7 +72,7 @@ const showShadowSkill = (linkItem) => {
 
 onBeforeMount(() => {
   for (let i = 0; i < 16; i++) {
-    formData.holeList.push({
+    formData.slotList.push({
       type: "all",
       name: "通用孔",
     });

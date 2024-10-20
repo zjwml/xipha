@@ -72,7 +72,7 @@ import { computed, reactive, onMounted } from 'vue';
 import axios from 'axios';
 
 import { useVersionStore } from '@/store';
-import { linkList, circuitMap } from "@/assets/data/circuit";
+import { chainList, circuitMap } from "@/assets/data/circuit";
 
 const store = useVersionStore();
 
@@ -88,7 +88,7 @@ const props = defineProps({
     type: Number,
     default: 0
   },
-  holeList: {
+  slotList: {
     type: Array,
   },
   circuitList: {
@@ -98,7 +98,7 @@ const props = defineProps({
 
 const shadowList = computed(() => {
   let result = [];
-  let position = linkList[props.shadowType].name;
+  let position = chainList[props.shadowType].name;
   for (let i = 0; i < skillList.length; i++) {
     if (position === skillList[i].position) {
       result.push(skillList[i]);
@@ -109,7 +109,7 @@ const shadowList = computed(() => {
 
 const attributeSummary = computed(() => {
   // 定义一个函数来计算单个回路的属性成本  
-  const calculateAttributeCost = (hole, circuit) => {
+  const calculateAttributeCost = (slot, circuit) => {
     const cost = {
       earth: 0,
       water: 0,
@@ -123,7 +123,7 @@ const attributeSummary = computed(() => {
     let multiplier = 1; // 默认乘数为1  
 
     // 如果结晶孔的类型是7种属性之一，则乘数设为2  
-    if (['earth', 'water', 'fire', 'wind', 'time', 'gold', 'silver'].includes(hole.type)) {
+    if (['earth', 'water', 'fire', 'wind', 'time', 'gold', 'silver'].includes(slot.type)) {
       multiplier = 2;
     }
 
@@ -138,7 +138,7 @@ const attributeSummary = computed(() => {
   // 初始化一个空数组来存储每组属性的总和  
   const summaries = [];
 
-  // 遍历每组的四个元素（hole和circuit是成对出现的）  
+  // 遍历每组的四个元素（slot和circuit是成对出现的）  
   for (let group = 0; group < 4; group++) {
     let groupSummary = {
       earth: 0,
@@ -152,13 +152,13 @@ const attributeSummary = computed(() => {
 
     // 遍历组内的四个元素  
     for (let index = 0; index < 4; index++) {
-      const holeIndex = group * 4 + index;
-      const circuitIndex = holeIndex; // circuitList与holeList的索引一一对应  
-      const hole = props.holeList[holeIndex];
+      const slotIndex = group * 4 + index;
+      const circuitIndex = slotIndex; // circuitList与slotList的索引一一对应  
+      const slot = props.slotList[slotIndex];
       const circuit = props.circuitList[circuitIndex];
 
       // 计算当前回路对属性的贡献，并累加到组总和中  
-      const cost = calculateAttributeCost(hole, circuit);
+      const cost = calculateAttributeCost(slot, circuit);
       for (const type in cost) {
         groupSummary[type] += cost[type];
       }

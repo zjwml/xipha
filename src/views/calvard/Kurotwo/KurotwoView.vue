@@ -23,11 +23,11 @@
     </t-dialog>
 
     <ShadowSkillDialog :shadowSkillVisible="formData.shadowSkillVisible" :shadowType="formData.shadowType"
-      :skillList="skillList" :holeList="formData.holeList" :circuitList="formData.circuitList"
+      :skillList="skillList" :slotList="formData.slotList" :circuitList="formData.circuitList"
       @close-dialog="formData.shadowSkillVisible = false" />
 
     <t-space direction="vertical" size="large">
-      <t-card v-for="(linkItem, index) in linkList" :key="index" :title="linkItem.name">
+      <t-card v-for="(linkItem, index) in chainList" :key="index" :title="linkItem.name">
         <template #actions>
           <t-button theme="danger" variant="outline" @click="onClickClear(linkItem)"
             style="margin-right: 10px;">清空</t-button>
@@ -37,9 +37,9 @@
           <template v-for="(pos, j) in [index * 4, index * 4 + 1, index * 4 + 2, index * 4 + 3]" :key="j">
             <t-form-item :name="linkItem.name + pos">
               <template #label>
-                <t-select v-model="formData.holeList[pos].type"
-                  :style="formData.holeList[pos].type ? 'color:' + circuitColor[formData.holeList[pos].type] : ''"
-                  @change="onChangeHoleType(pos)">
+                <t-select v-model="formData.slotList[pos].type"
+                  :style="formData.slotList[pos].type ? 'color:' + circuitColor[formData.slotList[pos].type] : ''"
+                  @change="onChangeSlotType(pos)">
                   <t-option v-for="item in circuitType" :key="item.key" :style="'color:' + item.color"
                     :label="item.name" :value="item.key">
                   </t-option>
@@ -62,7 +62,7 @@
 <script setup>
 import ShadowSkillDialog from "../components/ShadowSkillDialog.vue";
 import { reactive, onBeforeMount, onMounted, computed } from "vue";
-import { linkList, circuitMap, circuitColor, circuitType } from "@/assets/data/circuit";
+import { chainList, circuitMap, circuitColor, circuitType } from "@/assets/data/circuit";
 import circuitList from "@/assets/data/kuro2_circuit.json";
 import skillList from "@/assets/data/kuro2_skill.json";
 
@@ -74,13 +74,13 @@ const formData = reactive({
   /**
    * 选择的结晶孔
    */
-  holeSelect: {
+  slotSelect: {
     type: "all",
     name: "无限定",
     index: -1,
     linkId: ""
   },
-  holeList: [],
+  slotList: [],
   circuitList: [],
 });
 
@@ -107,7 +107,7 @@ const circuitOptions = computed(() => {
 
   const isTypeFiltered = (circuit) => {
     const { name, type } = circuit;
-    const { linkId, holeSelect } = formData;
+    const { linkId, slotSelect } = formData;
 
     // 过滤条件：根据linkId和circuit的name/type  
     if (linkId === 0 && (name.includes("轮") || name.includes("诗"))) return true;
@@ -115,7 +115,7 @@ const circuitOptions = computed(() => {
     if (linkId === 2 && (name.includes("轮") || name.includes("刃"))) return true;
 
     // 如果选择了特定类型，则只考虑该类型的circuit  
-    if (holeSelect.type !== "all" && holeSelect.type !== type) return true;
+    if (slotSelect.type !== "all" && slotSelect.type !== type) return true;
 
     // 过滤已经使用过的circuit  
     return formData.circuitList.some(used => used.id === circuit.id);
@@ -138,17 +138,17 @@ const circuitOptions = computed(() => {
   });
 
   // 如果选择了特定类型，则只返回该类型的对象（可能需要额外逻辑处理，这里简单处理为返回第一个）  
-  if (formData.holeSelect.type !== "all") {
+  if (formData.slotSelect.type !== "all") {
     result = [{
-      label: formData.holeSelect.name,
-      value: formData.holeSelect.type,
-      type: formData.holeSelect.type,
+      label: formData.slotSelect.name,
+      value: formData.slotSelect.type,
+      type: formData.slotSelect.type,
       children: [],
     }];
 
     // 重新填充子对象（仅针对所选类型）  
     circuitList.forEach(circuit => {
-      if (formData.holeSelect.type === circuit.type && !isTypeFiltered(circuit)) {
+      if (formData.slotSelect.type === circuit.type && !isTypeFiltered(circuit)) {
         result[0].children.push({
           label: circuit.name,
           value: circuit.id,
@@ -162,15 +162,15 @@ const circuitOptions = computed(() => {
   return result;
 });
 
-const onChangeHoleType = (pos) => {
+const onChangeSlotType = (pos) => {
   formData.circuitList[pos] = getNewCircuit();
 }
 
 const onClickCircuit = (circuitIndex, linkItem) => {
   formData.backpackVisible = true;
-  formData.holeSelect = {
-    name: circuitMap[formData.holeList[circuitIndex].type],
-    type: formData.holeList[circuitIndex].type,
+  formData.slotSelect = {
+    name: circuitMap[formData.slotList[circuitIndex].type],
+    type: formData.slotList[circuitIndex].type,
     index: circuitIndex,
     linkId: linkItem.id
   };
@@ -181,11 +181,11 @@ const onClickCircuit = (circuitIndex, linkItem) => {
  */
 const onConfirmCircuit = (ctx) => {
   //选择的结晶孔
-  const hole = formData.holeSelect;
+  const slot = formData.slotSelect;
   //这个是新的回路
   const circuit = circuitList[ctx - 1];
 
-  formData.circuitList[hole.index] = circuit;
+  formData.circuitList[slot.index] = circuit;
   formData.circuitSelectIndex = "";
 
   formData.backpackVisible = false;
@@ -211,7 +211,7 @@ const onClickClear = (linkItem) => {
 
 onBeforeMount(() => {
   for (let i = 0; i < 16; i++) {
-    formData.holeList.push({
+    formData.slotList.push({
       type: "all",
       name: "通用孔",
     });

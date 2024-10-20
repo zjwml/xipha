@@ -1,19 +1,23 @@
-export const linkList = [
+export const chainList = [
   {
     id: 0,
-    name: '武器'
+    name: '武器',
+    excludedNames: ['诗', '轮']
   },
   {
     id: 1,
-    name: '护盾'
+    name: '护盾',
+    excludedNames: ['诗', '刃']
   },
   {
     id: 2,
-    name: '驱动'
+    name: '驱动',
+    excludedNames: ['刃', '轮']
   },
   {
     id: 3,
-    name: 'EXTRA'
+    name: 'EXTRA',
+    excludedNames: []
   }
 ]
 

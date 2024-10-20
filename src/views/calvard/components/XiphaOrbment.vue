@@ -1,9 +1,9 @@
 <template>
   <div>
     <CurcuitSelectDialog :visible="formData.backpackVisible" :circuitList="props.circuitList"
-      :holeSelect="formData.holeSelect" @close-dialog="closeSelectDialog" />
+      :slotSelect="formData.slotSelect" @close-dialog="closeSelectDialog" />
     <t-space direction="vertical" size="large">
-      <t-card v-for="(linkItem, index) in linkList" :key="index" :title="linkItem.name">
+      <t-card v-for="(linkItem, index) in chainList" :key="index" :title="linkItem.name">
         <template #actions>
           <t-button theme="danger" variant="outline" @click="onClickClear(linkItem)"
             style="margin-right: 10px;">清空</t-button>
@@ -13,7 +13,7 @@
           <template v-for="(pos, j) in [index * 4, index * 4 + 1, index * 4 + 2, index * 4 + 3]" :key="j">
             <t-form-item :name="linkItem.name + pos">
               <template #label>
-                <t-select v-model="localHoleList[pos].type" @change="onChangeHoleType(pos)">
+                <t-select v-model="localSlotList[pos].type" @change="onChangeSlotType(pos)">
                   <t-option v-for="item in circuitType" :key="item.key" :style="'color:' + item.color"
                     :label="item.name" :value="item.key">
                   </t-option>
@@ -24,7 +24,7 @@
                   <div :class="'diamond-' + props.circuitList[pos].type"></div>
                   <div :class="'inner-diamond-' + props.circuitList[pos].type"></div>
                 </div>
-                <div :class="'circuit-icon-text-' + props.holeList[pos].type">{{ props.circuitList[pos].name }}
+                <div :class="'circuit-icon-text-' + props.slotList[pos].type">{{ props.circuitList[pos].name }}
                 </div>
               </div>
             </t-form-item>
@@ -38,10 +38,10 @@
 import { reactive, defineEmits, onMounted, watch } from 'vue';
 import axios from 'axios';
 
-import { linkList, circuitMap, circuitType } from "@/assets/data/circuit";
+import { chainList, circuitMap, circuitType } from "@/assets/data/circuit";
 import CurcuitSelectDialog from './CurcuitSelectDialog.vue';
 
-const emit = defineEmits(["change-hole", "show-shadow", "clear-link", "change-circuit"]);
+const emit = defineEmits(["change-slot", "show-shadow", "clear-link", "change-circuit"]);
 
 const allCircuit = reactive([]);
 
@@ -56,16 +56,16 @@ const props = defineProps({
   /**
    * 结晶孔列表，与回路表对应，主要用来放限制类型
    */
-  holeList: {
+  slotList: {
     type: Array,
     default: () => []
   },
 })
 
-const localHoleList = reactive([...props.holeList]);
+const localSlotList = reactive([...props.slotList]);
 
-watch(() => props.holeList, (newVal) => {
-  localHoleList.splice(0, localHoleList.length, ...newVal);
+watch(() => props.slotList, (newVal) => {
+  localSlotList.splice(0, localSlotList.length, ...newVal);
 }, { deep: true });
 
 const formData = reactive({
@@ -77,7 +77,7 @@ const formData = reactive({
   /**
    * 选择的结晶孔
    */
-  holeSelect: {
+  slotSelect: {
     type: "all",
     name: "无限定",
     index: -1,
@@ -85,15 +85,15 @@ const formData = reactive({
   },
 })
 
-const onChangeHoleType = (pos) => {
-  emit("change-hole", pos)
+const onChangeSlotType = (pos) => {
+  emit("change-slot", pos)
 }
 
 const onClickCircuit = (circuitIndex, linkItem) => {
   formData.backpackVisible = true;
-  formData.holeSelect = {
-    name: circuitMap[props.holeList[circuitIndex].type],
-    type: props.holeList[circuitIndex].type,
+  formData.slotSelect = {
+    name: circuitMap[props.slotList[circuitIndex].type],
+    type: props.slotList[circuitIndex].type,
     index: circuitIndex,
     linkId: linkItem.id
   };
@@ -106,11 +106,11 @@ const onClickShowShadow = (linkItem) => {
 const closeSelectDialog = (ctx) => {
   if (typeof ctx === "string") {
     //选择的结晶孔
-    const hole = formData.holeSelect;
+    const slot = formData.slotSelect;
     //这个是新的回路
     const circuit = allCircuit[parseInt(ctx) - 1];
 
-    emit("change-circuit", circuit, hole.index);
+    emit("change-circuit", circuit, slot.index);
   }
 
   formData.backpackVisible = false;
