@@ -22,10 +22,11 @@
 
 为了确保最佳的用户体验，建议使用以下浏览器的最低版本：
 
-- **Google Chrome**：79 及以上
-- **Mozilla Firefox**：70 及以上
-- **Microsoft Edge**：79 及以上
-- **Safari**：13 及以上
+线代浏览器或者Internet Explorer 10+.
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Safari |
+| --------- | --------- | --------- | --------- |
+| IE10, IE11, Edge | last 2 versions | last 2 versions | last 2 versions |
 
 ## 开发与运行
 
@@ -62,7 +63,6 @@ npm run build
 本项目采用 MIT License 许可证。
 
 ## 联系方式
-
 
 如有任何问题或建议，请在 GitHub 上提交 Issue。
 
