@@ -1,0 +1,47 @@
+@import '@/assets/circuitColor';
+
+.shadow-select-container {
+  display: flex;
+  flex-direction: column;
+
+  .shadow-select-title {
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 1em;
+    margin-right: -1em;
+    font-weight: 700;
+    color: $--circuit-color-fire;
+  }
+
+  .shadow-select-content {
+    display: block;
+    text-align: left;
+    margin: 12px 0;
+    line-height: 1.5em;
+    font-size: 14px;
+  }
+
+  .shadow-select-button {
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    margin-right: -0.2em;
+
+    text-align: center;
+    cursor: pointer;
+    background-color: $--circuit-color-time;
+    padding: 14px 14px 14px 12px;
+    margin: 0 4px;
+    border-radius: 8px;
+  }
+
+  .shadow-selected-conntainer {
+    .shadow-selected {
+      .shadow-selected-title {
+      }
+
+      .shadow-selected-content {
+      }
+    }
+  }
+}

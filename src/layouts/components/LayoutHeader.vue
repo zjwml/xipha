@@ -1,14 +1,15 @@
 <template>
   <div class="layout-header">
     <div class="header-title">导力器回路搭配模拟器</div>
-    <div class="header-version">
-      <t-select label="选择版本" v-model="data.version" @blur="onChangeVersion">
-        <t-option key="kai" label="界之轨迹" value="kai" />
-        <t-option key="kurotwo" label="黎之轨迹2" value="kurotwo" />
-        <t-option key="kuro" label="黎之轨迹" value="kuro" disabled />
-      </t-select>
-    </div>
+
     <div class="header-auto">
+      <div class="header-version">
+        <t-select label="选择版本" v-model="data.version" @blur="onChangeVersion">
+          <t-option key="kai" label="界之轨迹" value="kai" />
+          <t-option key="kurotwo" label="黎之轨迹2" value="kurotwo" />
+          <t-option key="kuro" label="黎之轨迹" value="kuro" disabled />
+        </t-select>
+      </div>
       <t-switch v-model="slotChecked" size="large" @change="onChangeAuto">
         <template #label="slotProps">{{ slotProps.value ? '自动配装' : '手动配装' }}</template>
       </t-switch>
@@ -66,13 +67,15 @@ const onChangeAuto = () => {
   }
 
   .header-version {
-    position: absolute;
-    left: 15px;
+    margin-right: 20px;
   }
 
   .header-auto {
     position: absolute;
+    display: flex;
     right: 15px;
+    
+    align-items: center;
   }
 }
 </style>

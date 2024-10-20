@@ -1,6 +1,6 @@
 <template>
   <div>
-    <t-dialog :visible="visible" header="请选择结晶回路" :footer="false" width="60%" :show-all-levels="false"
+    <t-dialog :visible="visible" header="请选择结晶回路" :footer="false" width="50%" :show-all-levels="false"
       :on-close="closeDialog">
       <t-cascader v-model="formData.circuitSelectIndex" :options="circuitOptions" @change="closeDialog">
         <template #option="{ item }">
@@ -185,7 +185,7 @@ onMounted(() => {
 
 </script>
 <style scoped lang='scss'>
-@import url("./style/CurcuitSelectDialog.scss");
+@import url("./style/CircuitSelectDialog.scss");
 </style>
 
 <style>

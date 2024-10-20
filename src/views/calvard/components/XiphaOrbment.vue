@@ -2,14 +2,14 @@
   <div>
     <CurcuitSelectDialog :visible="formData.backpackVisible" :circuitList="props.circuitList"
       :slotSelect="formData.slotSelect" @close-dialog="closeSelectDialog" />
-    <t-space direction="vertical" size="large">
-      <t-card v-for="(linkItem, index) in chainList" :key="index" :title="linkItem.name">
+    <div class="xipha-orbment">
+      <t-card style="margin-bottom: 20px;" v-for="(linkItem, index) in chainList" :key="index" :title="linkItem.name">
         <template #actions>
           <t-button theme="danger" variant="outline" @click="onClickClear(linkItem)"
             style="margin-right: 10px;">清空</t-button>
           <t-button theme="primary" @click="onClickShowShadow(linkItem)">晶片技能</t-button>
         </template>
-        <t-form ref="form" :data="formData" label-width="120px" layout="inline" scroll-to-first-error="smooth">
+        <t-form ref="form" :data="formData" label-width="120px" layout="inline" scroll-to-first-error="smooth" class="form-slot">
           <template v-for="(pos, j) in [index * 4, index * 4 + 1, index * 4 + 2, index * 4 + 3]" :key="j">
             <t-form-item :name="linkItem.name + pos">
               <template #label>
@@ -31,7 +31,7 @@
           </template>
         </t-form>
       </t-card>
-    </t-space>
+    </div>
   </div>
 </template>
 <script setup>
@@ -39,11 +39,14 @@ import { reactive, defineEmits, onMounted, watch } from 'vue';
 import axios from 'axios';
 
 import { chainList, circuitMap, circuitType } from "@/assets/data/circuit";
-import CurcuitSelectDialog from './CurcuitSelectDialog.vue';
+import CurcuitSelectDialog from './CircuitSelectDialog.vue';
+import { useVersionStore } from "@/store";
 
 const emit = defineEmits(["change-slot", "show-shadow", "clear-link", "change-circuit"]);
 
 const allCircuit = reactive([]);
+
+const store = useVersionStore();
 
 const props = defineProps({
   /**
@@ -123,7 +126,7 @@ const onClickClear = (linkItem) => {
 };
 
 onMounted(() => {
-  axios.get(`data/kai_circuit.json`).then(res => {
+  axios.get(`data/${store.version}_circuit.json`).then(res => {
     const data = res.data;
     for (let i = 0; i < data.length; i++) {
       allCircuit.push(data[i]);

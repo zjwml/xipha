@@ -10,21 +10,34 @@
     <ShadowSkillDialog :shadowSkillVisible="formData.shadowSkillVisible" :shadowType="formData.shadowType"
       :slotList="formData.slotList" :circuitList="formData.circuitList"
       @close-dialog="formData.shadowSkillVisible = false" />
-    <XiphaOrbment v-show="!isAutoEquip" :circuitList="formData.circuitList" :slotList="formData.slotList"
-      @change-slot="onChangeSlot" @change-circuit="onChangeCircuit" @show-shadow="showShadowSkill"
-      @clear-link="onClearLink"></XiphaOrbment>
-    <ShadowSkillSelect v-show="isAutoEquip" />
+    <t-row :gutter="20">
+      <t-col :span="6" :offset="2">
+        <MainSelectView v-show="isAutoEquip" @search="onSearch" />
+        <XiphaOrbment :circuitList="formData.circuitList" :slotList="formData.slotList" @change-slot="onChangeSlot"
+          @change-circuit="onChangeCircuit" @show-shadow="showShadowSkill" @clear-link="onClearLink"></XiphaOrbment>
+      </t-col>
+      <t-col :span="2">
+        <ShadowSkillSelect v-show="isAutoEquip" @change-skill="onChangeSkill" />
+      </t-col>
+    </t-row>
+
   </div>
 </template>
 <script setup>
-import { reactive, computed, onBeforeMount } from "vue";
+import { reactive, computed, onBeforeMount, onMounted } from "vue";
 import { useVersionStore } from "@/store";
+import axios from 'axios';
 
+import MainSelectView from "../components/MainSelectView.vue";
 import ShadowSkillDialog from "../components/ShadowSkillDialog.vue";
 import XiphaOrbment from "../components/XiphaOrbment.vue";
 import ShadowSkillSelect from "../components/ShadowSkillSelect.vue";
 
+import { generateCircuits } from "../utils/generateCircuits";
+
 const store = useVersionStore();
+const skillList = reactive([]);
+const circuitList = reactive([]);
 
 /**
  * 获得一个行的结晶孔/回路
@@ -45,6 +58,9 @@ const formData = reactive({
   shadowType: 0,
   slotList: [],
   circuitList: [],
+  circuitExclusions: [],
+  circuitRequirements: [],
+  shadowSkillList: []
 });
 
 const isAutoEquip = computed(() => {
@@ -70,6 +86,28 @@ const showShadowSkill = (linkItem) => {
   formData.shadowSkillVisible = true;
 }
 
+const onChangeSkill = (skillIdList) => {
+  let result = [];
+  let tmp = skillList.filter(skill => skillIdList.weapon.includes(skill.id));
+  result.push(...tmp);
+  tmp = skillList.filter(skill => skillIdList.magic.includes(skill.id));
+  result.push(...tmp);
+  tmp = skillList.filter(skill => skillIdList.shield.includes(skill.id));
+  result.push(...tmp);
+  tmp = skillList.filter(skill => skillIdList.extra.includes(skill.id));
+  result.push(...tmp);
+  formData.shadowSkillList = result;
+}
+
+const onSearch = (data) => {
+  formData.circuitExclusions = circuitList.filter(circuit => data.circuitExclusions.includes(circuit.id))
+  formData.circuitRequirements = circuitList.filter(circuit => data.circuitRequirements.includes(circuit.id))
+
+  const result = generateCircuits(circuitList, skillList, formData.slotList, formData.circuitRequirements, formData.circuitExclusions)
+
+  console.log("result", result);
+};
+
 onBeforeMount(() => {
   for (let i = 0; i < 16; i++) {
     formData.slotList.push({
@@ -82,5 +120,21 @@ onBeforeMount(() => {
     formData.circuitList.push(getNewCircuit());
   }
 });
+
+onMounted(() => {
+  const version = store.version;
+  axios.get(`data/${version}_skill.json`).then(res => {
+    const data = res.data;
+    for (let i = 0; i < data.length; i++) {
+      skillList.push(data[i]);
+    }
+  })
+  axios.get(`data/${version}_circuit.json`).then(res => {
+    const data = res.data;
+    for (let i = 0; i < data.length; i++) {
+      circuitList.push(data[i]);
+    }
+  })
+})
 </script>
 <style scoped lang="scss"></style>
