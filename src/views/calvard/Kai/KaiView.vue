@@ -11,7 +11,7 @@
       :slotList="formData.slotList" :circuitList="formData.circuitList"
       @close-dialog="formData.shadowSkillVisible = false" />
     <t-row :gutter="20">
-      <t-col :span="6" :offset="2">
+      <t-col :span="8" :offset="2">
         <MainSelectView v-show="isAutoEquip" @search="onSearch" />
         <XiphaOrbment :circuitList="formData.circuitList" :slotList="formData.slotList" @change-slot="onChangeSlot"
           @change-circuit="onChangeCircuit" @show-shadow="showShadowSkill" @clear-link="onClearLink"></XiphaOrbment>
@@ -33,7 +33,8 @@ import ShadowSkillDialog from "../components/ShadowSkillDialog.vue";
 import XiphaOrbment from "../components/XiphaOrbment.vue";
 import ShadowSkillSelect from "../components/ShadowSkillSelect.vue";
 
-import { generateCircuits } from "../utils/generateCircuits";
+import { chainList } from "@/assets/data/circuit";
+import { findOptimalCircuits } from "../utils/generateCircuits";
 
 const store = useVersionStore();
 const skillList = reactive([]);
@@ -90,7 +91,7 @@ const onChangeSkill = (skillIdList) => {
   let result = [];
   let tmp = skillList.filter(skill => skillIdList.weapon.includes(skill.id));
   result.push(...tmp);
-  tmp = skillList.filter(skill => skillIdList.magic.includes(skill.id));
+  tmp = skillList.filter(skill => skillIdList.driver.includes(skill.id));
   result.push(...tmp);
   tmp = skillList.filter(skill => skillIdList.shield.includes(skill.id));
   result.push(...tmp);
@@ -100,10 +101,17 @@ const onChangeSkill = (skillIdList) => {
 }
 
 const onSearch = (data) => {
-  formData.circuitExclusions = circuitList.filter(circuit => data.circuitExclusions.includes(circuit.id))
-  formData.circuitRequirements = circuitList.filter(circuit => data.circuitRequirements.includes(circuit.id))
+  formData.circuitExclusions = data.circuitExclusions;
+  formData.circuitRequirements = data.circuitRequirements;
 
-  const result = generateCircuits(circuitList, skillList, formData.slotList, formData.circuitRequirements, formData.circuitExclusions)
+
+  formData.slotList.forEach((slot, index) => {
+    const chainIndex = Math.floor(index / 4);
+    slot.position = chainList[chainIndex].position;
+    slot.excludedNames = chainList[chainIndex].excludedNames;
+  });
+
+  const result = findOptimalCircuits(circuitList, formData.shadowSkillList, formData.slotList, formData.circuitRequirements, formData.circuitExclusions)
 
   console.log("result", result);
 };

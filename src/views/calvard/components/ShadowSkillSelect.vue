@@ -1,6 +1,7 @@
 <template>
   <div class="shadow-select-container">
-    <t-dialog v-model:visible="visible" title="选择晶片技能" :footer="false" width="50%" :show-all-levels="false" :on-close="closeDialog">
+    <t-dialog v-model:visible="visible" title="选择晶片技能" :footer="false" width="50%" :show-all-levels="false"
+      :on-close="closeDialog">
       <t-form ref="formSkill">
         <t-form-item label="武器链" props="weapon">
           <t-checkbox-group v-model="formData.weapon" :options="weaponOptions"
@@ -10,8 +11,8 @@
           <t-checkbox-group v-model="formData.shield" :options="shieldOptions"
             style="display: grid;grid-template-columns: repeat(5,20%);"></t-checkbox-group>
         </t-form-item>
-        <t-form-item label="驱动链" props="magic">
-          <t-checkbox-group v-model="formData.magic" :options="magicOptions"
+        <t-form-item label="驱动链" props="driver">
+          <t-checkbox-group v-model="formData.driver" :options="driverOptions"
             style="display: grid;grid-template-columns: repeat(5,20%);"></t-checkbox-group>
         </t-form-item>
         <t-form-item label="EX链" props="extra">
@@ -32,7 +33,7 @@
   </div>
 </template>
 <script setup>
-import { ref, reactive, onMounted,defineEmits,  computed } from 'vue';
+import { ref, reactive, onMounted, defineEmits, computed } from 'vue';
 import { useVersionStore } from '@/store';
 import axios from 'axios';
 
@@ -47,7 +48,7 @@ const visible = ref(false);
 const formData = reactive({
   weapon: [],
   shield: [],
-  magic: [],
+  driver: [],
   extra: [],
 });
 
@@ -57,7 +58,7 @@ const onClickSelect = () => {
 
 const weaponOptions = computed(() => {
   const weaponList = [];
-  const filtertmp = skillList.filter(item => item.position === '武器' && item.cost.length > 1);
+  const filtertmp = skillList.filter(item => item.position === 'weapon' && item.cost.length > 1);
   for (let i = 0; i < filtertmp.length; i++) {
     weaponList.push({
       label: filtertmp[i].name,
@@ -69,7 +70,7 @@ const weaponOptions = computed(() => {
 
 const shieldOptions = computed(() => {
   const list = [];
-  const filtertmp = skillList.filter(item => item.position === '护盾' && item.cost.length > 1);
+  const filtertmp = skillList.filter(item => item.position === 'shield' && item.cost.length > 1);
   for (let i = 0; i < filtertmp.length; i++) {
     list.push({
       label: filtertmp[i].name,
@@ -79,9 +80,9 @@ const shieldOptions = computed(() => {
   return list;
 })
 
-const magicOptions = computed(() => {
+const driverOptions = computed(() => {
   const list = [];
-  const filtertmp = skillList.filter(item => item.position === '驱动' && item.cost.length > 1);
+  const filtertmp = skillList.filter(item => item.position === 'driver' && item.cost.length > 1);
   for (let i = 0; i < filtertmp.length; i++) {
     list.push({
       label: filtertmp[i].name,
@@ -93,7 +94,7 @@ const magicOptions = computed(() => {
 
 const extraOptions = computed(() => {
   const list = [];
-  const filtertmp = skillList.filter(item => item.position === 'EXTRA' && !item.name.includes("起手式"));
+  const filtertmp = skillList.filter(item => item.position === 'extra' && !item.name.includes("起手式"));
   for (let i = 0; i < filtertmp.length; i++) {
     list.push({
       label: filtertmp[i].name,

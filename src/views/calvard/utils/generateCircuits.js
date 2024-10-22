@@ -1,100 +1,93 @@
-export function generateCircuits(backpack, skills, slots, circuitRequirements, circuitExclusions) {
-  const filteredBackpack = backpack.filter((c) => !circuitExclusions.includes(c.id))
-  const requiredCircuits = filteredBackpack.filter((c) => circuitRequirements.includes(c.id))
+// 核心逻辑函数
+export function findOptimalCircuits(
+  inventory,
+  skills,
+  slots,
+  circuitRequirements,
+  circuitExclusions
+) {
+  const result = Array(16).fill(null) // 初始化结果数组
 
-  if (requiredCircuits.length !== circuitRequirements.length) {
-    throw new Error('Not all required circuits are available in the backpack')
-  }
-
-  const result = Array(16).fill(null)
-
-  function backtrack(position) {
-    if (position === 16) {
-      // 检查cost条件
-      for (const position of [0, 1, 2, 3]) {
-        const slotCosts = slots.filter((s) => s.position === position).flatMap((s) => s.cost)
-        const circuitCosts = result
-          .filter((c) => c && c.position === position)
-          .flatMap((c) => c.cost)
-
-        const totalSlotCost = slotCosts.reduce((sum, cost) => sum + cost.price, 0)
-        const totalCircuitCost = circuitCosts.reduce((sum, cost) => sum + cost.price, 0)
-
-        if (totalCircuitCost < totalSlotCost) {
-          return false
-        }
-      }
-      return true
-    }
-
-    const availableCircuits = filteredBackpack.filter((c) => {
-      return (
-        !result.includes(c) &&
-        !c.name.includes(slots[position].excludedNames.join('')) &&
-        (slots[position].type === 'all' ||
-          slots[position].type === 'none' ||
-          c.type.includes(slots[position].type))
-      )
+  // 计算每个chain的最大cost
+  const maxCostByChain = skills.reduce((acc, skill) => {
+    skill.cost.forEach((cost) => {
+      if (!acc[skill.position]) acc[skill.position] = {}
+      if (!acc[skill.position][cost.type]) acc[skill.position][cost.type] = -Infinity
+      acc[skill.position][cost.type] = Math.max(acc[skill.position][cost.type], cost.price)
     })
+    return acc
+  }, {})
 
-    for (const circuit of availableCircuits) {
-      result[position] = circuit
-      if (backtrack(position + 1)) {
-        return true
+  // 过滤掉需要排除的circuit
+  let filteredInventory = inventory.filter((circuit) => !circuitExclusions.includes(circuit.id))
+  // 同时得到必须的电路和非必须的电路
+  const { requiredInventory, pendingInventory } = filteredInventory.reduce(
+    (acc, circuit) => {
+      if (circuitRequirements.includes(circuit.id)) {
+        acc.requiredInventory.push(circuit)
+      } else {
+        acc.pendingInventory.push(circuit)
       }
-      result[position] = null // 回溯
+      return acc
+    },
+    { requiredInventory: [], pendingInventory: [] }
+  )
+  // 排序非必须circuits以优化性能
+  pendingInventory.sort(
+    (a, b) =>
+      b.cost.reduce((sum, cost) => sum + cost.price, 0) -
+      a.cost.reduce((sum, cost) => sum + cost.price, 0)
+  )
+  // 合并必须回路和待选择的circuit
+  filteredInventory = [...requiredInventory, ...pendingInventory]
+
+  // 回溯法辅助函数
+  function backtrack(index) {
+    if (index === 16) {
+      return true // 找到一个有效解
     }
 
+    const slot = slots[index]
+    // 空插槽直接跳过
+    if ('none' === slot.type) {
+      return backtrack(index + 1)
+    }
+    // 遍历所有回路
+    for (const circuit of filteredInventory) {
+      // 排除已选择的回路
+      if (result.includes(circuit)) {
+        continue
+      }
+      // 排除包含排除名单的回路
+      if (slot.excludedNames.some((excludedName) => circuit.name.includes(excludedName))) {
+        continue
+      }
+      // 筛选出符合类型的回路
+      if (slot.type !== 'all' && slot.type !== 'none' && circuit.type !== slot.type) {
+        continue
+      }
+      let totalCost = 0
+      for (const cost of circuit.cost) {
+        let multiplier = 1
+        if (slot.type !== 'all' && slot.type !== 'none') {
+          multiplier = 2
+        }
+        totalCost += cost.price * multiplier
+      }
+
+      if (totalCost >= (maxCostByChain[slot.position] || {})[circuit.type] || 0) {
+        result[index] = circuit
+        if (backtrack(index + 1)) {
+          return true
+        }
+        result[index] = null // 回溯
+      }
+    }
     return false
   }
 
-  // 填充必须选择的circuit
-  for (const circuit of requiredCircuits) {
-    const availableSlots = slots.filter((slot) => {
-      return !result[slot.position] && !circuit.name.includes(slot.excludedNames.join(''))
-    })
+  // 开始回溯
+  backtrack(0)
 
-    if (availableSlots.length === 0) {
-      throw new Error('No available slots for required circuit')
-    }
-
-    const slot = availableSlots[0]
-    result[slot.position] = circuit
-  }
-
-  if (backtrack(0)) {
-    return result
-  } else {
-    throw new Error('No valid solution found')
-  }
+  return result
 }
-
-// // 示例数据
-// const backpack = [
-//   { id: 1, name: 'Circuit1', type: ['earth'], cost: [{ type: 'earth', price: 10 }] },
-//   { id: 2, name: 'Circuit2', type: ['water'], cost: [{ type: 'water', price: 20 }] },
-//   { id: 3, name: 'Circuit3', type: ['fire'], cost: [{ type: 'fire', price: 15 }] }
-//   // 其他circuit对象
-// ]
-
-// const skills = [
-//   { id: 1, name: 'Skill1', position: 0, cost: [{ type: 'earth', price: 5 }] },
-//   { id: 2, name: 'Skill2', position: 1, cost: [{ type: 'water', price: 15 }] }
-//   // 其他skill对象
-// ]
-
-// const slots = [
-//   { name: 'Slot1', position: 0, cost: [{ type: 'earth', price: 3 }], excludedNames: ['Circuit1'] },
-//   { name: 'Slot2', position: 1, cost: [{ type: 'water', price: 7 }], excludedNames: [] }
-//   // 其他slot对象
-// ]
-
-// const circuitRequirements = [1, 3]
-// const circuitExclusions = [2]
-
-// try {
-//   const result = generateCircuits(backpack, skills, slots, circuitRequirements, circuitExclusions)
-//   console.log(result)
-// } catch (error) {
-//   console.error(error.message)
-// }
