@@ -66,16 +66,23 @@ export function findOptimalCircuits(
       if (slot.type !== 'all' && slot.type !== 'none' && circuit.type !== slot.type) {
         continue
       }
-      let totalCost = 0
-      for (const cost of circuit.cost) {
-        let multiplier = 1
-        if (slot.type !== 'all' && slot.type !== 'none') {
-          multiplier = 2
+      // 计算每种type的成本
+      const typeCosts = circuit.cost.reduce((acc, cost) => {
+        if (!acc[cost.type]) acc[cost.type] = 0
+        acc[cost.type] += cost.price
+        return acc
+      }, {})
+
+      // 检查每种type的成本是否满足条件
+      let valid = true
+      for (const [type, price] of Object.entries(typeCosts)) {
+        if (price < (maxCostByChain[slot.position] || {})[type] || 0) {
+          valid = false
+          break
         }
-        totalCost += cost.price * multiplier
       }
 
-      if (totalCost >= (maxCostByChain[slot.position] || {})[circuit.type] || 0) {
+      if (valid) {
         result[index] = circuit
         if (backtrack(index + 1)) {
           return true

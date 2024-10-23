@@ -113,6 +113,7 @@ const onSearch = (data) => {
 
   const result = findOptimalCircuits(circuitList, formData.shadowSkillList, formData.slotList, formData.circuitRequirements, formData.circuitExclusions)
 
+  formData.circuitList = result;
   console.log("result", result);
 };
 

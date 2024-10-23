@@ -98,7 +98,7 @@ const props = defineProps({
 
 const shadowList = computed(() => {
   let result = [];
-  let position = chainList[props.shadowType].name;
+  let position = chainList[props.shadowType].position;
   for (let i = 0; i < skillList.length; i++) {
     if (position === skillList[i].position) {
       result.push(skillList[i]);
