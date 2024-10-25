@@ -68,15 +68,10 @@
   </div>
 </template>
 <script setup>
-import { computed, reactive, onMounted } from 'vue';
-import axios from 'axios';
-
-import { useVersionStore } from '@/store';
+import { computed, inject, } from 'vue';
 import { chainList, circuitMap } from "@/assets/data/circuit";
 
-const store = useVersionStore();
-
-const skillList = reactive([]);
+const skillList = inject('skillList');
 
 const props = defineProps({
   //是否显示
@@ -126,6 +121,8 @@ const attributeSummary = computed(() => {
     if (['earth', 'water', 'fire', 'wind', 'time', 'gold', 'silver'].includes(slot.type)) {
       multiplier = 2;
     }
+
+    // console.log("circuit", circuit);
 
     // 遍历结晶回路的成本项，并应用乘数  
     circuit.cost.forEach(costItem => {
@@ -188,16 +185,6 @@ const checkShadow = (a, b) => {
   }
   return result;
 }
-
-onMounted(() => {
-  const version = store.version;
-  axios.get(`data/${version}_skill.json`).then(res => {
-    const data = res.data;
-    for (let i = 0; i < data.length; i++) {
-      skillList.push(data[i]);
-    }
-  })
-})
 
 </script>
 <style scoped lang='scss'>

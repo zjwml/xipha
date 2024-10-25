@@ -40,15 +40,11 @@
   </div>
 </template>
 <script setup>
-import { computed, reactive, defineEmits, onMounted } from 'vue';
-import axios from 'axios';
+import { computed, reactive, defineEmits, inject } from 'vue';
 
 import { chainList, circuitType, circuitMap } from "@/assets/data/circuit";
-import { useVersionStore } from "@/store";
 
-const store = useVersionStore();
-
-const allCircuit = reactive([]);
+const backpack = inject("backpack");
 
 const props = defineProps({
   //是否显示
@@ -126,8 +122,8 @@ const circuitOptions = computed(() => {
     return props.circuitList.some(used => used.id === circuit.id);
   };
 
-  // 遍历allCircuit，根据条件填充result数组的子对象  
-  allCircuit.forEach(circuit => {
+  // 遍历backpack，根据条件填充result数组的子对象  
+  backpack.forEach(circuit => {
     if (!isTypeFiltered(circuit)) {
       // 根据circuit的type找到对应的result数组元素，并添加子对象  
       const index = typeAvaliableList.findIndex(type => type.key === circuit.type);
@@ -151,8 +147,8 @@ const circuitOptions = computed(() => {
       children: [],
     }];
 
-    // 重新填充子对象（仅针对所选类型）  
-    allCircuit.forEach(circuit => {
+    // 重新填充子对象（仅针对所选类型）
+    backpack.forEach(circuit => {
       if (props.slotSelect.type === circuit.type && !isTypeFiltered(circuit)) {
         result[0].children.push({
           label: JSON.stringify(circuit),
@@ -172,16 +168,6 @@ const closeDialog = (ctx) => {
   formData.circuitSelectIndex = null;
   emit("close-dialog", ctx);
 }
-
-onMounted(() => {
-  const version = store.version;
-  axios.get(`data/${version}_circuit.json`).then(res => {
-    const data = res.data;
-    for (let i = 0; i < data.length; i++) {
-      allCircuit.push(data[i]);
-    }
-  })
-})
 
 </script>
 <style scoped lang='scss'>

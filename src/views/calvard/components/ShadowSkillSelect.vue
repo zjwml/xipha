@@ -24,26 +24,93 @@
     <div class="shadow-select-title">晶片技能需求</div>
     <div class="shadow-select-content">点击下面按钮，请选择自己需要的技能</div>
     <div class="shadow-select-button" @click="onClickSelect">选择晶片技能</div>
-    <!-- <div class="shadow-selected-conntainer">
+    <div class="cost-types-container">
+
+    </div>
+    <div class="shadow-selected-conntainer" v-for="item in allSelectedSkill" :key="item.id">
       <div class="shadow-selected">
-        <div class="shadow-selected-title">已选技能1</div>
-        <div class="shadow-selected-content">技能描述</div>
+        <div class="shadow-selected-title">{{ item.name }}</div>
+        <!-- <div class="shadow-selected-content">技能描述</div> -->
+        <div class="shadow-cost">
+          <div class="cost">
+            <div :class="'cost-type-container-' + item.cost[0].type">
+              <div :class="'cost-type-' + item.cost[0].type">
+                {{ circuitMap[item.cost[0].type] }}
+              </div>
+            </div>
+            <!-- <div :class="'cost-use-' +
+              checkCircuit(
+                attributeSummary[props.shadowType][item.cost[0].type],
+                item.cost[0].price
+              )
+              ">
+              {{ attributeSummary[props.shadowType][item.cost[0].type] }}
+            </div>
+            <div>/</div> -->
+            <div class="cost-price">
+              {{ item.cost[0].price }}
+            </div>
+          </div>
+          <div class="cost" v-if="item.cost.length > 1">
+            <div :class="'cost-type-container-' + item.cost[1].type">
+              <div :class="'cost-type-' + item.cost[1].type">
+                {{ circuitMap[item.cost[1].type] }}
+              </div>
+            </div>
+            <!-- <div :class="'cost-use-' +
+              checkCircuit(
+                attributeSummary[props.shadowType][item.cost[1].type],
+                item.cost[1].price
+              )
+              ">
+              {{ attributeSummary[props.shadowType][item.cost[1].type] }}
+            </div>
+            <div>/</div> -->
+            <div class="cost-price">
+              {{ item.cost[1].price }}
+            </div>
+          </div>
+        </div>
+
+        <div class="shadow-selected-close" @click="unselectOne(item)">
+          <close-icon size="large" />
+        </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 <script setup>
-import { ref, reactive, onMounted, defineEmits, computed } from 'vue';
-import { useVersionStore } from '@/store';
-import axios from 'axios';
+import { ref, reactive, defineEmits, computed, inject, watch } from 'vue';
+import { circuitMap } from "@/assets/data/circuit";
+
+import { CloseIcon } from 'tdesign-icons-vue-next';
 
 const emit = defineEmits(["change-skill"]);
 
-const store = useVersionStore();
-
-const skillList = reactive([]);
+const skillList = inject("skillList");
 
 const visible = ref(false);
+
+const props = defineProps({
+  skillSearch: {
+    type: Object,
+    default: () => {
+      return {
+        weapon: [],
+        shield: [],
+        driver: [],
+        extra: [],
+      }
+    }
+  }
+});
+
+watch(() => props.skillSearch, (newData) => {
+  formData.weapon = Array.from(new Set([...formData.weapon, ...newData.weapon]));
+  formData.shield = Array.from(new Set([...formData.shield, ...newData.shield]));
+  formData.driver = Array.from(new Set([...formData.driver, ...newData.driver]));
+  formData.extra = Array.from(new Set([...formData.extra, ...newData.extra]));
+}, { deep: true });
 
 const formData = reactive({
   weapon: [],
@@ -104,19 +171,30 @@ const extraOptions = computed(() => {
   return list;
 })
 
+const unselectOne = (skill) => {
+  formData[skill.position] = formData[skill.position].filter(item => item != skill.id);
+}
+
+const allSelectedSkill = computed(() => {
+  const result = [];
+  formData.weapon.forEach(item => {
+    result.push(skillList[parseInt(item) - 1]);
+  });
+  formData.shield.forEach(item => {
+    result.push(skillList[parseInt(item) - 1]);
+  });
+  formData.driver.forEach(item => {
+    result.push(skillList[parseInt(item) - 1]);
+  });
+  formData.extra.forEach(item => {
+    result.push(skillList[parseInt(item) - 1]);
+  });
+  return result;
+})
+
 const closeDialog = () => {
   emit("change-skill", formData);
 }
-
-onMounted(() => {
-  const version = store.version;
-  axios.get(`data/${version}_skill.json`).then(res => {
-    const data = res.data;
-    for (let i = 0; i < data.length; i++) {
-      skillList.push(data[i]);
-    }
-  })
-})
 
 </script>
 <style scoped lang='scss'>

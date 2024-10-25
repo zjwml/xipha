@@ -9,7 +9,8 @@
             style="margin-right: 10px;">清空</t-button>
           <t-button theme="primary" @click="onClickShowShadow(linkItem)">晶片技能</t-button>
         </template>
-        <t-form ref="form" :data="formData" label-width="120px" layout="inline" scroll-to-first-error="smooth" class="form-slot">
+        <t-form ref="form" :data="formData" label-width="120px" layout="inline" scroll-to-first-error="smooth"
+          class="form-slot">
           <template v-for="(pos, j) in [index * 4, index * 4 + 1, index * 4 + 2, index * 4 + 3]" :key="j">
             <t-form-item :name="linkItem.name + pos">
               <template #label>
@@ -35,18 +36,14 @@
   </div>
 </template>
 <script setup>
-import { reactive, defineEmits, onMounted, watch } from 'vue';
-import axios from 'axios';
+import { reactive, defineEmits, watch, inject } from 'vue';
 
 import { chainList, circuitMap, circuitType } from "@/assets/data/circuit";
 import CurcuitSelectDialog from './CircuitSelectDialog.vue';
-import { useVersionStore } from "@/store";
 
 const emit = defineEmits(["change-slot", "show-shadow", "clear-link", "change-circuit"]);
 
-const allCircuit = reactive([]);
-
-const store = useVersionStore();
+const allCircuit = inject("backpack")
 
 const props = defineProps({
   /**
@@ -88,10 +85,11 @@ const formData = reactive({
   },
 })
 
+// 当槽位类型改变时，触发父组件的 change-slot 事件
 const onChangeSlotType = (pos) => {
   emit("change-slot", pos)
 }
-
+// 当点击回路时，显示对话框并设置选中的槽位信息
 const onClickCircuit = (circuitIndex, linkItem) => {
   formData.backpackVisible = true;
   formData.slotSelect = {
@@ -101,11 +99,11 @@ const onClickCircuit = (circuitIndex, linkItem) => {
     linkId: linkItem.id
   };
 };
-
+// 当点击显示晶片技能时，触发父组件的 show-shadow 事件
 const onClickShowShadow = (linkItem) => {
   emit("show-shadow", linkItem);
 };
-
+// 关闭选择对话框，如果是选择的结晶孔，则更新回路
 const closeSelectDialog = (ctx) => {
   if (typeof ctx === "string") {
     //选择的结晶孔
@@ -118,21 +116,12 @@ const closeSelectDialog = (ctx) => {
 
   formData.backpackVisible = false;
 }
-
+// 清除链路上的回路
 const onClickClear = (linkItem) => {
   let position = linkItem.id;
 
   emit("clear-link", position);
 };
-
-onMounted(() => {
-  axios.get(`data/${store.version}_circuit.json`).then(res => {
-    const data = res.data;
-    for (let i = 0; i < data.length; i++) {
-      allCircuit.push(data[i]);
-    }
-  })
-})
 
 </script>
 <style scoped lang='scss'>

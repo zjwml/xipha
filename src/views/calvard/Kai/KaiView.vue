@@ -11,20 +11,26 @@
       :slotList="formData.slotList" :circuitList="formData.circuitList"
       @close-dialog="formData.shadowSkillVisible = false" />
     <t-row :gutter="20">
-      <t-col :span="8" :offset="2">
-        <MainSelectView v-show="isAutoEquip" @search="onSearch" />
+      <t-col :span="8" :offset="isAutoEquip ? 0 : 2">
+        <transition name="fade" mode="out-in" appear>
+          <div v-show="isAutoEquip" key="equip">
+            <MainSelectView @search="onSearch" @click-physics="onClickPhysics" @click-driver="onClickDriver" />
+          </div>
+        </transition>
         <XiphaOrbment :circuitList="formData.circuitList" :slotList="formData.slotList" @change-slot="onChangeSlot"
           @change-circuit="onChangeCircuit" @show-shadow="showShadowSkill" @clear-link="onClearLink"></XiphaOrbment>
       </t-col>
-      <t-col :span="2">
-        <ShadowSkillSelect v-show="isAutoEquip" @change-skill="onChangeSkill" />
+      <t-col :span="4">
+        <Transition mode="out-in">
+          <ShadowSkillSelect v-show="isAutoEquip" @change-skill="onChangeSkill" :skillSearch="skillSearch" />
+        </Transition>
       </t-col>
     </t-row>
 
   </div>
 </template>
 <script setup>
-import { reactive, computed, onBeforeMount, onMounted } from "vue";
+import { ref, reactive, computed, onBeforeMount, onMounted, provide } from "vue";
 import { useVersionStore } from "@/store";
 import axios from 'axios';
 
@@ -34,12 +40,16 @@ import XiphaOrbment from "../components/XiphaOrbment.vue";
 import ShadowSkillSelect from "../components/ShadowSkillSelect.vue";
 
 import { chainList } from "@/assets/data/circuit";
-import { findOptimalCircuits } from "../utils/generateCircuits";
+// import { findOptimalCircuits } from "../utils/generateCircuits";
 
 const store = useVersionStore();
 const skillList = reactive([]);
-const circuitList = reactive([]);
+// 给子组件提供skillList
+provide("skillList", skillList);
 
+const backpack = reactive([]);
+// 给子组件提供circuitList
+provide("backpack", backpack);
 /**
  * 获得一个行的结晶孔/回路
  */
@@ -53,6 +63,8 @@ const getNewCircuit = () => {
     }]
   };
 }
+
+const skillSearch = ref(null);
 
 const formData = reactive({
   shadowSkillVisible: false,
@@ -111,11 +123,19 @@ const onSearch = (data) => {
     slot.excludedNames = chainList[chainIndex].excludedNames;
   });
 
-  const result = findOptimalCircuits(circuitList, formData.shadowSkillList, formData.slotList, formData.circuitRequirements, formData.circuitExclusions)
+  // const result = findOptimalCircuits(circuitList, formData.shadowSkillList, formData.slotList, formData.circuitRequirements, formData.circuitExclusions)
 
-  formData.circuitList = result;
-  console.log("result", result);
+  // formData.circuitList = result;
+  // console.log("result", result);
 };
+
+const onClickPhysics = (ctx) => {
+  skillSearch.value = ctx;
+}
+
+const onClickDriver = (ctx) => {
+  skillSearch.value = ctx;
+}
 
 onBeforeMount(() => {
   for (let i = 0; i < 16; i++) {
@@ -130,18 +150,20 @@ onBeforeMount(() => {
   }
 });
 
-onMounted(() => {
+onMounted(async () => {
   const version = store.version;
-  axios.get(`data/${version}_skill.json`).then(res => {
+
+  await axios.get(`data/${version}_skill.json`).then(res => {
     const data = res.data;
     for (let i = 0; i < data.length; i++) {
       skillList.push(data[i]);
     }
   })
-  axios.get(`data/${version}_circuit.json`).then(res => {
+
+  await axios.get(`data/${version}_circuit.json`).then(res => {
     const data = res.data;
     for (let i = 0; i < data.length; i++) {
-      circuitList.push(data[i]);
+      backpack.push(data[i]);
     }
   })
 })

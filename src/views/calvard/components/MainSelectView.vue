@@ -19,6 +19,7 @@
         <t-form-item label="辅助按钮">
           <t-space>
             <t-button @click="onClickPhysics" variant="outline" theme="primary">菜刀必备</t-button>
+            <t-button @click="onClickDriver" variant="outline" theme="primary">法师必备</t-button>
             <t-button @click="onClickNoLevel" variant="outline" theme="primary">不要1级回路</t-button>
           </t-space>
         </t-form-item>
@@ -27,16 +28,12 @@
   </div>
 </template>
 <script setup>
-import { computed, reactive, defineEmits, onMounted } from 'vue';
-import { useVersionStore } from '@/store';
-import axios from 'axios';
+import { computed, reactive, defineEmits, inject } from 'vue';
 import { circuitType } from "@/assets/data/circuit";
 
-const emit = defineEmits(["search"]);
+const emit = defineEmits(["search", "click-physics", "click-driver"]);
 
-const allCircuit = reactive([]);
-
-const store = useVersionStore();
+const allCircuit = inject("backpack");
 
 const formData = reactive({
   // 必须回路id列表
@@ -75,14 +72,39 @@ const circuitOptions = computed(() => {
 });
 
 const onClickPhysics = () => {
-  formData.circuitRequirements.push(...[
+  formData.circuitRequirements = Array.from(new Set([...formData.circuitRequirements, ...[
     "79",
     "43",
     "71",
     "61",
     "89",
+    "97"
+  ]]));
+
+  emit("click-physics", {
+    weapon: ["26"],
+    shield: ["46", "48"],
+    driver: [],
+    extra: ["104", "106", "116"],
+  });
+}
+
+const onClickDriver = () => {
+  formData.circuitRequirements = Array.from(new Set([...formData.circuitRequirements, ...[
+    "34",
+    "36",
+    "61",
+    "79",
     "97",
-  ])
+    "115",
+  ]]));
+
+  emit("click-driver", {
+    weapon: [],
+    shield: ["46"],
+    driver: ["80",],
+    extra: ["106", "116"],
+  });
 }
 
 const onClickNoLevel = () => {
@@ -96,16 +118,6 @@ const onClickNoLevel = () => {
 const onClickSearch = () => {
   emit("search", formData);
 }
-
-onMounted(() => {
-  const version = store.version;
-  axios.get(`data/${version}_circuit.json`).then(res => {
-    const data = res.data;
-    for (let i = 0; i < data.length; i++) {
-      allCircuit.push(data[i]);
-    }
-  })
-})
 
 </script>
 <style scoped lang='scss'>
