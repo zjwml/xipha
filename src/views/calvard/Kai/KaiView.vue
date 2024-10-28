@@ -40,7 +40,7 @@ import XiphaOrbment from "../components/XiphaOrbment.vue";
 import ShadowSkillSelect from "../components/ShadowSkillSelect.vue";
 
 import { chainList } from "@/assets/data/circuit";
-// import { findOptimalCircuits } from "../utils/generateCircuits";
+import { findOptimalCircuits } from "../utils/generateCircuits";
 
 const store = useVersionStore();
 const skillList = reactive([]);
@@ -99,17 +99,18 @@ const showShadowSkill = (linkItem) => {
   formData.shadowSkillVisible = true;
 }
 
-const onChangeSkill = (skillIdList) => {
+const onChangeSkill = (skillIdObject) => {
   let result = [];
-  let tmp = skillList.filter(skill => skillIdList.weapon.includes(skill.id));
+  let tmp = skillList.filter(skill => skillIdObject.weapon.includes(skill.id));
   result.push(...tmp);
-  tmp = skillList.filter(skill => skillIdList.driver.includes(skill.id));
+  tmp = skillList.filter(skill => skillIdObject.driver.includes(skill.id));
   result.push(...tmp);
-  tmp = skillList.filter(skill => skillIdList.shield.includes(skill.id));
+  tmp = skillList.filter(skill => skillIdObject.shield.includes(skill.id));
   result.push(...tmp);
-  tmp = skillList.filter(skill => skillIdList.extra.includes(skill.id));
+  tmp = skillList.filter(skill => skillIdObject.extra.includes(skill.id));
   result.push(...tmp);
-  formData.shadowSkillList = result;
+  formData.shadowSkillList = [];
+  formData.shadowSkillList.push(...result);
 }
 
 const onSearch = (data) => {
@@ -119,22 +120,25 @@ const onSearch = (data) => {
 
   formData.slotList.forEach((slot, index) => {
     const chainIndex = Math.floor(index / 4);
+    slot.index = index;
     slot.position = chainList[chainIndex].position;
     slot.excludedNames = chainList[chainIndex].excludedNames;
   });
 
-  // const result = findOptimalCircuits(circuitList, formData.shadowSkillList, formData.slotList, formData.circuitRequirements, formData.circuitExclusions)
+  const result = findOptimalCircuits(backpack, formData.shadowSkillList, formData.slotList, formData.circuitRequirements, formData.circuitExclusions)
 
-  // formData.circuitList = result;
-  // console.log("result", result);
+  formData.circuitList = result;
+  console.log("result", result);
 };
 
 const onClickPhysics = (ctx) => {
   skillSearch.value = ctx;
+  onChangeSkill(ctx);
 }
 
 const onClickDriver = (ctx) => {
   skillSearch.value = ctx;
+  onChangeSkill(ctx);
 }
 
 onBeforeMount(() => {

@@ -1,4 +1,3 @@
-// 核心逻辑函数
 export function findOptimalCircuits(
   inventory,
   skills,
@@ -18,9 +17,17 @@ export function findOptimalCircuits(
     return acc
   }, {})
 
+  // 对每个position下的type按cost从大到小排序
+  const sortedMaxCostByChain = Object.fromEntries(
+    Object.entries(maxCostByChain).map(([position, types]) => [
+      position,
+      Object.fromEntries(Object.entries(types).sort((a, b) => b[1] - a[1]))
+    ])
+  )
+
   // 过滤掉需要排除的circuit
   let filteredInventory = inventory.filter((circuit) => !circuitExclusions.includes(circuit.id))
-  // 同时得到必须的电路和非必须的电路
+  // 同时得到必须的回路和非必须的回路
   const { requiredInventory, pendingInventory } = filteredInventory.reduce(
     (acc, circuit) => {
       if (circuitRequirements.includes(circuit.id)) {
@@ -76,7 +83,7 @@ export function findOptimalCircuits(
       // 检查每种type的成本是否满足条件
       let valid = true
       for (const [type, price] of Object.entries(typeCosts)) {
-        if (price < (maxCostByChain[slot.position] || {})[type] || 0) {
+        if (price < (sortedMaxCostByChain[slot.position] || {})[type] || 0) {
           valid = false
           break
         }
