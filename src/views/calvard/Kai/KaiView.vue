@@ -8,8 +8,7 @@
 <template>
   <div>
     <ShadowSkillDialog :shadowSkillVisible="formData.shadowSkillVisible" :shadowType="formData.shadowType"
-      :slotList="formData.slotList" :circuitList="formData.circuitList"
-      @close-dialog="formData.shadowSkillVisible = false" />
+      :slotList="formData.slotList" @close-dialog="formData.shadowSkillVisible = false" />
     <t-row :gutter="20">
       <t-col :span="8" :offset="isAutoEquip ? 0 : 2">
         <transition name="fade" mode="out-in" appear>
@@ -17,8 +16,8 @@
             <MainSelectView @search="onSearch" @click-physics="onClickPhysics" @click-driver="onClickDriver" />
           </div>
         </transition>
-        <XiphaOrbment :circuitList="formData.circuitList" :slotList="formData.slotList" @change-slot="onChangeSlot"
-          @change-circuit="onChangeCircuit" @show-shadow="showShadowSkill" @clear-link="onClearLink"></XiphaOrbment>
+        <XiphaOrbment :slotList="formData.slotList" @change-slot="onChangeSlot" @change-circuit="onChangeCircuit"
+          @show-shadow="showShadowSkill" @clear-link="onClearLink"></XiphaOrbment>
       </t-col>
       <t-col :span="4">
         <Transition mode="out-in">
@@ -48,7 +47,7 @@ const skillList = reactive([]);
 provide("skillList", skillList);
 
 const backpack = reactive([]);
-// 给子组件提供circuitList
+// 给子组件提供backpack
 provide("backpack", backpack);
 /**
  * 获得一个行的结晶孔/回路
@@ -70,7 +69,6 @@ const formData = reactive({
   shadowSkillVisible: false,
   shadowType: 0,
   slotList: [],
-  circuitList: [],
   circuitExclusions: [],
   circuitRequirements: [],
   shadowSkillList: []
@@ -81,16 +79,16 @@ const isAutoEquip = computed(() => {
 })
 
 const onChangeSlot = (pos) => {
-  formData.circuitList[pos] = getNewCircuit();
+  formData.slotList[pos].circuit = getNewCircuit();
 }
 
 const onChangeCircuit = (circuit, index) => {
-  formData.circuitList[index] = circuit;
+  formData.slotList[index].circuit = circuit;
 }
 
 const onClearLink = (position) => {
   for (let i = position * 4; i < position * 4 + 4; i++) {
-    formData.circuitList[i] = getNewCircuit();
+    formData.slotList[i].circuit = getNewCircuit();
   }
 };
 
@@ -144,13 +142,11 @@ const onClickDriver = (ctx) => {
 onBeforeMount(() => {
   for (let i = 0; i < 16; i++) {
     formData.slotList.push({
+      index: i,
       type: "all",
-      name: "通用孔",
+      disabled: false,
+      circuit: getNewCircuit(),
     });
-  }
-
-  for (let i = 0; i < 16; i++) {
-    formData.circuitList.push(getNewCircuit());
   }
 });
 

@@ -86,9 +86,6 @@ const props = defineProps({
   slotList: {
     type: Array,
   },
-  circuitList: {
-    type: Array,
-  },
 })
 
 const shadowList = computed(() => {
@@ -150,9 +147,8 @@ const attributeSummary = computed(() => {
     // 遍历组内的四个元素  
     for (let index = 0; index < 4; index++) {
       const slotIndex = group * 4 + index;
-      const circuitIndex = slotIndex; // circuitList与slotList的索引一一对应  
       const slot = props.slotList[slotIndex];
-      const circuit = props.circuitList[circuitIndex];
+      const circuit = props.slotList[slotIndex].circuit;
 
       // 计算当前回路对属性的贡献，并累加到组总和中  
       const cost = calculateAttributeCost(slot, circuit);

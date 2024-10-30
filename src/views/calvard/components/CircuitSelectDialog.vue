@@ -52,7 +52,7 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  circuitList: {
+  slotList: {
     type: Array,
     default: () => []
   },
@@ -119,10 +119,10 @@ const circuitOptions = computed(() => {
     }
 
     // 过滤已经使用过的circuit
-    return props.circuitList.some(used => used.id === circuit.id);
+    return props.slotList.some(used => used.circuit.id === circuit.id);
   };
 
-  // 遍历backpack，根据条件填充result数组的子对象  
+  // 遍历backpack，根据条件填充result数组的子对象
   backpack.forEach(circuit => {
     if (!isTypeFiltered(circuit)) {
       // 根据circuit的type找到对应的result数组元素，并添加子对象  

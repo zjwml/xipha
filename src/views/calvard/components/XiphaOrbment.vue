@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CurcuitSelectDialog :visible="formData.backpackVisible" :circuitList="props.circuitList"
+    <CurcuitSelectDialog :visible="formData.backpackVisible" :slotList="props.slotList"
       :slotSelect="formData.slotSelect" @close-dialog="closeSelectDialog" />
     <div class="xipha-orbment">
       <t-card style="margin-bottom: 20px;" v-for="(linkItem, index) in chainList" :key="index" :title="linkItem.name">
@@ -22,10 +22,10 @@
               </template>
               <div class="circuit" @click="onClickCircuit(pos, linkItem)">
                 <div class="diamond-container">
-                  <div :class="'diamond-' + props.circuitList[pos].type"></div>
-                  <div :class="'inner-diamond-' + props.circuitList[pos].type"></div>
+                  <div :class="'diamond-' + props.slotList[pos].circuit.type"></div>
+                  <div :class="'inner-diamond-' + props.slotList[pos].circuit.type"></div>
                 </div>
-                <div :class="'circuit-icon-text-' + props.slotList[pos].type">{{ props.circuitList[pos].name }}
+                <div :class="'circuit-icon-text-' + props.slotList[pos].type">{{ props.slotList[pos].circuit.name }}
                 </div>
               </div>
             </t-form-item>
@@ -47,14 +47,7 @@ const allCircuit = inject("backpack")
 
 const props = defineProps({
   /**
-   * 装配回路列表
-   */
-  circuitList: {
-    type: Array,
-    default: () => []
-  },
-  /**
-   * 结晶孔列表，与回路表对应，主要用来放限制类型
+   * 结晶孔列表
    */
   slotList: {
     type: Array,
