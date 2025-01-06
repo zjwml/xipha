@@ -6,6 +6,18 @@
           <t-button @click="onClickSearch">开始搜索</t-button>
         </t-form-item>
         <t-divider></t-divider>
+        <t-form-item label="选择人物" prop="hero">
+          <t-select v-model="formData.hero" clearable>
+            <t-option v-for="item in heroList" :key="item.value" :value="item.value" :label="item.label">
+              <div class="hero-option">
+                <img class="hero-img" :src="item.pic" />
+                <div>
+                  <div>{{ item.label }}</div>
+                </div>
+              </div>
+            </t-option>
+          </t-select>
+        </t-form-item>
         <t-form-item label="必需回路" prop="circuitRequirements">
           <t-cascader v-model="formData.circuitRequirements" :options="circuitOptions" clearable
             :show-all-levels="false" multiple>
@@ -28,18 +40,22 @@
   </div>
 </template>
 <script setup>
-import { computed, reactive, defineEmits, inject } from 'vue';
+import { computed, reactive, defineEmits, inject, onMounted } from 'vue';
 import { circuitType } from "@/assets/data/circuit";
+import axios from 'axios';
 
 const emit = defineEmits(["search", "click-physics", "click-driver"]);
 
 const allCircuit = inject("backpack");
+
+const heroList = reactive([]);
 
 const formData = reactive({
   // 必须回路id列表
   circuitRequirements: [],
   // 不要的回路id列表
   circuitExclusions: [],
+  hero: "",
 })
 
 const circuitOptions = computed(() => {
@@ -119,6 +135,25 @@ const onClickSearch = () => {
   emit("search", formData);
 }
 
+onMounted(async () => {
+  await axios.get(`data/kuro2_user.json`).then(res => {
+    const data = res.data.data;
+    console.log(data);
+    for (let i = 0; i < data.length; i++) {
+      heroList.push({
+        label: data[i][2],
+        value: data[i][0],
+        pic: data[i][1],
+        chain: data[i][3]
+      });
+    }
+    console.log("herolist", heroList);
+  })
+
+})
+
+
+
 </script>
 <style scoped lang='scss'>
 @import url("./style/MainSelectView.scss");
@@ -135,5 +170,10 @@ const onClickSearch = () => {
 
 .t-cascader__item {
   height: 40px !important;
+}
+
+.t-select-option {
+  height: 100%;
+  padding: 8px;
 }
 </style>

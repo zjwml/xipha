@@ -27,53 +27,36 @@
     <div class="cost-types-container">
 
     </div>
-    <div class="shadow-selected-conntainer" v-for="item in allSelectedSkill" :key="item.id">
+    <div class="shadow-selected-container" v-for="item in allSelectedSkill" :key="item.id">
       <div class="shadow-selected">
         <div class="shadow-selected-title">{{ item.name }}</div>
-        <!-- <div class="shadow-selected-content">技能描述</div> -->
-        <div class="shadow-cost">
-          <div class="cost">
-            <div :class="'cost-type-container-' + item.cost[0].type">
-              <div :class="'cost-type-' + item.cost[0].type">
-                {{ circuitMap[item.cost[0].type] }}
+        <div class="shadow-selected-cost-close">
+          <div class="shadow-cost">
+            <div class="cost">
+              <div :class="'cost-type-container-' + item.cost[0].type">
+                <div :class="'cost-type-' + item.cost[0].type">
+                  {{ circuitMap[item.cost[0].type] }}
+                </div>
+              </div>
+              <div class="cost-price">
+                {{ item.cost[0].price }}
               </div>
             </div>
-            <!-- <div :class="'cost-use-' +
-              checkCircuit(
-                attributeSummary[props.shadowType][item.cost[0].type],
-                item.cost[0].price
-              )
-              ">
-              {{ attributeSummary[props.shadowType][item.cost[0].type] }}
-            </div>
-            <div>/</div> -->
-            <div class="cost-price">
-              {{ item.cost[0].price }}
-            </div>
-          </div>
-          <div class="cost" v-if="item.cost.length > 1">
-            <div :class="'cost-type-container-' + item.cost[1].type">
-              <div :class="'cost-type-' + item.cost[1].type">
-                {{ circuitMap[item.cost[1].type] }}
+            <div class="cost" v-if="item.cost.length > 1">
+              <div :class="'cost-type-container-' + item.cost[1].type">
+                <div :class="'cost-type-' + item.cost[1].type">
+                  {{ circuitMap[item.cost[1].type] }}
+                </div>
+              </div>
+              <div class="cost-price">
+                {{ item.cost[1].price }}
               </div>
             </div>
-            <!-- <div :class="'cost-use-' +
-              checkCircuit(
-                attributeSummary[props.shadowType][item.cost[1].type],
-                item.cost[1].price
-              )
-              ">
-              {{ attributeSummary[props.shadowType][item.cost[1].type] }}
-            </div>
-            <div>/</div> -->
-            <div class="cost-price">
-              {{ item.cost[1].price }}
-            </div>
           </div>
-        </div>
 
-        <div class="shadow-selected-close" @click="unselectOne(item)">
-          <close-icon size="large" />
+          <div class="shadow-selected-close" @click="unselectOne(item)">
+            <close-icon size="large" />
+          </div>
         </div>
       </div>
     </div>

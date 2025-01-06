@@ -6,7 +6,7 @@
       <div class="header-version">
         <t-select label="选择版本" v-model="data.version" @blur="onChangeVersion">
           <t-option key="kai" label="界之轨迹" value="kai" />
-          <t-option key="kurotwo" label="黎之轨迹2" value="kurotwo" />
+          <t-option key="kurotwo" label="黎之轨迹2" value="kurotwo" disabled />
           <t-option key="kuro" label="黎之轨迹" value="kuro" disabled />
         </t-select>
       </div>
@@ -74,7 +74,7 @@ const onChangeAuto = () => {
     position: absolute;
     display: flex;
     right: 15px;
-    
+
     align-items: center;
   }
 }

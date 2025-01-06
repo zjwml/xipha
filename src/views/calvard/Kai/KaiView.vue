@@ -9,6 +9,7 @@
   <div>
     <ShadowSkillDialog :shadowSkillVisible="formData.shadowSkillVisible" :shadowType="formData.shadowType"
       :slotList="formData.slotList" @close-dialog="formData.shadowSkillVisible = false" />
+    <div class="tttttt"></div>
     <t-row :gutter="20">
       <t-col :span="8" :offset="isAutoEquip ? 0 : 2">
         <transition name="fade" mode="out-in" appear>
